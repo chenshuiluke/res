@@ -62,7 +62,6 @@ const Resources = () => {
         setBlogs([...newBlogs]);
 
         const podcastElements = $(".podcast-item.w-dyn-item");
-
         const newPodcasts = [];
         for (const podcast of podcastElements) {
           const newPodcast = {
