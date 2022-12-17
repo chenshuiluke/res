@@ -140,7 +140,7 @@ const Resources = () => {
                 tagArr.push(tag.toLowerCase());
               }
             } else {
-              if (!tagArr.includes(tag.toLowerCase())) {
+              if (tagArr.includes(tag.toLowerCase())) {
                 tagArr = tagArr.filter((element) => {
                   return element != tag.toLowerCase();
                 });
@@ -153,7 +153,7 @@ const Resources = () => {
                 contentArr.push(tag.toLowerCase());
               }
             } else {
-              if (!contentArr.includes(tag.toLowerCase())) {
+              if (contentArr.includes(tag.toLowerCase())) {
                 contentArr = contentArr.filter((element) => {
                   return element != tag.toLowerCase();
                 });
