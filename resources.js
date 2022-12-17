@@ -184,383 +184,350 @@ const Resources = () => {
   }, []);
   debugger;
   console.log(contentTypes);
+
+  const renderBlogs = (blogs) => {
+    return blogs
+      .filter((blog) => {
+        for (const tag of tags) {
+          if (!blog.tags.includes(tag)) {
+            return false;
+          }
+        }
+        return true;
+      })
+      .filter((item) => {
+        if (searchFilter != "") {
+          if (
+            item.title.toLowerCase().includes(searchFilter.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchFilter.toLowerCase())
+          ) {
+            return true;
+          }
+          return false;
+        }
+        return true;
+      })
+      .filter((blog, idx) => {
+        if (tags.length > 0 || contentTypes > 0 || idx < blogLimit) {
+          return true;
+        }
+        return false;
+      })
+
+      .map((blog) => {
+        return (
+          <div key={blog.title} role="listitem" class="blog-item w-dyn-item">
+            <a href={blog.link} class="blog-link-new w-inline-block">
+              <div class="blog-img-wrap">
+                <img
+                  src={blog.image}
+                  alt=""
+                  sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
+                  class="resource-image"
+                />
+              </div>
+              <div class="pill-label">
+                <div fs-cmsfilter-field="type" class="text-block-6">
+                  Blog
+                </div>
+              </div>
+              <div class="blog-info-wrap-new">
+                <p fs-cmsfilter-field="description" class="paragraph blog">
+                  {blog.description}
+                </p>
+                <div fs-cmsfilter-field="title" class="blog-title-new">
+                  {blog.title}
+                </div>
+                <div class="info-wrap-new">
+                  <p
+                    fs-cmsfilter-field="author"
+                    class="paragraph blog blog-author"
+                  >
+                    {blog.author}
+                  </p>
+                  <div class="blog-line">-</div>
+                  <p class="paragraph blog date">{blog.date}</p>
+                </div>
+                <div fs-cmsfilter-field="tags" class="tags">
+                  {blog.tags}
+                </div>
+              </div>
+              <div class="card-btn-wrapper">
+                <div class="card-btn line-btn blog-btn">Read More</div>
+              </div>
+            </a>
+          </div>
+        );
+      });
+  };
+
+  const renderPodcasts = (podcasts) => {
+    return podcasts
+      .filter((podcast) => {
+        for (const tag of tags) {
+          if (!podcast.tags.includes(tag)) {
+            return false;
+          }
+        }
+        return true;
+      })
+      .filter((item) => {
+        if (searchFilter != "") {
+          if (
+            item.title.toLowerCase().includes(searchFilter.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchFilter.toLowerCase())
+          ) {
+            return true;
+          }
+          return false;
+        }
+        return true;
+      })
+      .filter((podcast, idx) => {
+        if (tags.length > 0 || contentTypes > 0 || idx < podcastLimit) {
+          return true;
+        }
+        return false;
+      })
+
+      .map((podcast) => {
+        return (
+          <div key={podcast.title} role="listitem" class="blog-item w-dyn-item">
+            <a href={podcast.link} class="blog-link-new w-inline-block">
+              <div class="blog-img-wrap">
+                <img
+                  src={podcast.image}
+                  alt=""
+                  sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
+                  class="resource-image"
+                />
+              </div>
+              <div class="pill-label">
+                <div fs-cmsfilter-field="type" class="text-block-6">
+                  Podcast
+                </div>
+              </div>
+              <div class="blog-info-wrap-new">
+                <p
+                  fs-cmsfilter-field="description"
+                  class="paragraph podcast-meta"
+                >
+                  {podcast.description}
+                </p>
+                <div fs-cmsfilter-field="title" class="blog-title-new">
+                  {podcast.title}
+                </div>
+                <div class="info-wrap-new">
+                  <p
+                    fs-cmsfilter-field="author"
+                    class="paragraph blog blog-author"
+                  >
+                    {podcast.author}
+                  </p>
+                  <div class="blog-line">-</div>
+                  <p class="paragraph blog date">{podcast.date}</p>
+                </div>
+                <div fs-cmsfilter-field="tags" class="tags">
+                  {podcast.tags}
+                </div>
+              </div>
+              <div class="card-btn-wrapper">
+                <div class="card-btn line-btn blog-btn">Read More</div>
+              </div>
+            </a>
+          </div>
+        );
+      });
+  };
+
+  const renderWebinars = (webinars) => {
+    webinars
+      .filter((webinar) => {
+        for (const tag of tags) {
+          if (!webinar.tags.includes(tag)) {
+            return false;
+          }
+        }
+        return true;
+      })
+      .filter((item) => {
+        if (searchFilter != "") {
+          if (
+            item.title.toLowerCase().includes(searchFilter.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchFilter.toLowerCase())
+          ) {
+            return true;
+          }
+          return false;
+        }
+        return true;
+      })
+      .filter((webinar, idx) => {
+        if (tags.length > 0 || contentTypes > 0 || idx < webinarLimit) {
+          return true;
+        }
+        return false;
+      })
+
+      .map((webinar) => {
+        return (
+          <div key={webinar.title} role="listitem" class="blog-item w-dyn-item">
+            <a href={webinar.link} class="blog-link-new w-inline-block">
+              <div class="blog-img-wrap">
+                <img
+                  src={webinar.image}
+                  alt=""
+                  sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
+                  class="resource-image"
+                />
+              </div>
+              <div class="pill-label">
+                <div fs-cmsfilter-field="type" class="text-block-6">
+                  Webinar
+                </div>
+              </div>
+              <div class="blog-info-wrap-new">
+                <p
+                  fs-cmsfilter-field="description"
+                  class="paragraph podcast-meta"
+                >
+                  {webinar.description}
+                </p>
+                <div fs-cmsfilter-field="title" class="blog-title-new">
+                  {webinar.title}
+                </div>
+                <div class="info-wrap-new">
+                  <p
+                    fs-cmsfilter-field="author"
+                    class="paragraph blog blog-author"
+                  >
+                    {webinar.author}
+                  </p>
+                  <div class="blog-line">-</div>
+                  <p class="paragraph blog date">{webinar.date}</p>
+                </div>
+                <div fs-cmsfilter-field="tags" class="tags">
+                  {webinar.tags}
+                </div>
+              </div>
+              <div class="card-btn-wrapper">
+                <div class="card-btn line-btn blog-btn">Read More</div>
+              </div>
+            </a>
+          </div>
+        );
+      });
+  };
   return (
     <>
-      {(contentTypes.length === 0 || contentTypes.includes("blog")) && (
+      {tags.length === 0 && (
         <>
-          {tags.length == 0 && <h1 class="categoryheading">Blog Posts</h1>}
+          {(contentTypes.length === 0 || contentTypes.includes("blog")) && (
+            <>
+              {tags.length == 0 && <h1 class="categoryheading">Blog Posts</h1>}
 
-          <div
-            fs-cmsfilter-element="list"
-            class="blog-collection-list-wrapper blog-wrapper w-dyn-list"
-            style={{
-              display: "block",
-            }}
-          >
-            <div role="list" class="blog-list w-dyn-items">
-              {blogs
-                .filter((blog) => {
-                  for (const tag of tags) {
-                    if (!blog.tags.includes(tag)) {
-                      return false;
-                    }
-                  }
-                  return true;
-                })
-                .filter((item) => {
-                  if (searchFilter != "") {
-                    if (
-                      item.title
-                        .toLowerCase()
-                        .includes(searchFilter.toLowerCase()) ||
-                      item.description
-                        .toLowerCase()
-                        .includes(searchFilter.toLowerCase())
-                    ) {
-                      return true;
-                    }
-                    return false;
-                  }
-                  return true;
-                })
-                .filter((blog, idx) => {
-                  if (tags.length > 0 || contentTypes > 0 || idx < blogLimit) {
-                    return true;
-                  }
-                  return false;
-                })
-
-                .map((blog) => {
-                  return (
-                    <div
-                      key={blog.title}
-                      role="listitem"
-                      class="blog-item w-dyn-item"
-                    >
-                      <a href={blog.link} class="blog-link-new w-inline-block">
-                        <div class="blog-img-wrap">
-                          <img
-                            src={blog.image}
-                            alt=""
-                            sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-                            class="resource-image"
-                          />
-                        </div>
-                        <div class="pill-label">
-                          <div fs-cmsfilter-field="type" class="text-block-6">
-                            Blog
-                          </div>
-                        </div>
-                        <div class="blog-info-wrap-new">
-                          <p
-                            fs-cmsfilter-field="description"
-                            class="paragraph blog"
-                          >
-                            {blog.description}
-                          </p>
-                          <div
-                            fs-cmsfilter-field="title"
-                            class="blog-title-new"
-                          >
-                            {blog.title}
-                          </div>
-                          <div class="info-wrap-new">
-                            <p
-                              fs-cmsfilter-field="author"
-                              class="paragraph blog blog-author"
-                            >
-                              {blog.author}
-                            </p>
-                            <div class="blog-line">-</div>
-                            <p class="paragraph blog date">{blog.date}</p>
-                          </div>
-                          <div fs-cmsfilter-field="tags" class="tags">
-                            {blog.tags}
-                          </div>
-                        </div>
-                        <div class="card-btn-wrapper">
-                          <div class="card-btn line-btn blog-btn">
-                            Read More
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  );
-                })}
-            </div>
-            {tags.length == 0 && contentTypes.length == 0 && (
-              <>
-                <div
-                  class="card-btn-wrapper"
-                  style={{ marginTop: "5px" }}
-                  onClick={() => setBlogLimit(blogLimit + 6)}
-                >
-                  <div
-                    class="card-btn line-btn blog-btn"
-                    style={{ backgroundColor: "#002856", color: "white" }}
-                  >
-                    Load More
-                  </div>
+              <div
+                fs-cmsfilter-element="list"
+                class="blog-collection-list-wrapper blog-wrapper w-dyn-list"
+                style={{
+                  display: "block",
+                }}
+              >
+                <div role="list" class="blog-list w-dyn-items">
+                  {renderBlogs(blogs)}
                 </div>
-              </>
-            )}
-          </div>
+                {tags.length == 0 && contentTypes.length == 0 && (
+                  <>
+                    <div
+                      class="card-btn-wrapper"
+                      style={{ marginTop: "5px" }}
+                      onClick={() => setBlogLimit(blogLimit + 6)}
+                    >
+                      <div
+                        class="card-btn line-btn blog-btn"
+                        style={{ backgroundColor: "#002856", color: "white" }}
+                      >
+                        Load More
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </>
+          )}
+          {(contentTypes.length === 0 || contentTypes.includes("podcast")) && (
+            <>
+              {tags.length == 0 && <h1 class="categoryheading">Podcasts</h1>}
+
+              <div
+                fs-cmsfilter-element="list"
+                class="podcast-collection-list-wrapper blog-wrapper w-dyn-list"
+                style={{
+                  display: "block",
+                }}
+              >
+                <div role="list" class="podcast-list w-dyn-items">
+                  {renderPodcasts(podcasts)}
+                </div>
+                {tags.length == 0 && contentTypes.length == 0 && (
+                  <>
+                    <div
+                      class="card-btn-wrapper"
+                      style={{ marginTop: "5px" }}
+                      onClick={() => setPodcastLimit(podcastLimit + 6)}
+                    >
+                      <div
+                        class="card-btn line-btn blog-btn"
+                        style={{ backgroundColor: "#002856", color: "white" }}
+                      >
+                        Load More
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </>
+          )}
+          {(contentTypes.length === 0 || contentTypes.includes("webinar")) && (
+            <>
+              {tags.length == 0 && <h1 class="categoryheading">CE Webinars</h1>}
+
+              <div
+                fs-cmsfilter-element="list"
+                class="webinar-collection-list-wrapper blog-wrapper w-dyn-list"
+                style={{
+                  display: "block",
+                }}
+              >
+                <div role="list" class="webinar-list w-dyn-items">
+                  {renderWebinars(webinars)}
+                </div>
+                {tags.length == 0 && contentTypes.length == 0 && (
+                  <>
+                    <div
+                      class="card-btn-wrapper"
+                      style={{ marginTop: "5px" }}
+                      onClick={() => setWebinarLimit(webinarLimit + 6)}
+                    >
+                      <div
+                        class="card-btn line-btn blog-btn"
+                        style={{ backgroundColor: "#002856", color: "white" }}
+                      >
+                        Load More
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            </>
+          )}
         </>
       )}
-      {(contentTypes.length === 0 || contentTypes.includes("podcast")) && (
+      {tags.length > 1 && (
         <>
-          {tags.length == 0 && <h1 class="categoryheading">Podcasts</h1>}
-
-          <div
-            fs-cmsfilter-element="list"
-            class="podcast-collection-list-wrapper blog-wrapper w-dyn-list"
-            style={{
-              display: "block",
-            }}
-          >
-            <div role="list" class="podcast-list w-dyn-items">
-              {podcasts
-                .filter((podcast) => {
-                  for (const tag of tags) {
-                    if (!podcast.tags.includes(tag)) {
-                      return false;
-                    }
-                  }
-                  return true;
-                })
-                .filter((item) => {
-                  if (searchFilter != "") {
-                    if (
-                      item.title
-                        .toLowerCase()
-                        .includes(searchFilter.toLowerCase()) ||
-                      item.description
-                        .toLowerCase()
-                        .includes(searchFilter.toLowerCase())
-                    ) {
-                      return true;
-                    }
-                    return false;
-                  }
-                  return true;
-                })
-                .filter((podcast, idx) => {
-                  if (
-                    tags.length > 0 ||
-                    contentTypes > 0 ||
-                    idx < podcastLimit
-                  ) {
-                    return true;
-                  }
-                  return false;
-                })
-
-                .map((podcast) => {
-                  return (
-                    <div
-                      key={podcast.title}
-                      role="listitem"
-                      class="blog-item w-dyn-item"
-                    >
-                      <a
-                        href={podcast.link}
-                        class="blog-link-new w-inline-block"
-                      >
-                        <div class="blog-img-wrap">
-                          <img
-                            src={podcast.image}
-                            alt=""
-                            sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-                            class="resource-image"
-                          />
-                        </div>
-                        <div class="pill-label">
-                          <div fs-cmsfilter-field="type" class="text-block-6">
-                            Podcast
-                          </div>
-                        </div>
-                        <div class="blog-info-wrap-new">
-                          <p
-                            fs-cmsfilter-field="description"
-                            class="paragraph podcast-meta"
-                          >
-                            {podcast.description}
-                          </p>
-                          <div
-                            fs-cmsfilter-field="title"
-                            class="blog-title-new"
-                          >
-                            {podcast.title}
-                          </div>
-                          <div class="info-wrap-new">
-                            <p
-                              fs-cmsfilter-field="author"
-                              class="paragraph blog blog-author"
-                            >
-                              {podcast.author}
-                            </p>
-                            <div class="blog-line">-</div>
-                            <p class="paragraph blog date">{podcast.date}</p>
-                          </div>
-                          <div fs-cmsfilter-field="tags" class="tags">
-                            {podcast.tags}
-                          </div>
-                        </div>
-                        <div class="card-btn-wrapper">
-                          <div class="card-btn line-btn blog-btn">
-                            Read More
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  );
-                })}
-            </div>
-            {tags.length == 0 && contentTypes.length == 0 && (
-              <>
-                <div
-                  class="card-btn-wrapper"
-                  style={{ marginTop: "5px" }}
-                  onClick={() => setPodcastLimit(podcastLimit + 6)}
-                >
-                  <div
-                    class="card-btn line-btn blog-btn"
-                    style={{ backgroundColor: "#002856", color: "white" }}
-                  >
-                    Load More
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-        </>
-      )}
-      {(contentTypes.length === 0 || contentTypes.includes("webinar")) && (
-        <>
-          {tags.length == 0 && <h1 class="categoryheading">CE Webinars</h1>}
-
-          <div
-            fs-cmsfilter-element="list"
-            class="webinar-collection-list-wrapper blog-wrapper w-dyn-list"
-            style={{
-              display: "block",
-            }}
-          >
-            <div role="list" class="webinar-list w-dyn-items">
-              {webinars
-                .filter((webinar) => {
-                  for (const tag of tags) {
-                    if (!webinar.tags.includes(tag)) {
-                      return false;
-                    }
-                  }
-                  return true;
-                })
-                .filter((item) => {
-                  if (searchFilter != "") {
-                    if (
-                      item.title
-                        .toLowerCase()
-                        .includes(searchFilter.toLowerCase()) ||
-                      item.description
-                        .toLowerCase()
-                        .includes(searchFilter.toLowerCase())
-                    ) {
-                      return true;
-                    }
-                    return false;
-                  }
-                  return true;
-                })
-                .filter((webinar, idx) => {
-                  if (
-                    tags.length > 0 ||
-                    contentTypes > 0 ||
-                    idx < webinarLimit
-                  ) {
-                    return true;
-                  }
-                  return false;
-                })
-
-                .map((webinar) => {
-                  return (
-                    <div
-                      key={webinar.title}
-                      role="listitem"
-                      class="blog-item w-dyn-item"
-                    >
-                      <a
-                        href={webinar.link}
-                        class="blog-link-new w-inline-block"
-                      >
-                        <div class="blog-img-wrap">
-                          <img
-                            src={webinar.image}
-                            alt=""
-                            sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-                            class="resource-image"
-                          />
-                        </div>
-                        <div class="pill-label">
-                          <div fs-cmsfilter-field="type" class="text-block-6">
-                            Webinar
-                          </div>
-                        </div>
-                        <div class="blog-info-wrap-new">
-                          <p
-                            fs-cmsfilter-field="description"
-                            class="paragraph podcast-meta"
-                          >
-                            {webinar.description}
-                          </p>
-                          <div
-                            fs-cmsfilter-field="title"
-                            class="blog-title-new"
-                          >
-                            {webinar.title}
-                          </div>
-                          <div class="info-wrap-new">
-                            <p
-                              fs-cmsfilter-field="author"
-                              class="paragraph blog blog-author"
-                            >
-                              {webinar.author}
-                            </p>
-                            <div class="blog-line">-</div>
-                            <p class="paragraph blog date">{webinar.date}</p>
-                          </div>
-                          <div fs-cmsfilter-field="tags" class="tags">
-                            {webinar.tags}
-                          </div>
-                        </div>
-                        <div class="card-btn-wrapper">
-                          <div class="card-btn line-btn blog-btn">
-                            Read More
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                  );
-                })}
-            </div>
-            {tags.length == 0 && contentTypes.length == 0 && (
-              <>
-                <div
-                  class="card-btn-wrapper"
-                  style={{ marginTop: "5px" }}
-                  onClick={() => setWebinarLimit(webinarLimit + 6)}
-                >
-                  <div
-                    class="card-btn line-btn blog-btn"
-                    style={{ backgroundColor: "#002856", color: "white" }}
-                  >
-                    Load More
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
+          {renderBlogs(blogs)}
+          {renderPodcasts(podcasts)}
+          {renderWebinars(webinars)}
         </>
       )}
     </>
