@@ -525,9 +525,19 @@ const Resources = () => {
       )}
       {tags.length > 0 && (
         <>
-          {renderBlogs(blogs)}
-          {renderPodcasts(podcasts)}
-          {renderWebinars(webinars)}
+          <div
+            fs-cmsfilter-element="list"
+            class="blog-collection-list-wrapper blog-wrapper w-dyn-list"
+            style={{
+              display: "block",
+            }}
+          >
+            <div role="list" class="blog-list w-dyn-items">
+              {renderBlogs(blogs)}
+              {renderPodcasts(podcasts)}
+              {renderWebinars(webinars)}
+            </div>
+          </div>
         </>
       )}
     </>
