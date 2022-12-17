@@ -424,7 +424,9 @@ const Resources = () => {
         <>
           {(contentTypes.length === 0 || contentTypes.includes("blog")) && (
             <>
-              {tags.length == 0 && <h1 class="categoryheading">Blog Posts</h1>}
+              {tags.length == 0 && searchFilter.length == 0 && (
+                <h1 class="categoryheading">Blog Posts</h1>
+              )}
 
               <div
                 fs-cmsfilter-element="list"
@@ -457,7 +459,9 @@ const Resources = () => {
           )}
           {(contentTypes.length === 0 || contentTypes.includes("podcast")) && (
             <>
-              {tags.length == 0 && <h1 class="categoryheading">Podcasts</h1>}
+              {tags.length == 0 && searchFilter.length == 0 && (
+                <h1 class="categoryheading">Podcasts</h1>
+              )}
 
               <div
                 fs-cmsfilter-element="list"
@@ -490,7 +494,9 @@ const Resources = () => {
           )}
           {(contentTypes.length === 0 || contentTypes.includes("webinar")) && (
             <>
-              {tags.length == 0 && <h1 class="categoryheading">CE Webinars</h1>}
+              {tags.length == 0 && searchFilter.length == 0 && (
+                <h1 class="categoryheading">CE Webinars</h1>
+              )}
 
               <div
                 fs-cmsfilter-element="list"
