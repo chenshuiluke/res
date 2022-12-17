@@ -15,6 +15,7 @@ const Resources = () => {
   const [webinarLimit, setWebinarLimit] = useState(3);
   const [tags, setTags] = useState([]);
   const [contentTypes, setContentTypes] = useState([]);
+  const [searchFilter, setSearchFilter] = useState("");
   useEffect(() => {
     window.selectedTags = tags;
   }, [tags]);
@@ -170,6 +171,15 @@ const Resources = () => {
           const tags = $(this).siblings("span").text();
           window.eventBus.emit("checked", null, tags, this.checked);
         });
+
+        $(".search-input-new w-input").keyup(function (event) {
+          text = $(this).val();
+          setSearchFilter(text);
+        });
+        $(".search-input-new w-input").focusout(function () {
+          text = $(this).val();
+          setSearchFilter(text);
+        });
       }
     }, 10);
   }, []);
@@ -177,122 +187,132 @@ const Resources = () => {
   console.log(contentTypes);
   return (
     <>
-      {tags.length == 0 &&
-        (contentTypes.length === 0 || contentTypes.includes("blog")) && (
-          <>
-            <h1 class="categoryheading">Blog Posts</h1>
-            <div
-              fs-cmsfilter-element="list"
-              class="blog-collection-list-wrapper blog-wrapper w-dyn-list"
-              style={{
-                display: "block",
-              }}
-            >
-              <div role="list" class="blog-list w-dyn-items">
-                {blogs
-                  .filter((blog) => {
-                    for (const tag of tags) {
-                      if (!blog.tags.includes(tag)) {
-                        return false;
-                      }
+      {(contentTypes.length === 0 || contentTypes.includes("blog")) && (
+        <>
+          {tags.length == 0 && <h1 class="categoryheading">Blog Posts</h1>}
+
+          <div
+            fs-cmsfilter-element="list"
+            class="blog-collection-list-wrapper blog-wrapper w-dyn-list"
+            style={{
+              display: "block",
+            }}
+          >
+            <div role="list" class="blog-list w-dyn-items">
+              {blogs
+                .filter((blog) => {
+                  for (const tag of tags) {
+                    if (!blog.tags.includes(tag)) {
+                      return false;
                     }
-                    return true;
-                  })
-                  .filter((blog, idx) => {
+                  }
+                  return true;
+                })
+                .filter((item) => {
+                  if (searchFilter != "") {
                     if (
-                      tags.length > 0 ||
-                      contentTypes > 0 ||
-                      idx < blogLimit
+                      item.title
+                        .toLowerCase()
+                        .includes(searchFilter.toLowerCase()) ||
+                      item.description
+                        .toLowerCase()
+                        .includes(searchFilter.toLowerCase())
                     ) {
                       return true;
                     }
                     return false;
-                  })
+                  }
+                  return true;
+                })
+                .filter((blog, idx) => {
+                  if (tags.length > 0 || contentTypes > 0 || idx < blogLimit) {
+                    return true;
+                  }
+                  return false;
+                })
 
-                  .map((blog) => {
-                    return (
-                      <div
-                        key={blog.title}
-                        role="listitem"
-                        class="blog-item w-dyn-item"
-                      >
-                        <a
-                          href={blog.link}
-                          class="blog-link-new w-inline-block"
-                        >
-                          <div class="blog-img-wrap">
-                            <img
-                              src={blog.image}
-                              alt=""
-                              sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-                              class="resource-image"
-                            />
-                          </div>
-                          <div class="pill-label">
-                            <div fs-cmsfilter-field="type" class="text-block-6">
-                              Blog
-                            </div>
-                          </div>
-                          <div class="blog-info-wrap-new">
-                            <p
-                              fs-cmsfilter-field="description"
-                              class="paragraph blog"
-                            >
-                              {blog.description}
-                            </p>
-                            <div
-                              fs-cmsfilter-field="title"
-                              class="blog-title-new"
-                            >
-                              {blog.title}
-                            </div>
-                            <div class="info-wrap-new">
-                              <p
-                                fs-cmsfilter-field="author"
-                                class="paragraph blog blog-author"
-                              >
-                                {blog.author}
-                              </p>
-                              <div class="blog-line">-</div>
-                              <p class="paragraph blog date">{blog.date}</p>
-                            </div>
-                            <div fs-cmsfilter-field="tags" class="tags">
-                              {blog.tags}
-                            </div>
-                          </div>
-                          <div class="card-btn-wrapper">
-                            <div class="card-btn line-btn blog-btn">
-                              Read More
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    );
-                  })}
-              </div>
-              {tags.length == 0 && contentTypes.length == 0 && (
-                <>
-                  <div
-                    class="card-btn-wrapper"
-                    style={{ marginTop: "5px" }}
-                    onClick={() => setBlogLimit(blogLimit + 6)}
-                  >
+                .map((blog) => {
+                  return (
                     <div
-                      class="card-btn line-btn blog-btn"
-                      style={{ backgroundColor: "#002856", color: "white" }}
+                      key={blog.title}
+                      role="listitem"
+                      class="blog-item w-dyn-item"
                     >
-                      Load More
+                      <a href={blog.link} class="blog-link-new w-inline-block">
+                        <div class="blog-img-wrap">
+                          <img
+                            src={blog.image}
+                            alt=""
+                            sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
+                            class="resource-image"
+                          />
+                        </div>
+                        <div class="pill-label">
+                          <div fs-cmsfilter-field="type" class="text-block-6">
+                            Blog
+                          </div>
+                        </div>
+                        <div class="blog-info-wrap-new">
+                          <p
+                            fs-cmsfilter-field="description"
+                            class="paragraph blog"
+                          >
+                            {blog.description}
+                          </p>
+                          <div
+                            fs-cmsfilter-field="title"
+                            class="blog-title-new"
+                          >
+                            {blog.title}
+                          </div>
+                          <div class="info-wrap-new">
+                            <p
+                              fs-cmsfilter-field="author"
+                              class="paragraph blog blog-author"
+                            >
+                              {blog.author}
+                            </p>
+                            <div class="blog-line">-</div>
+                            <p class="paragraph blog date">{blog.date}</p>
+                          </div>
+                          <div fs-cmsfilter-field="tags" class="tags">
+                            {blog.tags}
+                          </div>
+                        </div>
+                        <div class="card-btn-wrapper">
+                          <div class="card-btn line-btn blog-btn">
+                            Read More
+                          </div>
+                        </div>
+                      </a>
                     </div>
-                  </div>
-                </>
-              )}
+                  );
+                })}
             </div>
-          </>
-        )}
+            {tags.length == 0 && contentTypes.length == 0 && (
+              <>
+                <div
+                  class="card-btn-wrapper"
+                  style={{ marginTop: "5px" }}
+                  onClick={() => setBlogLimit(blogLimit + 6)}
+                >
+                  <div
+                    class="card-btn line-btn blog-btn"
+                    style={{ backgroundColor: "#002856", color: "white" }}
+                  >
+                    Load More
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </>
+      )}
       {tags.length == 0 &&
         (contentTypes.length === 0 || contentTypes.includes("podcast")) && (
           <>
-            <h1 class="categoryheading">Podcasts</h1>
+            {tags.length == 0 && <h1 class="categoryheading">Podcasts</h1>}
+
             <div
               fs-cmsfilter-element="list"
               class="podcast-collection-list-wrapper blog-wrapper w-dyn-list"
@@ -307,6 +327,22 @@ const Resources = () => {
                       if (!podcast.tags.includes(tag)) {
                         return false;
                       }
+                    }
+                    return true;
+                  })
+                  .filter((item) => {
+                    if (searchFilter != "") {
+                      if (
+                        item.title
+                          .toLowerCase()
+                          .includes(searchFilter.toLowerCase()) ||
+                        item.description
+                          .toLowerCase()
+                          .includes(searchFilter.toLowerCase())
+                      ) {
+                        return true;
+                      }
+                      return false;
                     }
                     return true;
                   })
@@ -404,7 +440,8 @@ const Resources = () => {
       {tags.length == 0 &&
         (contentTypes.length === 0 || contentTypes.includes("webinar")) && (
           <>
-            <h1 class="categoryheading">CE Webinars</h1>
+            {tags.length == 0 && <h1 class="categoryheading">CE Webinars</h1>}
+
             <div
               fs-cmsfilter-element="list"
               class="webinar-collection-list-wrapper blog-wrapper w-dyn-list"
@@ -419,6 +456,22 @@ const Resources = () => {
                       if (!webinar.tags.includes(tag)) {
                         return false;
                       }
+                    }
+                    return true;
+                  })
+                  .filter((item) => {
+                    if (searchFilter != "") {
+                      if (
+                        item.title
+                          .toLowerCase()
+                          .includes(searchFilter.toLowerCase()) ||
+                        item.description
+                          .toLowerCase()
+                          .includes(searchFilter.toLowerCase())
+                      ) {
+                        return true;
+                      }
+                      return false;
                     }
                     return true;
                   })
