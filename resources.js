@@ -438,22 +438,24 @@ const Resources = () => {
                 <div role="list" class="blog-list w-dyn-items">
                   {renderBlogs(blogs)}
                 </div>
-                {tags.length == 0 && contentTypes.length == 0 && (
-                  <>
-                    <div
-                      class="card-btn-wrapper"
-                      style={{ marginTop: "5px" }}
-                      onClick={() => setBlogLimit(blogLimit + 6)}
-                    >
+                {tags.length == 0 &&
+                  contentTypes.length == 0 &&
+                  searchFilter.length == 0 && (
+                    <>
                       <div
-                        class="card-btn line-btn blog-btn"
-                        style={{ backgroundColor: "#002856", color: "white" }}
+                        class="card-btn-wrapper"
+                        style={{ marginTop: "5px" }}
+                        onClick={() => setBlogLimit(blogLimit + 6)}
                       >
-                        Load More
+                        <div
+                          class="card-btn line-btn blog-btn"
+                          style={{ backgroundColor: "#002856", color: "white" }}
+                        >
+                          Load More
+                        </div>
                       </div>
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
               </div>
             </>
           )}
@@ -473,22 +475,24 @@ const Resources = () => {
                 <div role="list" class="podcast-list w-dyn-items">
                   {renderPodcasts(podcasts)}
                 </div>
-                {tags.length == 0 && contentTypes.length == 0 && (
-                  <>
-                    <div
-                      class="card-btn-wrapper"
-                      style={{ marginTop: "5px" }}
-                      onClick={() => setPodcastLimit(podcastLimit + 6)}
-                    >
+                {tags.length == 0 &&
+                  contentTypes.length == 0 &&
+                  searchFilter.length == 0 && (
+                    <>
                       <div
-                        class="card-btn line-btn blog-btn"
-                        style={{ backgroundColor: "#002856", color: "white" }}
+                        class="card-btn-wrapper"
+                        style={{ marginTop: "5px" }}
+                        onClick={() => setPodcastLimit(podcastLimit + 6)}
                       >
-                        Load More
+                        <div
+                          class="card-btn line-btn blog-btn"
+                          style={{ backgroundColor: "#002856", color: "white" }}
+                        >
+                          Load More
+                        </div>
                       </div>
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
               </div>
             </>
           )}
@@ -508,22 +512,24 @@ const Resources = () => {
                 <div role="list" class="webinar-list w-dyn-items">
                   {renderWebinars(webinars)}
                 </div>
-                {tags.length == 0 && contentTypes.length == 0 && (
-                  <>
-                    <div
-                      class="card-btn-wrapper"
-                      style={{ marginTop: "5px" }}
-                      onClick={() => setWebinarLimit(webinarLimit + 6)}
-                    >
+                {tags.length == 0 &&
+                  contentTypes.length == 0 &&
+                  searchFilter.length == 0 && (
+                    <>
                       <div
-                        class="card-btn line-btn blog-btn"
-                        style={{ backgroundColor: "#002856", color: "white" }}
+                        class="card-btn-wrapper"
+                        style={{ marginTop: "5px" }}
+                        onClick={() => setWebinarLimit(webinarLimit + 6)}
                       >
-                        Load More
+                        <div
+                          class="card-btn line-btn blog-btn"
+                          style={{ backgroundColor: "#002856", color: "white" }}
+                        >
+                          Load More
+                        </div>
                       </div>
-                    </div>
-                  </>
-                )}
+                    </>
+                  )}
               </div>
             </>
           )}
