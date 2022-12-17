@@ -78,7 +78,7 @@ const Resources = () => {
               .replaceAll("\n", "")
               .trim(),
             tags: $(podcast)
-              .find(".blog-info-wrap-new .tags")
+              .find(".tags")
               .text()
               .replaceAll("\n", "")
               .trim()
@@ -111,7 +111,7 @@ const Resources = () => {
               .replaceAll("\n", "")
               .trim(),
             tags: $(webinar)
-              .find(".blog-info-wrap-new .tags")
+              .find(".tags")
               .text()
               .replaceAll("\n", "")
               .trim()
