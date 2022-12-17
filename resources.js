@@ -523,7 +523,7 @@ const Resources = () => {
           )}
         </>
       )}
-      {tags.length > 1 && (
+      {tags.length > 0 && (
         <>
           {renderBlogs(blogs)}
           {renderPodcasts(podcasts)}
