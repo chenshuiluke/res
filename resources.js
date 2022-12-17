@@ -533,9 +533,14 @@ const Resources = () => {
             }}
           >
             <div role="list" class="blog-list w-dyn-items">
-              {renderBlogs(blogs)}
-              {renderPodcasts(podcasts)}
-              {renderWebinars(webinars)}
+              {(contentTypes.length === 0 || contentTypes.includes("blog")) &&
+                renderBlogs(blogs)}
+              {(contentTypes.length === 0 ||
+                contentTypes.includes("podcast")) &&
+                renderPodcasts(podcasts)}
+              {(contentTypes.length === 0 ||
+                contentTypes.includes("webinar")) &&
+                renderWebinars(webinars)}
             </div>
           </div>
         </>
