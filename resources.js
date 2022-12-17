@@ -172,11 +172,11 @@ const Resources = () => {
         });
 
         $(".search-input-new.w-input").keyup(function (event) {
-          text = $(this).val();
+          const text = $(this).val();
           setSearchFilter(text);
         });
         $(".search-input-new.w-input").focusout(function () {
-          text = $(this).val();
+          const text = $(this).val();
           setSearchFilter(text);
         });
       }
