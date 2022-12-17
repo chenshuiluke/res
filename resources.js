@@ -172,11 +172,11 @@ const Resources = () => {
           window.eventBus.emit("checked", null, tags, this.checked);
         });
 
-        $(".search-input-new w-input").keyup(function (event) {
+        $(".search-input-new.w-input").keyup(function (event) {
           text = $(this).val();
           setSearchFilter(text);
         });
-        $(".search-input-new w-input").focusout(function () {
+        $(".search-input-new.w-input").focusout(function () {
           text = $(this).val();
           setSearchFilter(text);
         });
