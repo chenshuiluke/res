@@ -341,7 +341,7 @@ const Resources = () => {
   };
 
   const renderWebinars = (webinars) => {
-    webinars
+    return webinars
       .filter((webinar) => {
         for (const tag of tags) {
           if (!webinar.tags.includes(tag)) {
