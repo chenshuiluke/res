@@ -83,7 +83,7 @@ const Resources = () => {
               .trim()
               .toLowerCase(),
             link: $(podcast)
-              .find("a.blog-link-new.w-inline-block")
+              .find("a.podcast-link-new.w-inline-block")
               .attr("href"),
             author: $(podcast).find(".paragraph.blog.blog-author").text(),
             date: $(podcast).find("[class='paragraph blog date']").text(),
