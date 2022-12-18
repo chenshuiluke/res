@@ -208,7 +208,7 @@ const Resources = () => {
         return true;
       })
       .filter((blog, idx) => {
-        if (tags.length > 0 || contentTypes > 0 || idx < blogLimit) {
+        if (tags.length > 0 || contentTypes.length > 0 || idx < blogLimit) {
           return true;
         }
         return false;
@@ -284,7 +284,7 @@ const Resources = () => {
         return true;
       })
       .filter((podcast, idx) => {
-        if (tags.length > 0 || contentTypes > 0 || idx < podcastLimit) {
+        if (tags.length > 0 || contentTypes.length > 0 || idx < podcastLimit) {
           return true;
         }
         return false;
@@ -363,7 +363,7 @@ const Resources = () => {
         return true;
       })
       .filter((webinar, idx) => {
-        if (tags.length > 0 || contentTypes > 0 || idx < webinarLimit) {
+        if (tags.length > 0 || contentTypes.length > 0 || idx < webinarLimit) {
           return true;
         }
         return false;
