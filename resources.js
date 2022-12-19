@@ -484,7 +484,7 @@ const Resources = () => {
                   searchFilter.length == 0 && (
                     <>
                       <div
-                        class="card-btn-wrapper"
+                        class="card-btn-wrapper resources-load-more-btn"
                         style={{ marginTop: "5px" }}
                         onClick={() => setPodcastLimit(podcastLimit + 6)}
                       >
@@ -493,7 +493,7 @@ const Resources = () => {
                           style={{
                             backgroundColor: "#002856",
                             color: "white",
-                            marginTop: "5px",
+                            marginTop: "20px",
                           }}
                         >
                           Load More
