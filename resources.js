@@ -449,7 +449,11 @@ const Resources = () => {
                       >
                         <div
                           class="card-btn line-btn blog-btn"
-                          style={{ backgroundColor: "#002856", color: "white" }}
+                          style={{
+                            backgroundColor: "#002856",
+                            color: "white",
+                            marginTop: "5px",
+                          }}
                         >
                           Load More
                         </div>
@@ -486,7 +490,11 @@ const Resources = () => {
                       >
                         <div
                           class="card-btn line-btn blog-btn"
-                          style={{ backgroundColor: "#002856", color: "white" }}
+                          style={{
+                            backgroundColor: "#002856",
+                            color: "white",
+                            marginTop: "5px",
+                          }}
                         >
                           Load More
                         </div>
@@ -523,7 +531,11 @@ const Resources = () => {
                       >
                         <div
                           class="card-btn line-btn blog-btn"
-                          style={{ backgroundColor: "#002856", color: "white" }}
+                          style={{
+                            backgroundColor: "#002856",
+                            color: "white",
+                            marginTop: "5px",
+                          }}
                         >
                           Load More
                         </div>
