@@ -443,7 +443,7 @@ const Resources = () => {
                   searchFilter.length == 0 && (
                     <>
                       <div
-                        class="card-btn-wrapper"
+                        class="card-btn-wrapper resources-load-more-btn"
                         style={{ marginTop: "5px" }}
                         onClick={() => setBlogLimit(blogLimit + 6)}
                       >
@@ -525,7 +525,7 @@ const Resources = () => {
                   searchFilter.length == 0 && (
                     <>
                       <div
-                        class="card-btn-wrapper"
+                        class="card-btn-wrapper resources-load-more-btn"
                         style={{ marginTop: "5px" }}
                         onClick={() => setWebinarLimit(webinarLimit + 6)}
                       >
