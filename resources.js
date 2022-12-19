@@ -452,7 +452,7 @@ const Resources = () => {
                           style={{
                             backgroundColor: "#002856",
                             color: "white",
-                            marginTop: "5px",
+                            marginTop: "20px",
                           }}
                         >
                           Load More
@@ -534,7 +534,7 @@ const Resources = () => {
                           style={{
                             backgroundColor: "#002856",
                             color: "white",
-                            marginTop: "5px",
+                            marginTop: "20px",
                           }}
                         >
                           Load More
