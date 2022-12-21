@@ -333,7 +333,7 @@ const Resources = () => {
                     fs-cmsfilter-field="author"
                     class="paragraph blog blog-author"
                   >
-                    {podcast.episode}
+                    Ep. #{podcast.episode}
                   </p>
                   <div class="blog-line">-</div>
                   <p class="paragraph blog date">{podcast.date}</p>
