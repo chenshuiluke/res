@@ -88,7 +88,7 @@ const Resources = () => {
             author: $(podcast).find(".paragraph.blog.blog-author").text(),
             date: $(podcast).find("[class='paragraph blog date']").text(),
             episode: $(podcast)
-              .find(["class='paragraph blog blog-ep-number'"])
+              .find("[class='paragraph blog blog-ep-number']")
               .text(),
           };
           console.log(newPodcast);
