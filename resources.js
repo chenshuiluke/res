@@ -504,7 +504,8 @@ const Resources = () => {
               </div>
             </>
           )}
-          {(contentTypes.length === 0 || contentTypes.includes("webinar")) && (
+          {(contentTypes.length === 0 ||
+            contentTypes.includes("ce webinar")) && (
             <>
               {tags.length == 0 && searchFilter.length == 0 && (
                 <h1 class="categoryheading">CE Webinars</h1>
@@ -563,7 +564,7 @@ const Resources = () => {
                 contentTypes.includes("podcast")) &&
                 renderPodcasts(podcasts)}
               {(contentTypes.length === 0 ||
-                contentTypes.includes("webinar")) &&
+                contentTypes.includes("ce webinar")) &&
                 renderWebinars(webinars)}
             </div>
           </div>
