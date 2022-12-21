@@ -16,6 +16,7 @@ const Resources = () => {
   const [tags, setTags] = useState([]);
   const [contentTypes, setContentTypes] = useState([]);
   const [searchFilter, setSearchFilter] = useState("");
+
   useEffect(() => {
     window.selectedTags = tags;
   }, [tags]);
