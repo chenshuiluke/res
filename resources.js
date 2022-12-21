@@ -87,6 +87,9 @@ const Resources = () => {
               .attr("href"),
             author: $(podcast).find(".paragraph.blog.blog-author").text(),
             date: $(podcast).find("[class='paragraph blog date']").text(),
+            episode: $(podcast).find(
+              ["class='paragraph blog blog-ep-number'"].text()
+            ),
           };
           console.log(newPodcast);
           newPodcasts.push(newPodcast);
@@ -323,6 +326,13 @@ const Resources = () => {
                     class="paragraph blog blog-author"
                   >
                     {podcast.author}
+                  </p>
+                  <div class="blog-line">-</div>
+                  <p
+                    fs-cmsfilter-field="author"
+                    class="paragraph blog blog-author"
+                  >
+                    {podcast.episode}
                   </p>
                   <div class="blog-line">-</div>
                   <p class="paragraph blog date">{podcast.date}</p>
