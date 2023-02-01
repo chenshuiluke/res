@@ -172,8 +172,9 @@ const Resources = () => {
           let tagArr = [...window.selectedTags];
           debugger;
           let contentArr = [...window.selectedContent];
-          const contentTags = ["ce webinar", "blog", "podcast"];
+          const contentTags = ["ce webinar", "blog", "podcast", "ebook"];
           if (!contentTags.includes(tag.toLowerCase())) {
+            debugger;
             if (checked) {
               if (!tagArr.includes(tag.toLowerCase())) {
                 tagArr.push(tag.toLowerCase());
@@ -187,6 +188,7 @@ const Resources = () => {
             }
             setTags([...tagArr]);
           } else {
+            debugger;
             if (checked) {
               if (!contentArr.includes(tag.toLowerCase())) {
                 contentArr.push(tag.toLowerCase());
@@ -629,7 +631,7 @@ const Resources = () => {
               </div>
             </>
           )}
-          {(contentTypes.length === 0 || contentTypes.includes("ebook")) && (
+          {(contentTypes.length === 0 || contentTypes.includes("webinar")) && (
             <>
               {tags.length == 0 && searchFilter.length == 0 && (
                 <h1 class="categoryheading">CE Webinars</h1>
