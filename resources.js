@@ -10,6 +10,7 @@ const Resources = () => {
   const [blogs, setBlogs] = useState([]);
   const [podcasts, setPodcasts] = useState([]);
   const [webinars, setWebinars] = useState([]);
+  const [ebooks, setEbooks] = useState([]);
   const [blogLimit, setBlogLimit] = useState(3);
   const [podcastLimit, setPodcastLimit] = useState(3);
   const [webinarLimit, setWebinarLimit] = useState(3);
@@ -133,6 +134,39 @@ const Resources = () => {
         }
         setWebinars([...newWebinars]);
 
+        const ebookElements = $(".ebook-item.w-dyn-item");
+
+        const newEbooks = [];
+        for (const ebook of ebookElements) {
+          const newEbook = {
+            image: $(ebook).find(".blog-img-wrap img").attr("src"),
+            description: $(ebook)
+              .find("[class='paragraph podcast-meta']")
+              .text()
+              .replaceAll("\n", "")
+              .trim(),
+            title: $(ebook)
+              .find(".blog-info-wrap-new .blog-title-new")
+              .text()
+              .replaceAll("\n", "")
+              .trim(),
+            tags: $(ebook)
+              .find(".tags")
+              .text()
+              .replaceAll("\n", "")
+              .trim()
+              .toLowerCase(),
+            link: $(ebook)
+              .find("a.webinar-link-new.w-inline-block")
+              .attr("href"),
+            author: $(ebook).find("[class='paragraph blog date']").eq(0).text(),
+            date: $(ebook).find("[class='paragraph blog date']").eq(1).text(),
+          };
+          console.log("@@@ ebooks", newEbook);
+          newEbooks.push(newEbook);
+        }
+        setEbooks([...newEbooks]);
+        debugger;
         window.eventBus.on("checked", function (tag, checked) {
           let tagArr = [...window.selectedTags];
           debugger;
