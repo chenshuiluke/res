@@ -213,7 +213,13 @@ const Resources = () => {
           let tagArr = [...window.selectedTags];
           debugger;
           let contentArr = [...window.selectedContent];
-          const contentTags = ["ce webinar", "blog", "podcast", "ebook"];
+          const contentTags = [
+            "ce webinar",
+            "blog",
+            "podcast",
+            "ebook",
+            "testimonial",
+          ];
           if (!contentTags.includes(tag.toLowerCase())) {
             debugger;
             if (checked) {
