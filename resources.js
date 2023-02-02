@@ -11,10 +11,12 @@ const Resources = () => {
   const [podcasts, setPodcasts] = useState([]);
   const [webinars, setWebinars] = useState([]);
   const [ebooks, setEbooks] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
   const [blogLimit, setBlogLimit] = useState(3);
   const [podcastLimit, setPodcastLimit] = useState(3);
   const [webinarLimit, setWebinarLimit] = useState(3);
   const [ebookLimit, setEbooksLimit] = useState(3);
+  const [testimonialLimit, setTestimonialLimit] = useState(3);
   const [tags, setTags] = useState([]);
   const [contentTypes, setContentTypes] = useState([]);
   const [searchFilter, setSearchFilter] = useState("");
@@ -167,6 +169,45 @@ const Resources = () => {
           newEbooks.push(newEbook);
         }
         setEbooks([...newEbooks]);
+
+        const testimonialElements = $(".ebook-item.w-dyn-item");
+
+        const newTestimonials = [];
+        for (const testimonial of testimonialElements) {
+          const newTestimonial = {
+            image: $(testimonial).find(".blog-img-wrap img").attr("src"),
+            description: $(testimonial)
+              .find("[class='paragraph podcast-meta']")
+              .text()
+              .replaceAll("\n", "")
+              .trim(),
+            title: $(testimonial)
+              .find(".blog-info-wrap-new .blog-title-new")
+              .text()
+              .replaceAll("\n", "")
+              .trim(),
+            tags: $(testimonial)
+              .find(".tags")
+              .text()
+              .replaceAll("\n", "")
+              .trim()
+              .toLowerCase(),
+            link: $(testimonial)
+              .find("a.webinar-link-new.w-inline-block")
+              .attr("href"),
+            author: $(testimonial)
+              .find("[class='paragraph blog date']")
+              .eq(0)
+              .text(),
+            date: $(testimonial)
+              .find("[class='paragraph blog date']")
+              .eq(1)
+              .text(),
+          };
+          console.log("@@@ ebooks", newTestimonial);
+          newTestimonials.push(newTestimonial);
+        }
+        setTestimonials([...newTestimonials]);
         debugger;
         window.eventBus.on("checked", function (tag, checked) {
           let tagArr = [...window.selectedTags];
@@ -467,7 +508,7 @@ const Resources = () => {
       });
   };
 
-  const renderEbooks = (webinars) => {
+  const renderEbooks = (ebooks) => {
     return ebooks
       .filter((ebook) => {
         for (const tag of tags) {
@@ -535,6 +576,93 @@ const Resources = () => {
                 </div>
                 <div fs-cmsfilter-field="tags" class="tags">
                   {ebook.tags}
+                </div>
+              </div>
+              <div class="card-btn-wrapper">
+                <div class="card-btn line-btn blog-btn">Read More</div>
+              </div>
+            </a>
+          </div>
+        );
+      });
+  };
+
+  const renderTestimonials = (testimonials) => {
+    return testimonials
+      .filter((testimonial) => {
+        for (const tag of tags) {
+          if (!testimonial.tags.includes(tag)) {
+            return false;
+          }
+        }
+        return true;
+      })
+      .filter((item) => {
+        if (searchFilter != "") {
+          if (
+            item.title.toLowerCase().includes(searchFilter.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchFilter.toLowerCase())
+          ) {
+            return true;
+          }
+          return false;
+        }
+        return true;
+      })
+      .filter((testimonial, idx) => {
+        if (
+          tags.length > 0 ||
+          contentTypes.length > 0 ||
+          idx < testimonialLimit
+        ) {
+          return true;
+        }
+        return false;
+      })
+
+      .map((testimonial) => {
+        return (
+          <div
+            key={testimonial.title}
+            role="listitem"
+            class="blog-item w-dyn-item"
+          >
+            <a href={testimonial.link} class="blog-link-new w-inline-block">
+              <div class="blog-img-wrap">
+                <img
+                  src={testimonial.image}
+                  alt=""
+                  sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
+                  class="resource-image"
+                />
+              </div>
+              <div class="pill-label">
+                <div fs-cmsfilter-field="type" class="text-block-6">
+                  Testimonial
+                </div>
+              </div>
+              <div class="blog-info-wrap-new">
+                <p
+                  fs-cmsfilter-field="description"
+                  class="paragraph podcast-meta"
+                >
+                  {testimonial.description}
+                </p>
+                <div fs-cmsfilter-field="title" class="blog-title-new">
+                  {testimonial.title}
+                </div>
+                <div class="info-wrap-new">
+                  <p
+                    fs-cmsfilter-field="author"
+                    class="paragraph blog blog-author"
+                  >
+                    {testimonial.author}
+                  </p>
+                  <div class="blog-line">-</div>
+                  <p class="paragraph blog date">{testimonial.date}</p>
+                </div>
+                <div fs-cmsfilter-field="tags" class="tags">
+                  {testimonial.tags}
                 </div>
               </div>
               <div class="card-btn-wrapper">
@@ -713,6 +841,50 @@ const Resources = () => {
               </div>
             </>
           )}
+          {(contentTypes.length === 0 ||
+            contentTypes.includes("testimonial")) && (
+            <>
+              {tags.length == 0 && searchFilter.length == 0 && (
+                <h1 class="categoryheading">Testimonials</h1>
+              )}
+
+              <div
+                fs-cmsfilter-element="list"
+                class="webinar-collection-list-wrapper blog-wrapper w-dyn-list"
+                style={{
+                  display: "block",
+                }}
+              >
+                <div role="list" class="webinar-list w-dyn-items">
+                  {renderTestimonials(testimonials)}
+                </div>
+                {tags.length == 0 &&
+                  contentTypes.length == 0 &&
+                  searchFilter.length == 0 && (
+                    <>
+                      <div
+                        class="card-btn-wrapper resources-load-more-btn"
+                        style={{ marginTop: "5px" }}
+                        onClick={() =>
+                          setTestimonialLimit(testimonialLimit + 6)
+                        }
+                      >
+                        <div
+                          class="card-btn line-btn blog-btn"
+                          style={{
+                            backgroundColor: "#002856",
+                            color: "white",
+                            marginTop: "20px",
+                          }}
+                        >
+                          Load More
+                        </div>
+                      </div>
+                    </>
+                  )}
+              </div>
+            </>
+          )}
         </>
       )}
       {tags.length > 0 && (
@@ -735,6 +907,9 @@ const Resources = () => {
                 renderWebinars(webinars)}
               {(contentTypes.length === 0 || contentTypes.includes("ebook")) &&
                 renderEbooks(ebooks)}
+              {(contentTypes.length === 0 ||
+                contentTypes.includes("testimonial")) &&
+                renderTestimonials(testimonials)}
             </div>
           </div>
         </>
