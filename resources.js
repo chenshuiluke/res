@@ -170,7 +170,7 @@ const Resources = () => {
         }
         setEbooks([...newEbooks]);
 
-        const testimonialElements = $(".ebook-item.w-dyn-item");
+        const testimonialElements = $(".testimonial-item.w-dyn-item");
 
         const newTestimonials = [];
         for (const testimonial of testimonialElements) {
