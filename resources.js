@@ -20,7 +20,7 @@ const Resources = () => {
   const [tags, setTags] = useState([]);
   const [contentTypes, setContentTypes] = useState([]);
   const [searchFilter, setSearchFilter] = useState("");
-
+  const [apiTags, setApiTags] = useState({});
   useEffect(() => {
     window.selectedTags = tags;
   }, [tags]);
@@ -29,246 +29,271 @@ const Resources = () => {
     window.selectedContent = contentTypes;
   }, [contentTypes]);
 
+  const getTagsFromApi = async () => {
+    const data = await $.getJSON(
+      "https://di-marketing-server-iuzlr.ondigitalocean.app/api/tags"
+    );
+    setApiTags(data);
+  };
+  const getRecordTags = (name) => {
+    if (apiTags[name] != null) {
+      return apiTags.join(" ").trim().toLowerCase();
+    }
+    return "";
+  };
   useEffect(() => {
-    var waitForJQuery = setInterval(function () {
-      if (typeof window.$ != "undefined") {
-        $ = window.$;
+    getTagsFromApi().then(() => {
+      var waitForJQuery = setInterval(function () {
+        if (typeof window.$ != "undefined") {
+          $ = window.$;
 
-        clearInterval(waitForJQuery);
-        const blogElements = $(".blog-item.w-dyn-item");
+          clearInterval(waitForJQuery);
+          const blogElements = $(".blog-item.w-dyn-item");
 
-        const newBlogs = [];
-        for (const blog of blogElements) {
-          const newBlog = {
-            image: $(blog).find(".blog-img-wrap img").attr("src"),
-            description: $(blog)
-              .find("[class='paragraph blog']")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            title: $(blog)
-              .find(".blog-info-wrap-new .blog-title-new")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            tags: $(blog)
-              .find(".blog-info-wrap-new .tags")
-              .text()
-              .replaceAll("\n", "")
-              .trim()
-              .toLowerCase(),
-            link: $(blog).find("a.blog-link-new.w-inline-block").attr("href"),
-            author: $(blog).find(".paragraph.blog.blog-author").text(),
-            date: $(blog).find("[class='paragraph blog date']").text(),
-          };
-          console.log(newBlog);
-          newBlogs.push(newBlog);
-        }
-        setBlogs([...newBlogs]);
-
-        const podcastElements = $(".podcast-item.w-dyn-item");
-        const newPodcasts = [];
-        for (const podcast of podcastElements) {
-          const newPodcast = {
-            image: $(podcast).find(".blog-img-wrap img").attr("src"),
-            description: $(podcast)
-              .find("[class='paragraph podcast-meta']")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            title: $(podcast)
-              .find(".blog-info-wrap-new .blog-title-new")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            tags: $(podcast)
-              .find(".tags")
-              .text()
-              .replaceAll("\n", "")
-              .trim()
-              .toLowerCase(),
-            link: $(podcast)
-              .find("a.podcast-link-new.w-inline-block")
-              .attr("href"),
-            author: $(podcast).find(".paragraph.blog.blog-author").text(),
-            date: $(podcast).find("[class='paragraph blog date']").text(),
-            episode: $(podcast)
-              .find("[class='paragraph blog blog-ep-number']")
-              .text(),
-          };
-          console.log(newPodcast);
-          newPodcasts.push(newPodcast);
-        }
-        setPodcasts([...newPodcasts]);
-
-        const webinarElements = $(".webinar-item.w-dyn-item");
-
-        const newWebinars = [];
-        for (const webinar of webinarElements) {
-          const newWebinar = {
-            image: $(webinar).find(".blog-img-wrap img").attr("src"),
-            description: $(webinar)
-              .find("[class='paragraph podcast-meta']")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            title: $(webinar)
-              .find(".blog-info-wrap-new .blog-title-new")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            tags: $(webinar)
-              .find(".tags")
-              .text()
-              .replaceAll("\n", "")
-              .trim()
-              .toLowerCase(),
-            link: $(webinar)
-              .find("a.webinar-link-new.w-inline-block")
-              .attr("href"),
-            author: $(webinar)
-              .find("[class='paragraph blog date']")
-              .eq(0)
-              .text(),
-            date: $(webinar).find("[class='paragraph blog date']").eq(1).text(),
-          };
-          console.log(newWebinar);
-          newWebinars.push(newWebinar);
-        }
-        setWebinars([...newWebinars]);
-
-        const ebookElements = $(".ebook-item.w-dyn-item");
-
-        const newEbooks = [];
-        for (const ebook of ebookElements) {
-          const newEbook = {
-            image: $(ebook).find(".blog-img-wrap img").attr("src"),
-            description: $(ebook)
-              .find("[class='paragraph podcast-meta']")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            title: $(ebook)
-              .find(".blog-info-wrap-new .blog-title-new")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            tags: $(ebook)
-              .find(".tags")
-              .text()
-              .replaceAll("\n", "")
-              .trim()
-              .toLowerCase(),
-            link: $(ebook)
-              .find("a.webinar-link-new.w-inline-block")
-              .attr("href"),
-            author: $(ebook).find("[class='paragraph blog date']").eq(0).text(),
-            date: $(ebook).find("[class='paragraph blog date']").eq(1).text(),
-          };
-          console.log("@@@ ebooks", newEbook);
-          newEbooks.push(newEbook);
-        }
-        setEbooks([...newEbooks]);
-
-        const testimonialElements = $(".testimonial-item.w-dyn-item");
-
-        const newTestimonials = [];
-        for (const testimonial of testimonialElements) {
-          const newTestimonial = {
-            image: $(testimonial).find(".blog-img-wrap img").attr("src"),
-            description: $(testimonial)
-              .find("[class='paragraph podcast-meta']")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            title: $(testimonial)
-              .find(".blog-info-wrap-new .blog-title-new")
-              .text()
-              .replaceAll("\n", "")
-              .trim(),
-            tags: $(testimonial)
-              .find(".tags")
-              .text()
-              .replaceAll("\n", "")
-              .trim()
-              .toLowerCase(),
-            link: $(testimonial)
-              .find("a.webinar-link-new.w-inline-block")
-              .attr("href"),
-            author: $(testimonial)
-              .find("[class='paragraph blog date']")
-              .eq(0)
-              .text(),
-            date: $(testimonial)
-              .find("[class='paragraph blog date']")
-              .eq(1)
-              .text(),
-          };
-          console.log("@@@ ebooks", newTestimonial);
-          newTestimonials.push(newTestimonial);
-        }
-        setTestimonials([...newTestimonials]);
-        debugger;
-        window.eventBus.on("checked", function (tag, checked) {
-          let tagArr = [...window.selectedTags];
-          debugger;
-          let contentArr = [...window.selectedContent];
-          const contentTags = [
-            "ce webinar",
-            "blog",
-            "podcast",
-            "ebook",
-            "testimonial",
-          ];
-          if (!contentTags.includes(tag.toLowerCase())) {
-            debugger;
-            if (checked) {
-              if (!tagArr.includes(tag.toLowerCase())) {
-                tagArr.push(tag.toLowerCase());
-              }
-            } else {
-              if (tagArr.includes(tag.toLowerCase())) {
-                tagArr = tagArr.filter((element) => {
-                  return element != tag.toLowerCase();
-                });
-              }
-            }
-            setTags([...tagArr]);
-          } else {
-            debugger;
-            if (checked) {
-              if (!contentArr.includes(tag.toLowerCase())) {
-                contentArr.push(tag.toLowerCase());
-              }
-            } else {
-              if (contentArr.includes(tag.toLowerCase())) {
-                contentArr = contentArr.filter((element) => {
-                  return element != tag.toLowerCase();
-                });
-              }
-            }
-            setContentTypes([...contentArr]);
+          const newBlogs = [];
+          for (const blog of blogElements) {
+            const newBlog = {
+              image: $(blog).find(".blog-img-wrap img").attr("src"),
+              description: $(blog)
+                .find("[class='paragraph blog']")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              title: $(blog)
+                .find(".blog-info-wrap-new .blog-title-new")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              tags: $(blog)
+                .find(".blog-info-wrap-new .tags")
+                .text()
+                .replaceAll("\n", "")
+                .trim()
+                .toLowerCase(),
+              link: $(blog).find("a.blog-link-new.w-inline-block").attr("href"),
+              author: $(blog).find(".paragraph.blog.blog-author").text(),
+              date: $(blog).find("[class='paragraph blog date']").text(),
+            };
+            newBlog.tags = getRecordTags(newBlog.title);
+            console.log(newBlog);
+            newBlogs.push(newBlog);
           }
+          setBlogs([...newBlogs]);
 
-          debugger;
-          console.log("Inside `my-event`");
-        });
-        $(".w-checkbox.tag.blog.new input").change(function () {
-          debugger;
-          const tags = $(this).siblings("span").text();
-          window.eventBus.emit("checked", null, tags, this.checked);
-        });
+          const podcastElements = $(".podcast-item.w-dyn-item");
+          const newPodcasts = [];
+          for (const podcast of podcastElements) {
+            const newPodcast = {
+              image: $(podcast).find(".blog-img-wrap img").attr("src"),
+              description: $(podcast)
+                .find("[class='paragraph podcast-meta']")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              title: $(podcast)
+                .find(".blog-info-wrap-new .blog-title-new")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              tags: $(podcast)
+                .find(".tags")
+                .text()
+                .replaceAll("\n", "")
+                .trim()
+                .toLowerCase(),
+              link: $(podcast)
+                .find("a.podcast-link-new.w-inline-block")
+                .attr("href"),
+              author: $(podcast).find(".paragraph.blog.blog-author").text(),
+              date: $(podcast).find("[class='paragraph blog date']").text(),
+              episode: $(podcast)
+                .find("[class='paragraph blog blog-ep-number']")
+                .text(),
+            };
+            console.log(newPodcast);
+            newPodcast.tags = getRecordTags(newPodcast.title);
+            newPodcasts.push(newPodcast);
+          }
+          setPodcasts([...newPodcasts]);
 
-        $(".search-input-new.w-input").keyup(function (event) {
-          const text = $(this).val();
-          setSearchFilter(text);
-        });
-        $(".search-input-new.w-input").focusout(function () {
-          const text = $(this).val();
-          setSearchFilter(text);
-        });
-      }
-    }, 10);
+          const webinarElements = $(".webinar-item.w-dyn-item");
+
+          const newWebinars = [];
+          for (const webinar of webinarElements) {
+            const newWebinar = {
+              image: $(webinar).find(".blog-img-wrap img").attr("src"),
+              description: $(webinar)
+                .find("[class='paragraph podcast-meta']")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              title: $(webinar)
+                .find(".blog-info-wrap-new .blog-title-new")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              tags: $(webinar)
+                .find(".tags")
+                .text()
+                .replaceAll("\n", "")
+                .trim()
+                .toLowerCase(),
+              link: $(webinar)
+                .find("a.webinar-link-new.w-inline-block")
+                .attr("href"),
+              author: $(webinar)
+                .find("[class='paragraph blog date']")
+                .eq(0)
+                .text(),
+              date: $(webinar)
+                .find("[class='paragraph blog date']")
+                .eq(1)
+                .text(),
+            };
+            console.log(newWebinar);
+            newWebinar.tags = getRecordTags(newWebinar.title);
+            newWebinars.push(newWebinar);
+          }
+          setWebinars([...newWebinars]);
+
+          const ebookElements = $(".ebook-item.w-dyn-item");
+
+          const newEbooks = [];
+          for (const ebook of ebookElements) {
+            const newEbook = {
+              image: $(ebook).find(".blog-img-wrap img").attr("src"),
+              description: $(ebook)
+                .find("[class='paragraph podcast-meta']")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              title: $(ebook)
+                .find(".blog-info-wrap-new .blog-title-new")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              tags: $(ebook)
+                .find(".tags")
+                .text()
+                .replaceAll("\n", "")
+                .trim()
+                .toLowerCase(),
+              link: $(ebook)
+                .find("a.webinar-link-new.w-inline-block")
+                .attr("href"),
+              author: $(ebook)
+                .find("[class='paragraph blog date']")
+                .eq(0)
+                .text(),
+              date: $(ebook).find("[class='paragraph blog date']").eq(1).text(),
+            };
+            console.log("@@@ ebooks", newEbook);
+            newEbook.tags = getRecordTags(newEbook.title);
+            newEbooks.push(newEbook);
+          }
+          setEbooks([...newEbooks]);
+
+          const testimonialElements = $(".testimonial-item.w-dyn-item");
+
+          const newTestimonials = [];
+          for (const testimonial of testimonialElements) {
+            const newTestimonial = {
+              image: $(testimonial).find(".blog-img-wrap img").attr("src"),
+              description: $(testimonial)
+                .find("[class='paragraph podcast-meta']")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              title: $(testimonial)
+                .find(".blog-info-wrap-new .blog-title-new")
+                .text()
+                .replaceAll("\n", "")
+                .trim(),
+              tags: $(testimonial)
+                .find(".tags")
+                .text()
+                .replaceAll("\n", "")
+                .trim()
+                .toLowerCase(),
+              link: $(testimonial)
+                .find("a.webinar-link-new.w-inline-block")
+                .attr("href"),
+              author: $(testimonial)
+                .find("[class='paragraph blog date']")
+                .eq(0)
+                .text(),
+              date: $(testimonial)
+                .find("[class='paragraph blog date']")
+                .eq(1)
+                .text(),
+            };
+            console.log("@@@ ebooks", newTestimonial);
+            newTestimonial.tags = getRecordTags(newTestimonial.title);
+            newTestimonials.push(newTestimonial);
+          }
+          setTestimonials([...newTestimonials]);
+          debugger;
+          window.eventBus.on("checked", function (tag, checked) {
+            let tagArr = [...window.selectedTags];
+            debugger;
+            let contentArr = [...window.selectedContent];
+            const contentTags = [
+              "ce webinar",
+              "blog",
+              "podcast",
+              "ebook",
+              "testimonial",
+            ];
+            if (!contentTags.includes(tag.toLowerCase())) {
+              debugger;
+              if (checked) {
+                if (!tagArr.includes(tag.toLowerCase())) {
+                  tagArr.push(tag.toLowerCase());
+                }
+              } else {
+                if (tagArr.includes(tag.toLowerCase())) {
+                  tagArr = tagArr.filter((element) => {
+                    return element != tag.toLowerCase();
+                  });
+                }
+              }
+              setTags([...tagArr]);
+            } else {
+              debugger;
+              if (checked) {
+                if (!contentArr.includes(tag.toLowerCase())) {
+                  contentArr.push(tag.toLowerCase());
+                }
+              } else {
+                if (contentArr.includes(tag.toLowerCase())) {
+                  contentArr = contentArr.filter((element) => {
+                    return element != tag.toLowerCase();
+                  });
+                }
+              }
+              setContentTypes([...contentArr]);
+            }
+
+            debugger;
+            console.log("Inside `my-event`");
+          });
+          $(".w-checkbox.tag.blog.new input").change(function () {
+            debugger;
+            const tags = $(this).siblings("span").text();
+            window.eventBus.emit("checked", null, tags, this.checked);
+          });
+
+          $(".search-input-new.w-input").keyup(function (event) {
+            const text = $(this).val();
+            setSearchFilter(text);
+          });
+          $(".search-input-new.w-input").focusout(function () {
+            const text = $(this).val();
+            setSearchFilter(text);
+          });
+        }
+      }, 10);
+    });
   }, []);
   debugger;
   console.log(contentTypes);
