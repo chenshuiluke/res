@@ -34,15 +34,16 @@ const Resources = () => {
       "https://di-marketing-server-iuzlr.ondigitalocean.app/api/tags"
     );
     setApiTags(data);
+    return data;
   };
   const getRecordTags = (name) => {
-    if (apiTags[name] != null) {
-      return apiTags.join(" ").trim().toLowerCase();
+    if (apiTags[name.trim()] != null) {
+      return apiTags[name.trim()].join(" ").trim().toLowerCase();
     }
     return "";
   };
   useEffect(() => {
-    getTagsFromApi().then(() => {
+    getTagsFromApi().then((apiTags) => {
       var waitForJQuery = setInterval(function () {
         if (typeof window.$ != "undefined") {
           $ = window.$;
@@ -74,7 +75,7 @@ const Resources = () => {
               author: $(blog).find(".paragraph.blog.blog-author").text(),
               date: $(blog).find("[class='paragraph blog date']").text(),
             };
-            newBlog.tags = getRecordTags(newBlog.title);
+            newBlog.tags = getRecordTags(newBlog.title, apiTags);
             console.log(newBlog);
             newBlogs.push(newBlog);
           }
@@ -111,7 +112,7 @@ const Resources = () => {
                 .text(),
             };
             console.log(newPodcast);
-            newPodcast.tags = getRecordTags(newPodcast.title);
+            newPodcast.tags = getRecordTags(newPodcast.title, apiTags);
             newPodcasts.push(newPodcast);
           }
           setPodcasts([...newPodcasts]);
@@ -151,7 +152,7 @@ const Resources = () => {
                 .text(),
             };
             console.log(newWebinar);
-            newWebinar.tags = getRecordTags(newWebinar.title);
+            newWebinar.tags = getRecordTags(newWebinar.title, apiTags);
             newWebinars.push(newWebinar);
           }
           setWebinars([...newWebinars]);
@@ -188,7 +189,7 @@ const Resources = () => {
               date: $(ebook).find("[class='paragraph blog date']").eq(1).text(),
             };
             console.log("@@@ ebooks", newEbook);
-            newEbook.tags = getRecordTags(newEbook.title);
+            newEbook.tags = getRecordTags(newEbook.title, apiTags);
             newEbooks.push(newEbook);
           }
           setEbooks([...newEbooks]);
@@ -228,7 +229,7 @@ const Resources = () => {
                 .text(),
             };
             console.log("@@@ ebooks", newTestimonial);
-            newTestimonial.tags = getRecordTags(newTestimonial.title);
+            newTestimonial.tags = getRecordTags(newTestimonial.title, apiTags);
             newTestimonials.push(newTestimonial);
           }
           setTestimonials([...newTestimonials]);
