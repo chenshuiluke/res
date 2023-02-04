@@ -36,7 +36,7 @@ const Resources = () => {
     setApiTags(data);
     return data;
   };
-  const getRecordTags = (name) => {
+  const getRecordTags = (name, apiTags) => {
     if (apiTags[name.trim()] != null) {
       return apiTags[name.trim()].join(" ").trim().toLowerCase();
     }
