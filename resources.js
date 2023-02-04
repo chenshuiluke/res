@@ -603,7 +603,7 @@ const Resources = () => {
                   >
                     {ebook.author}
                   </p>
-                  <div class="blog-line">-</div>
+                  <div class="blog-line"></div>
                   <p class="paragraph blog date">{ebook.date}</p>
                 </div>
                 <div fs-cmsfilter-field="tags" class="tags">
@@ -690,7 +690,7 @@ const Resources = () => {
                   >
                     {testimonial.author}
                   </p>
-                  <div class="blog-line">-</div>
+                  <div class="blog-line"></div>
                   <p class="paragraph blog date">{testimonial.date}</p>
                 </div>
                 <div fs-cmsfilter-field="tags" class="tags">
