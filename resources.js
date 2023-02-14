@@ -603,7 +603,7 @@ const Resources = () => {
               return idx < limit;
             })
             .map((card) => {
-              let content = <></>;
+              let content = null;
               if (
                 card.contentType == "blog" &&
                 (contentTypes.length == 0 || contentTypes.includes("blog"))
@@ -635,6 +635,9 @@ const Resources = () => {
                   contentTypes.includes("testimonial"))
               ) {
                 content = renderTestimonial(card);
+              }
+              if (conten == null) {
+                return null;
               }
               return <span key={card.id}>{content}</span>;
             })}
