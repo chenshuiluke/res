@@ -542,23 +542,29 @@ const Resources = () => {
         }}
       >
         <div role="list" class="blog-list w-dyn-items">
-          {allCards.map((card) => {
-            if (card.contentType == "blog") {
-              return renderBlog(card);
-            }
-            if (card.contentType == "podcast") {
-              return renderPodcast(card);
-            }
-            if (card.contentType == "webinar") {
-              return renderWebinar(card);
-            }
-            if (card.contentType == "ebook") {
-              return renderEbook(card);
-            }
-            if (card.contentType == "testimonial") {
-              return renderTestimonial(card);
-            }
-          })}
+          {allCards
+            .sort(
+              (a, b) =>
+                new moment(a.date).format("YYYYMMDD") -
+                new moment(b.date).format("YYYYMMDD")
+            )
+            .map((card) => {
+              if (card.contentType == "blog") {
+                return renderBlog(card);
+              }
+              if (card.contentType == "podcast") {
+                return renderPodcast(card);
+              }
+              if (card.contentType == "webinar") {
+                return renderWebinar(card);
+              }
+              if (card.contentType == "ebook") {
+                return renderEbook(card);
+              }
+              if (card.contentType == "testimonial") {
+                return renderTestimonial(card);
+              }
+            })}
         </div>
       </div>
     </>
