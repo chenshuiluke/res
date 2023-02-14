@@ -550,8 +550,8 @@ const Resources = () => {
           {allCards
             .sort(
               (a, b) =>
-                new window.moment(a.sortDate).format("YYYYMMDD") -
-                new window.moment(b.sortDate).format("YYYYMMDD")
+                window.moment(a.sortDate).format("YYYYMMDD") -
+                window.moment(b.sortDate).format("YYYYMMDD")
             )
             .map((card) => {
               if (card.contentType == "blog") {
