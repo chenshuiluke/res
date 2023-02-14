@@ -583,9 +583,9 @@ const Resources = () => {
             )
             .filter((card, idx) => {
               if (
-                contentTypes.length == 0 ||
-                tags.length == 0 ||
-                searchFilter.length == 0
+                contentTypes.length > 0 ||
+                tags.length > 0 ||
+                searchFilter.length > 0
               ) {
                 return true;
               }
