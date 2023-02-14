@@ -22,6 +22,7 @@ const Resources = () => {
   const [searchFilter, setSearchFilter] = useState("");
   const [apiTags, setApiTags] = useState({});
   const [allCards, setAllCards] = useState([]);
+  const [limit, setLimit] = useState(6);
   useEffect(() => {
     window.selectedTags = tags;
   }, [tags]);
@@ -580,35 +581,71 @@ const Resources = () => {
                 window.moment(b.sortDate).format("YYYYMMDD") -
                 window.moment(a.sortDate).format("YYYYMMDD")
             )
+            .filter((card, idx) => {
+              if (
+                contentTypes.length == 0 ||
+                tags.length == 0 ||
+                searchFilter.length == 0
+              ) {
+                return true;
+              }
+              return idx < limit;
+            })
             .map((card) => {
-              if (card.contentType == "blog" && contentTypes.includes("blog")) {
+              if (
+                card.contentType == "blog" &&
+                (contentTypes.length == 0 || contentTypes.includes("blog"))
+              ) {
                 return renderBlog(card);
               }
               if (
                 card.contentType == "podcast" &&
-                contentTypes.includes("podcast")
+                (contentTypes.lenth == 0 || contentTypes.includes("podcast"))
               ) {
                 return renderPodcast(card);
               }
               if (
                 card.contentType == "webinar" &&
-                contentTypes.includes("ce webinar")
+                (contentTypes.lenth == 0 || contentTypes.includes("ce webinar"))
               ) {
                 return renderWebinar(card);
               }
               if (
                 card.contentType == "ebook" &&
-                contentTypes.includes("ebook")
+                (contentTypes.length == 0 || contentTypes.includes("ebook"))
               ) {
                 return renderEbook(card);
               }
               if (
                 card.contentType == "testimonial" &&
-                contentTypes.includes("blog")
+                (contentTypes.length == 0 ||
+                  contentTypes.includes("testimonial"))
               ) {
                 return renderTestimonial(card);
               }
             })}
+          {tags.length == 0 &&
+            contentTypes.length == 0 &&
+            searchFilter.length == 0 && (
+              <>
+                <div
+                  class="card-btn-wrapper resources-load-more-btn"
+                  style={{ marginTop: "5px" }}
+                  onClick={() => setLimit(limit + 6)}
+                >
+                  <div
+                    class="card-btn line-btn blog-btn"
+                    style={{
+                      backgroundColor: "#002856",
+                      color: "white",
+                      marginTop: "20px",
+                    }}
+                  >
+                    Load More
+                  </div>
+                </div>
+              </>
+            )}
         </div>
       </div>
     </>
