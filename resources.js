@@ -546,6 +546,18 @@ const Resources = () => {
             if (card.contentType == "blog") {
               return renderBlog(card);
             }
+            if (card.contentType == "podcast") {
+              return renderPodcast(card);
+            }
+            if (card.contentType == "webinar") {
+              return renderWebinar(card);
+            }
+            if (card.contentType == "ebook") {
+              return renderEbook(card);
+            }
+            if (card.contentType == "testimonial") {
+              return renderTestimonial(card);
+            }
           })}
         </div>
       </div>
