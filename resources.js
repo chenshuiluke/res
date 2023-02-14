@@ -600,13 +600,14 @@ const Resources = () => {
               }
               if (
                 card.contentType == "podcast" &&
-                (contentTypes.lenth == 0 || contentTypes.includes("podcast"))
+                (contentTypes.length == 0 || contentTypes.includes("podcast"))
               ) {
                 return renderPodcast(card);
               }
               if (
                 card.contentType == "webinar" &&
-                (contentTypes.lenth == 0 || contentTypes.includes("ce webinar"))
+                (contentTypes.length == 0 ||
+                  contentTypes.includes("ce webinar"))
               ) {
                 return renderWebinar(card);
               }
