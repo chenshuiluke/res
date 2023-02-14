@@ -23,6 +23,12 @@ const Resources = () => {
   const [apiTags, setApiTags] = useState({});
   const [allCards, setAllCards] = useState([]);
   const [limit, setLimit] = useState(6);
+  const generateGuid = () => {
+    return (
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15)
+    );
+  };
   useEffect(() => {
     window.selectedTags = tags;
   }, [tags]);
@@ -78,6 +84,7 @@ const Resources = () => {
               date: $(blog).find("[class='paragraph blog date']").text(),
               contentType: "blog",
               sortDate: $(blog).find(".card-sort-date").text(),
+              id: generateGuid(),
             };
             newBlog.tags = getRecordTags(newBlog.title, apiTags);
             console.log(newBlog);
@@ -116,6 +123,7 @@ const Resources = () => {
                 .text(),
               contentType: "podcast",
               sortDate: $(podcast).find(".card-sort-date").text(),
+              id: generateGuid(),
             };
             console.log(newPodcast);
             newPodcast.tags = getRecordTags(newPodcast.title, apiTags);
@@ -158,6 +166,7 @@ const Resources = () => {
                 .text(),
               contentType: "webinar",
               sortDate: $(webinar).find(".card-sort-date").text(),
+              id: generateGuid(),
             };
             console.log(newWebinar);
             newWebinar.tags = getRecordTags(newWebinar.title, apiTags);
@@ -196,6 +205,7 @@ const Resources = () => {
                 .text(),
               date: $(ebook).find("[class='paragraph blog date']").eq(1).text(),
               sortDate: $(ebook).find(".card-sort-date").text(),
+              id: generateGuid(),
               contentType: "ebook",
             };
             console.log("@@@ ebooks", newEbook);
@@ -239,6 +249,7 @@ const Resources = () => {
                 .text(),
               sortDate: $(testimonial).find(".card-sort-date").text(),
               contentType: "testimonial",
+              id: generateGuid(),
             };
             console.log("@@@ ebooks", newTestimonial);
             newTestimonial.tags = getRecordTags(newTestimonial.title, apiTags);
@@ -592,38 +603,40 @@ const Resources = () => {
               return idx < limit;
             })
             .map((card) => {
+              let content = <></>;
               if (
                 card.contentType == "blog" &&
                 (contentTypes.length == 0 || contentTypes.includes("blog"))
               ) {
-                return renderBlog(card);
+                content = renderBlog(card);
               }
               if (
                 card.contentType == "podcast" &&
                 (contentTypes.length == 0 || contentTypes.includes("podcast"))
               ) {
-                return renderPodcast(card);
+                content = renderPodcast(card);
               }
               if (
                 card.contentType == "webinar" &&
                 (contentTypes.length == 0 ||
                   contentTypes.includes("ce webinar"))
               ) {
-                return renderWebinar(card);
+                content = renderWebinar(card);
               }
               if (
                 card.contentType == "ebook" &&
                 (contentTypes.length == 0 || contentTypes.includes("ebook"))
               ) {
-                return renderEbook(card);
+                content = renderEbook(card);
               }
               if (
                 card.contentType == "testimonial" &&
                 (contentTypes.length == 0 ||
                   contentTypes.includes("testimonial"))
               ) {
-                return renderTestimonial(card);
+                content = renderTestimonial(card);
               }
+              return <span key={card.id}>{content}</span>;
             })}
           {tags.length == 0 &&
             contentTypes.length == 0 &&
