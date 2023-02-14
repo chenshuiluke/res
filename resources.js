@@ -548,25 +548,64 @@ const Resources = () => {
       >
         <div role="list" class="blog-list w-dyn-items">
           {allCards
+            .filter((card) => {
+              if (tags.length == 0) {
+                return true;
+              }
+              for (const tag of tags) {
+                if (!card?.tags?.includes(tag)) {
+                  return false;
+                }
+              }
+              return true;
+            })
+            .filter((item) => {
+              if (searchFilter != "") {
+                if (
+                  item.title
+                    .toLowerCase()
+                    .includes(searchFilter.toLowerCase()) ||
+                  item.description
+                    .toLowerCase()
+                    .includes(searchFilter.toLowerCase())
+                ) {
+                  return true;
+                }
+                return false;
+              }
+              return true;
+            })
             .sort(
               (a, b) =>
                 window.moment(b.sortDate).format("YYYYMMDD") -
                 window.moment(a.sortDate).format("YYYYMMDD")
             )
             .map((card) => {
-              if (card.contentType == "blog") {
+              if (card.contentType == "blog" && contentTypes.includes("blog")) {
                 return renderBlog(card);
               }
-              if (card.contentType == "podcast") {
+              if (
+                card.contentType == "podcast" &&
+                contentTypes.includes("podcast")
+              ) {
                 return renderPodcast(card);
               }
-              if (card.contentType == "webinar") {
+              if (
+                card.contentType == "webinar" &&
+                contentTypes.includes("ce webinar")
+              ) {
                 return renderWebinar(card);
               }
-              if (card.contentType == "ebook") {
+              if (
+                card.contentType == "ebook" &&
+                contentTypes.includes("ebook")
+              ) {
                 return renderEbook(card);
               }
-              if (card.contentType == "testimonial") {
+              if (
+                card.contentType == "testimonial" &&
+                contentTypes.includes("blog")
+              ) {
                 return renderTestimonial(card);
               }
             })}
