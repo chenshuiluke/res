@@ -636,7 +636,7 @@ const Resources = () => {
               ) {
                 content = renderTestimonial(card);
               }
-              if (conten == null) {
+              if (content == null) {
                 return null;
               }
               return <span key={card.id}>{content}</span>;
