@@ -76,6 +76,7 @@ const Resources = () => {
               author: $(blog).find(".paragraph.blog.blog-author").text(),
               date: $(blog).find("[class='paragraph blog date']").text(),
               contentType: "blog",
+              sortDate: $(blog).find(".card-sort-date").text(),
             };
             newBlog.tags = getRecordTags(newBlog.title, apiTags);
             console.log(newBlog);
@@ -113,6 +114,7 @@ const Resources = () => {
                 .find("[class='paragraph blog blog-ep-number']")
                 .text(),
               contentType: "podcast",
+              sortDate: $(podcast).find(".card-sort-date").text(),
             };
             console.log(newPodcast);
             newPodcast.tags = getRecordTags(newPodcast.title, apiTags);
@@ -154,6 +156,7 @@ const Resources = () => {
                 .eq(1)
                 .text(),
               contentType: "webinar",
+              sortDate: $(webinar).find(".card-sort-date").text(),
             };
             console.log(newWebinar);
             newWebinar.tags = getRecordTags(newWebinar.title, apiTags);
@@ -191,6 +194,7 @@ const Resources = () => {
                 .eq(0)
                 .text(),
               date: $(ebook).find("[class='paragraph blog date']").eq(1).text(),
+              sortDate: $(ebook).find(".card-sort-date").text(),
               contentType: "ebook",
             };
             console.log("@@@ ebooks", newEbook);
@@ -232,6 +236,7 @@ const Resources = () => {
                 .find("[class='paragraph blog date']")
                 .eq(1)
                 .text(),
+              sortDate: $(testimonial).find(".card-sort-date").text(),
               contentType: "testimonial",
             };
             console.log("@@@ ebooks", newTestimonial);
@@ -545,8 +550,8 @@ const Resources = () => {
           {allCards
             .sort(
               (a, b) =>
-                new moment(a.date).format("YYYYMMDD") -
-                new moment(b.date).format("YYYYMMDD")
+                new moment(a.sortDate).format("YYYYMMDD") -
+                new moment(b.sortDate).format("YYYYMMDD")
             )
             .map((card) => {
               if (card.contentType == "blog") {
