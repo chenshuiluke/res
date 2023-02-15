@@ -68,11 +68,7 @@ const Resources = () => {
                 .text()
                 .replaceAll("\n", "")
                 .trim(),
-              title: $(blog)
-                .find(".blog-info-wrap-new .blog-title-new")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
+              title: $(blog).find(".title").text().replaceAll("\n", "").trim(),
               tags: $(blog)
                 .find(".blog-info-wrap-new .tags")
                 .text()
@@ -103,7 +99,7 @@ const Resources = () => {
                 .replaceAll("\n", "")
                 .trim(),
               title: $(podcast)
-                .find(".blog-info-wrap-new .blog-title-new")
+                .find(".title")
                 .text()
                 .replaceAll("\n", "")
                 .trim(),
@@ -143,7 +139,7 @@ const Resources = () => {
                 .replaceAll("\n", "")
                 .trim(),
               title: $(webinar)
-                .find(".blog-info-wrap-new .blog-title-new")
+                .find(".title")
                 .text()
                 .replaceAll("\n", "")
                 .trim(),
@@ -185,11 +181,7 @@ const Resources = () => {
                 .text()
                 .replaceAll("\n", "")
                 .trim(),
-              title: $(ebook)
-                .find(".blog-info-wrap-new .blog-title-new")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
+              title: $(ebook).find(".title").text().replaceAll("\n", "").trim(),
               tags: $(ebook)
                 .find(".tags")
                 .text()
@@ -226,7 +218,7 @@ const Resources = () => {
                 .replaceAll("\n", "")
                 .trim(),
               title: $(testimonial)
-                .find(".blog-info-wrap-new .blog-title-new")
+                .find(".title")
                 .text()
                 .replaceAll("\n", "")
                 .trim(),
