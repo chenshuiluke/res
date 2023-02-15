@@ -348,7 +348,7 @@ const Resources = () => {
               Blog
             </div>
           </div>
-          <div class="blog-info-wrap-new">
+          <div class="paragraph-podcast-meta">
             <p fs-cmsfilter-field="description" class="paragraph blog">
               {blog.description}
             </p>
@@ -391,7 +391,7 @@ const Resources = () => {
               Podcast
             </div>
           </div>
-          <div class="blog-info-wrap-new">
+          <div class="paragraph-podcast-meta">
             <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
               {podcast.description}
             </p>
@@ -438,7 +438,7 @@ const Resources = () => {
               Webinar
             </div>
           </div>
-          <div class="blog-info-wrap-new">
+          <div class="paragraph-podcast-meta">
             <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
               {webinar.description}
             </p>
@@ -481,7 +481,7 @@ const Resources = () => {
               Ebook
             </div>
           </div>
-          <div class="blog-info-wrap-new">
+          <div class="paragraph-podcast-meta">
             <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
               {ebook.description}
             </p>
@@ -524,7 +524,7 @@ const Resources = () => {
               Testimonial
             </div>
           </div>
-          <div class="blog-info-wrap-new">
+          <div class="paragraph-podcast-meta">
             <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
               {testimonial.description}
             </p>
