@@ -328,8 +328,6 @@ const Resources = () => {
       ...testimonials,
     ]);
   }, [blogs, podcasts, webinars, ebooks, testimonials]);
-  debugger;
-  console.log(contentTypes);
 
   const renderBlog = (blog) => {
     return (
