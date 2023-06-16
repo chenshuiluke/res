@@ -576,20 +576,26 @@ const Resources = () => {
               return true;
             })
             .filter((item) => {
-              if (searchFilter != "") {
-                if (
-                  item.title
-                    .toLowerCase()
-                    .includes(searchFilter.toLowerCase()) ||
-                  item.description
-                    .toLowerCase()
-                    .includes(searchFilter.toLowerCase())
-                ) {
-                  return true;
+              try {
+                if (searchFilter != "") {
+                  if (
+                    item.title
+                      .toLowerCase()
+                      .includes(searchFilter.toLowerCase()) ||
+                    item.description
+                      .toLowerCase()
+                      .includes(searchFilter.toLowerCase())
+                  ) {
+                    return true;
+                  }
+                  return false;
                 }
+                return true;
+              } catch (err) {
+                debugger;
+                console.error(err);
                 return false;
               }
-              return true;
             })
             .sort(
               (a, b) =>
