@@ -38,11 +38,11 @@ const Resources = () => {
   }, [contentTypes]);
 
   const getTagsFromApi = async () => {
-    const data = await $.getJSON(
-      "https://di-marketing-server-iuzlr.ondigitalocean.app/api/tags"
-    );
-    setApiTags(data);
-    return data;
+    // const data = await $.getJSON(
+    //   "https://di-marketing-server-iuzlr.ondigitalocean.app/api/tags"
+    // );
+    // setApiTags(data);
+    // return data;
   };
   const getRecordTags = (name, apiTags) => {
     if (apiTags[name.trim()] != null) {
@@ -51,9 +51,10 @@ const Resources = () => {
     return "";
   };
   useEffect(async () => {
-    const content = await $.getJSON(
+    const response = await fetch(
       "https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources"
     );
+    const content = await response.json();
     setAllCards(content);
   }, []);
   useEffect(() => {
