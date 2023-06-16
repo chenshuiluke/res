@@ -594,6 +594,7 @@ const Resources = () => {
                 return true;
               } catch (err) {
                 debugger;
+                console.log(item);
                 console.error(err);
                 return false;
               }
