@@ -340,7 +340,7 @@ const Resources = ({ scrollPosition }) => {
     ]);
   }, [blogs, podcasts, webinars, ebooks, testimonials]);
 
-  const Blog = (blog) => {
+  const renderBlog = (blog) => {
     return (
       <div key={blog.title} role="listitem" class="blog-item w-dyn-item">
         <a href={blog.link} class="blog-link-new w-inline-block">
