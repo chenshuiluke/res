@@ -2,6 +2,7 @@
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.22.5",
     "@rollup/plugin-babel": "^6.0.3",
+    "@swc/helpers": "^0.5.1",
     "@types/node": "^20.3.1",
     "@vitejs/plugin-legacy": "^4.0.4",
     "@vitejs/plugin-react": "^4.0.0",
@@ -15,11 +16,13 @@
     "build": "parcel build"
   },
   "source": "resources.jsx",
-  "main": "dist/main.js",
   "browserslist": [
     "> 0.5%",
     "not dead"
   ],
+  "engines": {
+    "browsers": "> 0.25%"
+  },
   "devDependencies": {
     "parcel": "^2.9.2"
   }
