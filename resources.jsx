@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import {
+  LazyLoadImage,
+  trackWindowScroll,
+} from "react-lazy-load-image-component";
 const e = React.createElement;
 const useState = React.useState;
 const useEffect = React.useEffect;
