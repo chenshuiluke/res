@@ -50,6 +50,12 @@ const Resources = () => {
     }
     return "";
   };
+  useEffect(async () => {
+    const content = await $.getJSON(
+      "https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources"
+    );
+    setAllCards(content);
+  }, []);
   useEffect(() => {
     getTagsFromApi().then((apiTags) => {
       var waitForJQuery = setInterval(function () {
@@ -57,205 +63,205 @@ const Resources = () => {
           $ = window.$;
 
           clearInterval(waitForJQuery);
-          const blogElements = $(".blog-item.w-dyn-item");
+          // const blogElements = $(".blog-item.w-dyn-item");
 
-          const newBlogs = [];
-          for (const blog of blogElements) {
-            const newBlog = {
-              image: $(blog).find(".blog-img-wrap img").attr("src"),
-              description: $(blog)
-                .find("[class='paragraph blog']")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              title: $(blog)
-                .find(".blog-title-new")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              tags: $(blog)
-                .find(".blog-info-wrap-new .tags")
-                .text()
-                .replaceAll("\n", "")
-                .trim()
-                .toLowerCase(),
-              link: $(blog).find("a.blog-link-new.w-inline-block").attr("href"),
-              author: $(blog).find(".paragraph.blog.blog-author").text(),
-              date: $(blog).find("[class='paragraph blog date']").text(),
-              contentType: "blog",
-              sortDate: $(blog).find(".card-sort-date").text(),
-              id: generateGuid(),
-            };
-            newBlog.tags = getRecordTags(newBlog.title, apiTags);
-            console.log(newBlog);
-            newBlogs.push(newBlog);
-          }
-          setBlogs([...newBlogs]);
+          // const newBlogs = [];
+          // for (const blog of blogElements) {
+          //   const newBlog = {
+          //     image: $(blog).find(".blog-img-wrap img").attr("src"),
+          //     description: $(blog)
+          //       .find("[class='paragraph blog']")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     title: $(blog)
+          //       .find(".blog-title-new")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     tags: $(blog)
+          //       .find(".blog-info-wrap-new .tags")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim()
+          //       .toLowerCase(),
+          //     link: $(blog).find("a.blog-link-new.w-inline-block").attr("href"),
+          //     author: $(blog).find(".paragraph.blog.blog-author").text(),
+          //     date: $(blog).find("[class='paragraph blog date']").text(),
+          //     contentType: "blog",
+          //     sortDate: $(blog).find(".card-sort-date").text(),
+          //     id: generateGuid(),
+          //   };
+          //   newBlog.tags = getRecordTags(newBlog.title, apiTags);
+          //   console.log(newBlog);
+          //   newBlogs.push(newBlog);
+          // }
+          // setBlogs([...newBlogs]);
 
-          const podcastElements = $(".podcast-item.w-dyn-item");
-          const newPodcasts = [];
-          for (const podcast of podcastElements) {
-            const newPodcast = {
-              image: $(podcast).find(".blog-img-wrap img").attr("src"),
-              description: $(podcast)
-                .find("[class='paragraph podcast-meta']")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              title: $(podcast)
-                .find(".blog-title-new")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              tags: $(podcast)
-                .find(".tags")
-                .text()
-                .replaceAll("\n", "")
-                .trim()
-                .toLowerCase(),
-              link: $(podcast)
-                .find("a.podcast-link-new.w-inline-block")
-                .attr("href"),
-              author: $(podcast).find(".paragraph.blog.blog-author").text(),
-              date: $(podcast).find("[class='paragraph blog date']").text(),
-              episode: $(podcast)
-                .find("[class='paragraph blog blog-ep-number']")
-                .text(),
-              contentType: "podcast",
-              sortDate: $(podcast).find(".card-sort-date").text(),
-              id: generateGuid(),
-            };
-            console.log(newPodcast);
-            newPodcast.tags = getRecordTags(newPodcast.title, apiTags);
-            newPodcasts.push(newPodcast);
-          }
-          setPodcasts([...newPodcasts]);
+          // const podcastElements = $(".podcast-item.w-dyn-item");
+          // const newPodcasts = [];
+          // for (const podcast of podcastElements) {
+          //   const newPodcast = {
+          //     image: $(podcast).find(".blog-img-wrap img").attr("src"),
+          //     description: $(podcast)
+          //       .find("[class='paragraph podcast-meta']")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     title: $(podcast)
+          //       .find(".blog-title-new")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     tags: $(podcast)
+          //       .find(".tags")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim()
+          //       .toLowerCase(),
+          //     link: $(podcast)
+          //       .find("a.podcast-link-new.w-inline-block")
+          //       .attr("href"),
+          //     author: $(podcast).find(".paragraph.blog.blog-author").text(),
+          //     date: $(podcast).find("[class='paragraph blog date']").text(),
+          //     episode: $(podcast)
+          //       .find("[class='paragraph blog blog-ep-number']")
+          //       .text(),
+          //     contentType: "podcast",
+          //     sortDate: $(podcast).find(".card-sort-date").text(),
+          //     id: generateGuid(),
+          //   };
+          //   console.log(newPodcast);
+          //   newPodcast.tags = getRecordTags(newPodcast.title, apiTags);
+          //   newPodcasts.push(newPodcast);
+          // }
+          // setPodcasts([...newPodcasts]);
 
-          const webinarElements = $(".webinar-item.w-dyn-item");
+          // const webinarElements = $(".webinar-item.w-dyn-item");
 
-          const newWebinars = [];
-          for (const webinar of webinarElements) {
-            const newWebinar = {
-              image: $(webinar).find(".blog-img-wrap img").attr("src"),
-              description: $(webinar)
-                .find("[class='paragraph podcast-meta']")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              title: $(webinar)
-                .find(".blog-title-new")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              tags: $(webinar)
-                .find(".tags")
-                .text()
-                .replaceAll("\n", "")
-                .trim()
-                .toLowerCase(),
-              link: $(webinar)
-                .find("a.webinar-link-new.w-inline-block")
-                .attr("href"),
-              author: $(webinar)
-                .find("[class='paragraph blog date']")
-                .eq(0)
-                .text(),
-              date: $(webinar)
-                .find("[class='paragraph blog date']")
-                .eq(1)
-                .text(),
-              contentType: "webinar",
-              sortDate: $(webinar).find(".card-sort-date").text(),
-              id: generateGuid(),
-            };
-            console.log(newWebinar);
-            newWebinar.tags = getRecordTags(newWebinar.title, apiTags);
-            newWebinars.push(newWebinar);
-          }
-          setWebinars([...newWebinars]);
+          // const newWebinars = [];
+          // for (const webinar of webinarElements) {
+          //   const newWebinar = {
+          //     image: $(webinar).find(".blog-img-wrap img").attr("src"),
+          //     description: $(webinar)
+          //       .find("[class='paragraph podcast-meta']")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     title: $(webinar)
+          //       .find(".blog-title-new")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     tags: $(webinar)
+          //       .find(".tags")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim()
+          //       .toLowerCase(),
+          //     link: $(webinar)
+          //       .find("a.webinar-link-new.w-inline-block")
+          //       .attr("href"),
+          //     author: $(webinar)
+          //       .find("[class='paragraph blog date']")
+          //       .eq(0)
+          //       .text(),
+          //     date: $(webinar)
+          //       .find("[class='paragraph blog date']")
+          //       .eq(1)
+          //       .text(),
+          //     contentType: "webinar",
+          //     sortDate: $(webinar).find(".card-sort-date").text(),
+          //     id: generateGuid(),
+          //   };
+          //   console.log(newWebinar);
+          //   newWebinar.tags = getRecordTags(newWebinar.title, apiTags);
+          //   newWebinars.push(newWebinar);
+          // }
+          // setWebinars([...newWebinars]);
 
-          const ebookElements = $(".ebook-item.w-dyn-item");
+          // const ebookElements = $(".ebook-item.w-dyn-item");
 
-          const newEbooks = [];
-          for (const ebook of ebookElements) {
-            const newEbook = {
-              image: $(ebook).find(".blog-img-wrap img").attr("src"),
-              description: $(ebook)
-                .find("[class='paragraph podcast-meta']")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              title: $(ebook)
-                .find(".blog-title-new")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              tags: $(ebook)
-                .find(".tags")
-                .text()
-                .replaceAll("\n", "")
-                .trim()
-                .toLowerCase(),
-              link: $(ebook)
-                .find("a.webinar-link-new.w-inline-block")
-                .attr("href"),
-              author: $(ebook)
-                .find("[class='paragraph blog date']")
-                .eq(0)
-                .text(),
-              date: $(ebook).find("[class='paragraph blog date']").eq(1).text(),
-              sortDate: $(ebook).find(".card-sort-date").text(),
-              id: generateGuid(),
-              contentType: "ebook",
-            };
-            console.log("@@@ ebooks", newEbook);
-            newEbook.tags = getRecordTags(newEbook.title, apiTags);
-            newEbooks.push(newEbook);
-          }
-          setEbooks([...newEbooks]);
+          // const newEbooks = [];
+          // for (const ebook of ebookElements) {
+          //   const newEbook = {
+          //     image: $(ebook).find(".blog-img-wrap img").attr("src"),
+          //     description: $(ebook)
+          //       .find("[class='paragraph podcast-meta']")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     title: $(ebook)
+          //       .find(".blog-title-new")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     tags: $(ebook)
+          //       .find(".tags")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim()
+          //       .toLowerCase(),
+          //     link: $(ebook)
+          //       .find("a.webinar-link-new.w-inline-block")
+          //       .attr("href"),
+          //     author: $(ebook)
+          //       .find("[class='paragraph blog date']")
+          //       .eq(0)
+          //       .text(),
+          //     date: $(ebook).find("[class='paragraph blog date']").eq(1).text(),
+          //     sortDate: $(ebook).find(".card-sort-date").text(),
+          //     id: generateGuid(),
+          //     contentType: "ebook",
+          //   };
+          //   console.log("@@@ ebooks", newEbook);
+          //   newEbook.tags = getRecordTags(newEbook.title, apiTags);
+          //   newEbooks.push(newEbook);
+          // }
+          // setEbooks([...newEbooks]);
 
-          const testimonialElements = $(".testimonial-item.w-dyn-item");
+          // const testimonialElements = $(".testimonial-item.w-dyn-item");
 
-          const newTestimonials = [];
-          for (const testimonial of testimonialElements) {
-            const newTestimonial = {
-              image: $(testimonial).find(".blog-img-wrap img").attr("src"),
-              description: $(testimonial)
-                .find("[class='paragraph podcast-meta']")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              title: $(testimonial)
-                .find(".blog-title-new")
-                .text()
-                .replaceAll("\n", "")
-                .trim(),
-              tags: $(testimonial)
-                .find(".tags")
-                .text()
-                .replaceAll("\n", "")
-                .trim()
-                .toLowerCase(),
-              link: $(testimonial)
-                .find("a.webinar-link-new.w-inline-block")
-                .attr("href"),
-              author: $(testimonial)
-                .find("[class='paragraph blog date']")
-                .eq(0)
-                .text(),
-              date: $(testimonial)
-                .find("[class='paragraph blog date']")
-                .eq(1)
-                .text(),
-              sortDate: $(testimonial).find(".card-sort-date").text(),
-              contentType: "testimonial",
-              id: generateGuid(),
-            };
-            console.log("@@@ ebooks", newTestimonial);
-            newTestimonial.tags = getRecordTags(newTestimonial.title, apiTags);
-            newTestimonials.push(newTestimonial);
-          }
-          setTestimonials([...newTestimonials]);
+          // const newTestimonials = [];
+          // for (const testimonial of testimonialElements) {
+          //   const newTestimonial = {
+          //     image: $(testimonial).find(".blog-img-wrap img").attr("src"),
+          //     description: $(testimonial)
+          //       .find("[class='paragraph podcast-meta']")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     title: $(testimonial)
+          //       .find(".blog-title-new")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim(),
+          //     tags: $(testimonial)
+          //       .find(".tags")
+          //       .text()
+          //       .replaceAll("\n", "")
+          //       .trim()
+          //       .toLowerCase(),
+          //     link: $(testimonial)
+          //       .find("a.webinar-link-new.w-inline-block")
+          //       .attr("href"),
+          //     author: $(testimonial)
+          //       .find("[class='paragraph blog date']")
+          //       .eq(0)
+          //       .text(),
+          //     date: $(testimonial)
+          //       .find("[class='paragraph blog date']")
+          //       .eq(1)
+          //       .text(),
+          //     sortDate: $(testimonial).find(".card-sort-date").text(),
+          //     contentType: "testimonial",
+          //     id: generateGuid(),
+          //   };
+          //   console.log("@@@ ebooks", newTestimonial);
+          //   newTestimonial.tags = getRecordTags(newTestimonial.title, apiTags);
+          //   newTestimonials.push(newTestimonial);
+          // }
+          // setTestimonials([...newTestimonials]);
           debugger;
           window.eventBus.on("checked", function (tag, checked) {
             let tagArr = [...window.selectedTags];
