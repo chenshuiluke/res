@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const e = React.createElement;
 const useState = React.useState;
 const useEffect = React.useEffect;
 let $;
 window.selectedTags = [];
 window.selectedContent = [];
-const Resources = () => {
+const Resources = ({ scrollPosition }) => {
   const [blogs, setBlogs] = useState([]);
   const [podcasts, setPodcasts] = useState([]);
   const [webinars, setWebinars] = useState([]);
@@ -336,12 +337,14 @@ const Resources = () => {
     ]);
   }, [blogs, podcasts, webinars, ebooks, testimonials]);
 
-  const renderBlog = (blog) => {
+  const Blog = (blog) => {
     return (
       <div key={blog.title} role="listitem" class="blog-item w-dyn-item">
         <a href={blog.link} class="blog-link-new w-inline-block">
           <div class="blog-img-wrap">
-            <img
+            <LazyLoadImage
+              scrollPosition={scrollPosition}
+              effect={"opacity"}
               src={blog.image}
               alt=""
               sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
@@ -384,7 +387,9 @@ const Resources = () => {
       <div key={podcast.title} role="listitem" class="blog-item w-dyn-item">
         <a href={podcast.link} class="blog-link-new w-inline-block">
           <div class="blog-img-wrap">
-            <img
+            <LazyLoadImage
+              scrollPosition={scrollPosition}
+              effect={"opacity"}
               src={podcast.image}
               alt=""
               sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
@@ -431,7 +436,9 @@ const Resources = () => {
       <div key={webinar.title} role="listitem" class="blog-item w-dyn-item">
         <a href={webinar.link} class="blog-link-new w-inline-block">
           <div class="blog-img-wrap">
-            <img
+            <LazyLoadImage
+              scrollPosition={scrollPosition}
+              effect={"opacity"}
               src={webinar.image}
               alt=""
               sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
@@ -474,7 +481,9 @@ const Resources = () => {
       <div key={ebook.title} role="listitem" class="blog-item w-dyn-item">
         <a href={ebook.link} class="blog-link-new w-inline-block">
           <div class="blog-img-wrap">
-            <img
+            <LazyLoadImage
+              scrollPosition={scrollPosition}
+              effect={"opacity"}
               src={ebook.image}
               alt=""
               sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
@@ -517,7 +526,9 @@ const Resources = () => {
       <div key={testimonial.title} role="listitem" class="blog-item w-dyn-item">
         <a href={testimonial.link} class="blog-link-new w-inline-block">
           <div class="blog-img-wrap">
-            <img
+            <LazyLoadImage
+              scrollPosition={scrollPosition}
+              effect={"opacity"}
               src={testimonial.image}
               alt=""
               sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
@@ -681,6 +692,7 @@ const Resources = () => {
   );
 };
 
+const component = trackWindowScroll(Resources);
 const domContainer = document.querySelector("#root");
 const root = ReactDOM.createRoot(domContainer);
-root.render(e(Resources));
+root.render(e(component));
