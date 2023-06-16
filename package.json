@@ -14,5 +14,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
-  }
+  },
+  "browserslist": [
+    "> 0.5%",
+    "not dead"
+  ]
 }
