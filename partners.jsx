@@ -151,11 +151,15 @@ const Partners = ({ scrollPosition }) => {
     );
   };
   const renderGoldPartners = (goldPartners) => {
-    <div class="w-layout-grid grid-16">
-      {goldPartners.map((partner) => {
-        return renderGoldPartner(partner);
-      })}
-    </div>;
+    return (
+      <>
+        <div class="w-layout-grid grid-16">
+          {goldPartners.map((partner) => {
+            return renderGoldPartner(partner);
+          })}
+        </div>
+      </>
+    );
   };
   return (
     <>
