@@ -16,7 +16,10 @@
     "watch": "parcel watch",
     "build": "parcel build"
   },
-  "source": "resources.jsx",
+  "source": [
+    "resources.jsx",
+    "partners.jsx"
+  ],
   "browserslist": [
     "> 0.5%",
     "not dead"
