@@ -21,7 +21,7 @@ const Partners = ({ scrollPosition }) => {
     const content = await response.json();
     setDiamondPartners(content.diamondPartners);
     setGoldPartners(content.goldPartners);
-    console.log("@@@ content", content);
+    console.log("@@@ content log", content);
   }, []);
   const renderDiamondPartner = (partner) => {
     return (
