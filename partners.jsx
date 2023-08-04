@@ -10,6 +10,7 @@ const useEffect = React.useEffect;
 let $;
 window.selectedTags = [];
 window.selectedContent = [];
+
 const Partners = ({ scrollPosition }) => {
   const [diamondPartners, setDiamondPartners] = useState([]);
   const [goldPartners, setGoldPartners] = useState([]);
@@ -20,6 +21,7 @@ const Partners = ({ scrollPosition }) => {
     const content = await response.json();
     setDiamondPartners(content.diamondPartners);
     setGoldPartners(content.goldPartners);
+    console.log("@@@ content", content);
   }, []);
   const renderDiamondPartner = (partner) => {
     return (
