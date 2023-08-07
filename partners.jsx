@@ -37,34 +37,42 @@ const Partners = ({ scrollPosition }) => {
   }, []);
 
   useEffect(() => {
-    window.eventBus.on("checked", function (tag, checked) {
-      let tagArr = [...window.selectedTags];
-      debugger;
-      if (!serviceTypeList.includes(tag.toLowerCase())) {
+    var waitForJQuery = setInterval(function () {
+      if (typeof window.$ != "undefined") {
+        $ = window.$;
+
+        clearInterval(waitForJQuery);
+        window.eventBus.on("checked", function (tag, checked) {
+          let tagArr = [...window.selectedTags];
+          debugger;
+          if (!serviceTypeList.includes(tag.toLowerCase())) {
+            debugger;
+            if (checked) {
+              if (!tagArr.includes(tag.toLowerCase())) {
+                tagArr.push(tag.toLowerCase());
+              }
+            } else {
+              if (tagArr.includes(tag.toLowerCase())) {
+                tagArr = tagArr.filter((element) => {
+                  return element != tag.toLowerCase();
+                });
+              }
+            }
+            setTags([...tagArr]);
+          }
+
+          debugger;
+          console.log("Inside `my-event`");
+        });
+
+        $(".w-checkbox.tag.blog.new input").change(function () {
+          debugger;
+          const tags = $(this).siblings("span").text();
+          window.eventBus.emit("checked", null, tags, this.checked);
+        });
         debugger;
-        if (checked) {
-          if (!tagArr.includes(tag.toLowerCase())) {
-            tagArr.push(tag.toLowerCase());
-          }
-        } else {
-          if (tagArr.includes(tag.toLowerCase())) {
-            tagArr = tagArr.filter((element) => {
-              return element != tag.toLowerCase();
-            });
-          }
-        }
-        setTags([...tagArr]);
       }
-
-      debugger;
-      console.log("Inside `my-event`");
-    });
-
-    $(".w-checkbox.tag.blog.new input").change(function () {
-      debugger;
-      const tags = $(this).siblings("span").text();
-      window.eventBus.emit("checked", null, tags, this.checked);
-    });
+    }, 10);
   }, []);
 
   const filterPartnerBasedOnTag = (partner) => {
