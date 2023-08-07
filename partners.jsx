@@ -16,6 +16,7 @@ const Partners = ({ scrollPosition }) => {
   const [goldPartners, setGoldPartners] = useState([]);
   const [serviceTypeList, setServiceTypeList] = useState([]);
   const [tags, setTags] = useState([]);
+  const [searchFilter, setSearchFilter] = useState("");
   useEffect(async () => {
     const response = await fetch(
       "https://di-marketing-server-iuzlr.ondigitalocean.app/api/certified-partners"
@@ -70,6 +71,15 @@ const Partners = ({ scrollPosition }) => {
           const tags = $(this).siblings("span").text();
           window.eventBus.emit("checked", null, tags, this.checked);
         });
+
+        $(".search-input-new.w-input").keyup(function (event) {
+          const text = $(this).val();
+          setSearchFilter(text);
+        });
+        $(".search-input-new.w-input").focusout(function () {
+          const text = $(this).val();
+          setSearchFilter(text);
+        });
         debugger;
       }
     }, 10);
@@ -86,6 +96,27 @@ const Partners = ({ scrollPosition }) => {
     }
     return true;
   };
+
+  const filterPartnerBasedOnSearchInput = (item) => {
+    try {
+      if (searchFilter != "") {
+        if (
+          item.title.toLowerCase().includes(searchFilter.toLowerCase()) ||
+          item.description.toLowerCase().includes(searchFilter.toLowerCase())
+        ) {
+          return true;
+        }
+        return false;
+      }
+      return true;
+    } catch (err) {
+      debugger;
+      console.log(item);
+      console.error(err);
+      return false;
+    }
+  };
+
   const renderDiamondPartner = (partner) => {
     return (
       <>
@@ -153,6 +184,7 @@ const Partners = ({ scrollPosition }) => {
         <div class="w-layout-grid grid-17">
           {diamondPartners
             .filter(filterPartnerBasedOnTag)
+            .filter(filterPartnerBasedOnSearchInput)
             .map((partner) => renderDiamondPartner(partner))}
         </div>
       </>
@@ -219,9 +251,12 @@ const Partners = ({ scrollPosition }) => {
     return (
       <>
         <div class="w-layout-grid grid-16">
-          {goldPartners.filter(filterPartnerBasedOnTag).map((partner) => {
-            return renderGoldPartner(partner);
-          })}
+          {goldPartners
+            .filter(filterPartnerBasedOnTag)
+            .filter(filterPartnerBasedOnSearchInput)
+            .map((partner) => {
+              return renderGoldPartner(partner);
+            })}
         </div>
       </>
     );
