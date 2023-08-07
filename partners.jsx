@@ -14,6 +14,8 @@ window.selectedContent = [];
 const Partners = ({ scrollPosition }) => {
   const [diamondPartners, setDiamondPartners] = useState([]);
   const [goldPartners, setGoldPartners] = useState([]);
+  const [serviceTypeList, setServiceTypeList] = useState([]);
+  const [tags, setTags] = useState([]);
   useEffect(async () => {
     const response = await fetch(
       "https://di-marketing-server-iuzlr.ondigitalocean.app/api/certified-partners"
@@ -22,7 +24,54 @@ const Partners = ({ scrollPosition }) => {
     setDiamondPartners(content.diamondPartners);
     setGoldPartners(content.goldPartners);
     console.log("@@@ content log", content);
+
+    const serviceTypeResponse = await fetch(
+      "https://di-marketing-server-iuzlr.ondigitalocean.app/api/certified-partners/service-types"
+    );
+
+    const serviceTypeContent = await serviceTypeResponse.json();
+    const serviceTypes = serviceTypeContent.serviceTypes;
+    if (serviceTypes != null && serviceTypes.length > 0) {
+      setServiceTypeList(serviceTypes.map((service) => service.toLowerCase()));
+    }
   }, []);
+
+  useEffect(() => {
+    window.eventBus.on("checked", function (tag, checked) {
+      let tagArr = [...window.selectedTags];
+      debugger;
+      if (!serviceTypeList.includes(tag.toLowerCase())) {
+        debugger;
+        if (checked) {
+          if (!tagArr.includes(tag.toLowerCase())) {
+            tagArr.push(tag.toLowerCase());
+          }
+        } else {
+          if (tagArr.includes(tag.toLowerCase())) {
+            tagArr = tagArr.filter((element) => {
+              return element != tag.toLowerCase();
+            });
+          }
+        }
+        setTags([...tagArr]);
+      }
+
+      debugger;
+      console.log("Inside `my-event`");
+    });
+  }, []);
+
+  const filterPartnerBasedOnTag = (partner) => {
+    if (tags.length == 0) {
+      return true;
+    }
+    for (const tag of tags) {
+      if (!partner?.services?.includes(tag)) {
+        return false;
+      }
+    }
+    return true;
+  };
   const renderDiamondPartner = (partner) => {
     return (
       <>
@@ -88,7 +137,9 @@ const Partners = ({ scrollPosition }) => {
     return (
       <>
         <div class="w-layout-grid grid-17">
-          {diamondPartners.map((partner) => renderDiamondPartner(partner))}
+          {diamondPartners
+            .filter(filterPartnerBasedOnTag)
+            .map((partner) => renderDiamondPartner(partner))}
         </div>
       </>
     );
@@ -154,7 +205,7 @@ const Partners = ({ scrollPosition }) => {
     return (
       <>
         <div class="w-layout-grid grid-16">
-          {goldPartners.map((partner) => {
+          {goldPartners.filter(filterPartnerBasedOnTag).map((partner) => {
             return renderGoldPartner(partner);
           })}
         </div>
