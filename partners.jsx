@@ -154,7 +154,7 @@ const Partners = ({ scrollPosition }) => {
               Consulting Partner
             </div>
             <div class="paragraph certified-partner-gold-card-heading">
-              {partner.name}
+              {partner.title}
             </div>
             <div class="paragraph partner-card-desciption">
               {partner.description.slice(0, 200)}
@@ -223,7 +223,7 @@ const Partners = ({ scrollPosition }) => {
               Consulting Partner
             </div>
             <div class="paragraph certified-partner-gold-card-heading">
-              {partner.name}
+              {partner.title}
             </div>
             <div class="paragraph partner-card-desciption non-gold-description">
               {partner.description}
