@@ -59,6 +59,12 @@ const Partners = ({ scrollPosition }) => {
       debugger;
       console.log("Inside `my-event`");
     });
+
+    $(".w-checkbox.tag.blog.new input").change(function () {
+      debugger;
+      const tags = $(this).siblings("span").text();
+      window.eventBus.emit("checked", null, tags, this.checked);
+    });
   }, []);
 
   const filterPartnerBasedOnTag = (partner) => {
