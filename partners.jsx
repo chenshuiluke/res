@@ -128,6 +128,10 @@ const Partners = ({ scrollPosition }) => {
             <div
               style={{
                 minHeight: "320px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                backgroundColor: "#f2f3f5",
               }}
             >
               <img
@@ -200,7 +204,15 @@ const Partners = ({ scrollPosition }) => {
           class="partner-card non-gold-partner"
         >
           <div class="div-block-61">
-            <div style={{ minHeight: "210px" }}>
+            <div
+              style={{
+                minHeight: "210px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                backgroundColor: "#f2f3f5",
+              }}
+            >
               <img
                 src={partner.image}
                 loading="lazy"
