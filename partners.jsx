@@ -129,6 +129,9 @@ const Partners = ({ scrollPosition }) => {
               src={partner.image}
               loading="lazy"
               sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1919px) 71vw, 982.625px"
+              style={{
+                minHeight: "320px",
+              }}
               alt=""
             />
             {partner.isTopPerformer && (
@@ -142,7 +145,10 @@ const Partners = ({ scrollPosition }) => {
                     alt=""
                     class="image-32"
                   />
-                  <div class="paragraph gold-certified-partner">
+                  <div
+                    class="paragraph gold-certified-partner"
+                    style={{ marginTop: "0px" }}
+                  >
                     {partner.topPerformerCategory}
                   </div>
                 </div>
@@ -196,6 +202,7 @@ const Partners = ({ scrollPosition }) => {
               loading="lazy"
               sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1279px) 24vw, (max-width: 1919px) 21vw, 293.375px"
               alt=""
+              style={{ minHeight: "210px" }}
             />
             <div class="div-block-60 non-gold">
               <img
@@ -206,7 +213,10 @@ const Partners = ({ scrollPosition }) => {
                 alt=""
                 class="image-32"
               />
-              <div class="paragraph gold-certified-partner non-gold">
+              <div
+                class="paragraph gold-certified-partner non-gold"
+                style={{ marginTop: "0px" }}
+              >
                 {partner.topPerformerCategory}
               </div>
             </div>
