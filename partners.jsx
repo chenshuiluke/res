@@ -165,19 +165,6 @@ const Partners = ({ scrollPosition }) => {
               >
                 Learn More
               </a>
-              <a
-                href={partner.partnerWebsite}
-                class="link-block-3 w-inline-block"
-              >
-                <img
-                  src="https://assets-global.website-files.com/6266d8ef8c92b1230d1e0cbb/64c7e9fdf26a93ab1e9618d7_up-right-from-square-solid.svg"
-                  loading="lazy"
-                  width="16"
-                  height="16"
-                  alt=""
-                  class="image-31"
-                />
-              </a>
             </div>
           </div>
         </div>
@@ -239,19 +226,6 @@ const Partners = ({ scrollPosition }) => {
                 style={{ textDecoration: "none" }}
               >
                 Learn More
-              </a>
-              <a
-                href={partner.partnerWebsite}
-                class="link-block-3 non-gold-partner w-inline-block"
-              >
-                <img
-                  src="https://assets-global.website-files.com/6266d8ef8c92b1230d1e0cbb/64c7e9fdf26a93ab1e9618d7_up-right-from-square-solid.svg"
-                  loading="lazy"
-                  width="16"
-                  height="16"
-                  alt=""
-                  class="image-31"
-                />
               </a>
             </div>
           </div>
