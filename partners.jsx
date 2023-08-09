@@ -150,9 +150,7 @@ const Partners = ({ scrollPosition }) => {
             )}
           </div>
           <div class="partner-card-bottom">
-            <div class="paragraph certified-partner-card-sub">
-              Consulting Partner
-            </div>
+            <div class="paragraph certified-partner-card-sub"></div>
             <div class="paragraph certified-partner-gold-card-heading">
               {partner.title}
             </div>
@@ -160,7 +158,11 @@ const Partners = ({ scrollPosition }) => {
               {partner.description.slice(0, 200)}
             </div>
             <div class="card-btn-wrapper certified-partner">
-              <a href={partner.link} class="card-btn line-btn blog-btn partner">
+              <a
+                href={partner.link}
+                class="card-btn line-btn blog-btn partner"
+                style={{ textDecoration: "none" }}
+              >
                 Learn More
               </a>
               <a
@@ -175,7 +177,6 @@ const Partners = ({ scrollPosition }) => {
                   alt=""
                   class="image-31"
                 />
-                <div class="paragraph">Visit Partner's Website</div>
               </a>
             </div>
           </div>
@@ -224,9 +225,7 @@ const Partners = ({ scrollPosition }) => {
             </div>
           </div>
           <div class="partner-card-bottom non-gold-partner">
-            <div class="paragraph certified-partner-card-sub">
-              Consulting Partner
-            </div>
+            <div class="paragraph certified-partner-card-sub"></div>
             <div class="paragraph certified-partner-gold-card-heading">
               {partner.title}
             </div>
@@ -234,7 +233,11 @@ const Partners = ({ scrollPosition }) => {
               {partner.description}
             </div>
             <div class="card-btn-wrapper certified-partner non-gold-partner">
-              <a href={partner.link} class="card-btn line-btn blog-btn partner">
+              <a
+                href={partner.link}
+                class="card-btn line-btn blog-btn partner"
+                style={{ textDecoration: "none" }}
+              >
                 Learn More
               </a>
               <a
@@ -249,7 +252,6 @@ const Partners = ({ scrollPosition }) => {
                   alt=""
                   class="image-31"
                 />
-                <div class="paragraph">Visit Partner's Website</div>
               </a>
             </div>
           </div>
