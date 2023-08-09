@@ -125,15 +125,18 @@ const Partners = ({ scrollPosition }) => {
           class="partner-card"
         >
           <div class="div-block-61">
-            <img
-              src={partner.image}
-              loading="lazy"
-              sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1919px) 71vw, 982.625px"
+            <div
               style={{
                 minHeight: "320px",
               }}
-              alt=""
-            />
+            >
+              <img
+                src={partner.image}
+                loading="lazy"
+                sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1919px) 71vw, 982.625px"
+                alt=""
+              />
+            </div>
             {partner.isTopPerformer && (
               <>
                 <div class="div-block-60">
@@ -197,13 +200,14 @@ const Partners = ({ scrollPosition }) => {
           class="partner-card non-gold-partner"
         >
           <div class="div-block-61">
-            <img
-              src={partner.image}
-              loading="lazy"
-              sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1279px) 24vw, (max-width: 1919px) 21vw, 293.375px"
-              alt=""
-              style={{ minHeight: "210px" }}
-            />
+            <div style={{ minHeight: "210px" }}>
+              <img
+                src={partner.image}
+                loading="lazy"
+                sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1279px) 24vw, (max-width: 1919px) 21vw, 293.375px"
+                alt=""
+              />
+            </div>
             <div class="div-block-60 non-gold">
               <img
                 src="https://assets-global.website-files.com/6266d8ef8c92b1230d1e0cbb/64c7ec962dec3c5d9ffb1ace_medal-solid.svg"
