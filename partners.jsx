@@ -167,7 +167,10 @@ const Partners = ({ scrollPosition }) => {
             <div class="paragraph certified-partner-gold-card-heading">
               {partner.title}
             </div>
-            <div class="paragraph partner-card-desciption">
+            <div
+              class="paragraph partner-card-desciption"
+              style={{ minHeight: "120px" }}
+            >
               {partner.description.slice(0, 200)}
             </div>
             <div class="card-btn-wrapper certified-partner">
@@ -242,7 +245,10 @@ const Partners = ({ scrollPosition }) => {
             <div class="paragraph certified-partner-gold-card-heading">
               {partner.title}
             </div>
-            <div class="paragraph partner-card-desciption non-gold-description">
+            <div
+              class="paragraph partner-card-desciption non-gold-description"
+              style={{ minHeight: "120px" }}
+            >
               {partner.description}
             </div>
             <div class="card-btn-wrapper certified-partner non-gold-partner">
