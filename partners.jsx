@@ -11,7 +11,7 @@ let $;
 window.selectedTags = [];
 window.selectedContent = [];
 
-const Partners = ({ scrollPosition }) => {
+const Partners = () => {
   const [diamondPartners, setDiamondPartners] = useState([]);
   const [goldPartners, setGoldPartners] = useState([]);
   const [serviceTypeList, setServiceTypeList] = useState([]);
