@@ -205,6 +205,7 @@ const Partners = ({ scrollPosition }) => {
         <div
           id="w-node-_6b17fc24-029e-b47a-7b02-91a17216e4af-d96ba4d7"
           class="partner-card non-gold-partner"
+          style={{ position: "relative", paddingBottom: "30px" }}
         >
           <div class="div-block-61">
             <div
@@ -240,10 +241,7 @@ const Partners = ({ scrollPosition }) => {
               </div>
             </div>
           </div>
-          <div
-            class="partner-card-bottom non-gold-partner"
-            style={{ position: "relative", paddingBottom: "60px" }}
-          >
+          <div class="partner-card-bottom non-gold-partner">
             <div class="paragraph certified-partner-card-sub"></div>
             <div class="paragraph certified-partner-gold-card-heading">
               {partner.title}
@@ -258,7 +256,7 @@ const Partners = ({ scrollPosition }) => {
               class="card-btn-wrapper certified-partner non-gold-partner"
               style={{
                 position: "absolute",
-                bottom: "0px",
+                bottom: "20px",
               }}
             >
               <a
