@@ -248,7 +248,7 @@ const Partners = ({ scrollPosition }) => {
             </div>
             <div
               class="paragraph partner-card-desciption non-gold-description"
-              style={{ minHeight: "120px" }}
+              style={{ minHeight: "160px" }}
             >
               {partner.description}
             </div>
