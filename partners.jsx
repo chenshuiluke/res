@@ -120,70 +120,72 @@ const Partners = () => {
   const renderDiamondPartner = (partner) => {
     return (
       <>
-        <div
-          id="w-node-_8fb5ad63-d7ca-55d1-36d2-6cd3ba2c1a1c-d96ba4d7"
-          class="partner-card"
-        >
-          <div class="div-block-61">
-            <div
-              style={{
-                minHeight: "320px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                backgroundColor: "#f2f3f5",
-              }}
-            >
-              <img
-                src={partner.image}
-                loading="lazy"
-                sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1919px) 71vw, 982.625px"
-                alt=""
-              />
-            </div>
-            {partner.isTopPerformer && (
-              <>
-                <div class="div-block-60">
-                  <img
-                    src="https://assets-global.website-files.com/6266d8ef8c92b1230d1e0cbb/64c7ec962dec3c5d9ffb1ace_medal-solid.svg"
-                    loading="lazy"
-                    width="32"
-                    height="20"
-                    alt=""
-                    class="image-32"
-                  />
-                  <div
-                    class="paragraph gold-certified-partner"
-                    style={{ marginTop: "0px" }}
-                  >
-                    {partner.topPerformerCategory}
-                  </div>
-                </div>
-              </>
-            )}
-          </div>
-          <div class="partner-card-bottom">
-            <div class="paragraph certified-partner-card-sub"></div>
-            <div class="paragraph certified-partner-gold-card-heading">
-              {partner.title}
-            </div>
-            <div
-              class="paragraph partner-card-desciption"
-              style={{ minHeight: "120px" }}
-            >
-              {partner.description.slice(0, 200)}
-            </div>
-            <div class="card-btn-wrapper certified-partner">
-              <a
-                href={partner.link}
-                class="card-btn line-btn blog-btn partner"
-                style={{ textDecoration: "none" }}
+        <a href={partner.link}>
+          <div
+            id="w-node-_8fb5ad63-d7ca-55d1-36d2-6cd3ba2c1a1c-d96ba4d7"
+            class="partner-card"
+          >
+            <div class="div-block-61">
+              <div
+                style={{
+                  minHeight: "320px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  backgroundColor: "#f2f3f5",
+                }}
               >
-                Learn More
-              </a>
+                <img
+                  src={partner.image}
+                  loading="lazy"
+                  sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1919px) 71vw, 982.625px"
+                  alt=""
+                />
+              </div>
+              {partner.isTopPerformer && (
+                <>
+                  <div class="div-block-60">
+                    <img
+                      src="https://assets-global.website-files.com/6266d8ef8c92b1230d1e0cbb/64c7ec962dec3c5d9ffb1ace_medal-solid.svg"
+                      loading="lazy"
+                      width="32"
+                      height="20"
+                      alt=""
+                      class="image-32"
+                    />
+                    <div
+                      class="paragraph gold-certified-partner"
+                      style={{ marginTop: "0px" }}
+                    >
+                      {partner.topPerformerCategory}
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+            <div class="partner-card-bottom">
+              <div class="paragraph certified-partner-card-sub"></div>
+              <div class="paragraph certified-partner-gold-card-heading">
+                {partner.title}
+              </div>
+              <div
+                class="paragraph partner-card-desciption"
+                style={{ minHeight: "120px" }}
+              >
+                {partner.description.slice(0, 200)}
+              </div>
+              <div class="card-btn-wrapper certified-partner">
+                <a
+                  href={partner.link}
+                  class="card-btn line-btn blog-btn partner"
+                  style={{ textDecoration: "none" }}
+                >
+                  Learn More
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       </>
     );
   };
@@ -202,73 +204,75 @@ const Partners = () => {
   const renderGoldPartner = (partner) => {
     return (
       <>
-        <div
-          id="w-node-_6b17fc24-029e-b47a-7b02-91a17216e4af-d96ba4d7"
-          class="partner-card non-gold-partner"
-          style={{ position: "relative", paddingBottom: "30px" }}
-        >
-          <div class="div-block-61">
-            <div
-              style={{
-                minHeight: "210px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                backgroundColor: "#f2f3f5",
-              }}
-            >
-              <img
-                src={partner.image}
-                loading="lazy"
-                sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1279px) 24vw, (max-width: 1919px) 21vw, 293.375px"
-                alt=""
-              />
-            </div>
-            <div class="div-block-60 non-gold">
-              <img
-                src="https://assets-global.website-files.com/6266d8ef8c92b1230d1e0cbb/64c7ec962dec3c5d9ffb1ace_medal-solid.svg"
-                loading="lazy"
-                width="32"
-                height="20"
-                alt=""
-                class="image-32"
-              />
+        <a href={partner.link}>
+          <div
+            id="w-node-_6b17fc24-029e-b47a-7b02-91a17216e4af-d96ba4d7"
+            class="partner-card non-gold-partner"
+            style={{ position: "relative", paddingBottom: "30px" }}
+          >
+            <div class="div-block-61">
               <div
-                class="paragraph gold-certified-partner non-gold"
-                style={{ marginTop: "0px" }}
+                style={{
+                  minHeight: "210px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  backgroundColor: "#f2f3f5",
+                }}
               >
-                {partner.topPerformerCategory}
+                <img
+                  src={partner.image}
+                  loading="lazy"
+                  sizes="(max-width: 479px) 91vw, (max-width: 767px) 89vw, (max-width: 991px) 92vw, (max-width: 1279px) 24vw, (max-width: 1919px) 21vw, 293.375px"
+                  alt=""
+                />
+              </div>
+              <div class="div-block-60 non-gold">
+                <img
+                  src="https://assets-global.website-files.com/6266d8ef8c92b1230d1e0cbb/64c7ec962dec3c5d9ffb1ace_medal-solid.svg"
+                  loading="lazy"
+                  width="32"
+                  height="20"
+                  alt=""
+                  class="image-32"
+                />
+                <div
+                  class="paragraph gold-certified-partner non-gold"
+                  style={{ marginTop: "0px" }}
+                >
+                  {partner.topPerformerCategory}
+                </div>
+              </div>
+            </div>
+            <div class="partner-card-bottom non-gold-partner">
+              <div class="paragraph certified-partner-card-sub"></div>
+              <div class="paragraph certified-partner-gold-card-heading">
+                {partner.title}
+              </div>
+              <div
+                class="paragraph partner-card-desciption non-gold-description"
+                style={{ minHeight: "160px" }}
+              >
+                {partner.description}
+              </div>
+              <div
+                class="card-btn-wrapper certified-partner non-gold-partner"
+                style={{
+                  position: "absolute",
+                  bottom: "20px",
+                }}
+              >
+                <a
+                  href={partner.link}
+                  class="card-btn line-btn blog-btn partner"
+                  style={{ textDecoration: "none" }}
+                >
+                  Learn More
+                </a>
               </div>
             </div>
           </div>
-          <div class="partner-card-bottom non-gold-partner">
-            <div class="paragraph certified-partner-card-sub"></div>
-            <div class="paragraph certified-partner-gold-card-heading">
-              {partner.title}
-            </div>
-            <div
-              class="paragraph partner-card-desciption non-gold-description"
-              style={{ minHeight: "160px" }}
-            >
-              {partner.description}
-            </div>
-            <div
-              class="card-btn-wrapper certified-partner non-gold-partner"
-              style={{
-                position: "absolute",
-                bottom: "20px",
-              }}
-            >
-              <a
-                href={partner.link}
-                class="card-btn line-btn blog-btn partner"
-                style={{ textDecoration: "none" }}
-              >
-                Learn More
-              </a>
-            </div>
-          </div>
-        </div>
+        </a>
       </>
     );
   };
