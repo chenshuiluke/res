@@ -120,7 +120,7 @@ const Partners = () => {
   const renderDiamondPartner = (partner) => {
     return (
       <>
-        <a href={partner.link}>
+        <a href={partner.link} style={{ textDecoration: "none" }}>
           <div
             id="w-node-_8fb5ad63-d7ca-55d1-36d2-6cd3ba2c1a1c-d96ba4d7"
             class="partner-card"
@@ -204,7 +204,7 @@ const Partners = () => {
   const renderGoldPartner = (partner) => {
     return (
       <>
-        <a href={partner.link}>
+        <a href={partner.link} style={{ textDecoration: "none" }}>
           <div
             id="w-node-_6b17fc24-029e-b47a-7b02-91a17216e4af-d96ba4d7"
             class="partner-card non-gold-partner"
