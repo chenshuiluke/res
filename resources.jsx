@@ -644,8 +644,7 @@ const Resources = ({ scrollPosition }) => {
               }
               if (
                 card.contentType == "webinar" &&
-                (contentTypes.length == 0 ||
-                  contentTypes.includes("ce webinar"))
+                (contentTypes.length == 0 || contentTypes.includes("webinar"))
               ) {
                 content = renderWebinar(card);
               }
