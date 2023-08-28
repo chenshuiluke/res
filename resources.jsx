@@ -273,7 +273,7 @@ const Resources = ({ scrollPosition }) => {
             debugger;
             let contentArr = [...window.selectedContent];
             const contentTags = [
-              "ce webinar",
+              "webinar",
               "blog",
               "podcast",
               "ebook",
