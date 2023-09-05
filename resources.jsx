@@ -506,10 +506,6 @@ const Resources = ({ scrollPosition }) => {
               {ebook.title}
             </div>
             <div class="info-wrap-new">
-              <p fs-cmsfilter-field="author" class="paragraph blog blog-author">
-                {ebook.author}
-              </p>
-              <div class="blog-line"></div>
               <p class="paragraph blog date">{ebook.date}</p>
             </div>
             <div fs-cmsfilter-field="tags" class="tags">
