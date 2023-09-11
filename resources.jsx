@@ -495,7 +495,7 @@ const Resources = ({ scrollPosition }) => {
           </div>
           <div class="pill-label">
             <div fs-cmsfilter-field="type" class="text-block-6">
-              Ebook
+              eBook
             </div>
           </div>
           <div class="paragraph-podcast-meta">
@@ -551,7 +551,7 @@ const Resources = ({ scrollPosition }) => {
                 {testimonial.author}
               </p>
               <div class="blog-line"></div>
-              <p class="paragraph blog date">{testimonial.date}</p>
+              <p class="paragraph blog date"></p>
             </div>
             <div fs-cmsfilter-field="tags" class="tags">
               {testimonial.tags}
