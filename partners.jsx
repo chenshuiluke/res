@@ -246,7 +246,10 @@ const Partners = () => {
             </div>
             <div class="partner-card-bottom non-gold-partner">
               <div class="paragraph certified-partner-card-sub"></div>
-              <div class="paragraph certified-partner-gold-card-heading">
+              <div
+                class="paragraph certified-partner-gold-card-heading"
+                style={{ minHeight: "56px" }}
+              >
                 {partner.title}
               </div>
               <div
