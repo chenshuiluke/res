@@ -227,22 +227,26 @@ const Partners = () => {
                   alt=""
                 />
               </div>
-              <div class="div-block-60 non-gold">
-                <img
-                  src="https://assets-global.website-files.com/6266d8ef8c92b1230d1e0cbb/64c7ec962dec3c5d9ffb1ace_medal-solid.svg"
-                  loading="lazy"
-                  width="32"
-                  height="20"
-                  alt=""
-                  class="image-32"
-                />
-                <div
-                  class="paragraph gold-certified-partner non-gold"
-                  style={{ marginTop: "0px" }}
-                >
-                  {partner.topPerformerCategory}
-                </div>
-              </div>
+              {partner.isTopPerformer && (
+                <>
+                  <div class="div-block-60 non-gold">
+                    <img
+                      src="https://assets-global.website-files.com/6266d8ef8c92b1230d1e0cbb/64c7ec962dec3c5d9ffb1ace_medal-solid.svg"
+                      loading="lazy"
+                      width="32"
+                      height="20"
+                      alt=""
+                      class="image-32"
+                    />
+                    <div
+                      class="paragraph gold-certified-partner non-gold"
+                      style={{ marginTop: "0px" }}
+                    >
+                      {partner.topPerformerCategory}
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
             <div class="partner-card-bottom non-gold-partner">
               <div class="paragraph certified-partner-card-sub"></div>
