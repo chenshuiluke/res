@@ -18,7 +18,8 @@
   },
   "source": [
     "resources.jsx",
-    "partners.jsx"
+    "partners.jsx",
+    "product-webinars.jsx"
   ],
   "browserslist": [
     "> 0.5%",
