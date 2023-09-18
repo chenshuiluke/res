@@ -442,7 +442,7 @@ const ProductWebinars = ({ scrollPosition }) => {
         colorClass = "green";
         break;
       case "analytics":
-        colorClass = "";
+        colorClass = "brand-blue";
         break;
       case "localmed":
         colorClass = "red";
