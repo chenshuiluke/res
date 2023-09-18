@@ -629,7 +629,7 @@ const ProductWebinars = ({ scrollPosition }) => {
 
               if (
                 contentTypes.length == 0 ||
-                contentTypes.includes(webinar.module)
+                contentTypes.includes(card.module)
               ) {
                 content = renderWebinar(card);
               }
