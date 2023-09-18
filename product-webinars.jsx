@@ -457,11 +457,18 @@ const ProductWebinars = ({ scrollPosition }) => {
 
     const words = webinar.module.split(" ");
 
-    const moduleName = words
-      .map((word) => {
-        return word[0].toUpperCase() + word.substring(1);
-      })
-      .join(" ");
+    let moduleName = "";
+
+    if (webinar.module == "localmed") {
+      moduleName = "LocalMed";
+    } else {
+      moduleName = words
+        .map((word) => {
+          return word[0].toUpperCase() + word.substring(1);
+        })
+        .join(" ");
+    }
+
     return (
       <div key={webinar.title} role="listitem" class="blog-item w-dyn-item">
         <a href={webinar.link} class="blog-link-new w-inline-block">
