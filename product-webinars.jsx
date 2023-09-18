@@ -626,18 +626,7 @@ const ProductWebinars = ({ scrollPosition }) => {
             })
             .map((card) => {
               let content = null;
-              // if (
-              //   card.contentType == "blog" &&
-              //   (contentTypes.length == 0 || contentTypes.includes("blog"))
-              // ) {
-              //   content = renderBlog(card);
-              // }
-              // if (
-              //   card.contentType == "podcast" &&
-              //   (contentTypes.length == 0 || contentTypes.includes("podcast"))
-              // ) {
-              //   content = renderPodcast(card);
-              // }
+
               if (
                 contentTypes.length == 0 ||
                 contentTypes.includes(webinar.module)
