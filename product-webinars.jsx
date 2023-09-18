@@ -435,6 +435,25 @@ const ProductWebinars = ({ scrollPosition }) => {
   };
 
   const renderWebinar = (webinar) => {
+    const className = "pill-label";
+    const colorClass = "";
+    switch (webinar.module) {
+      case "engagement":
+        colorClass = "green";
+        break;
+      case "analytics":
+        colorClass = "";
+        break;
+      case "localmed":
+        colorClass = "red";
+        break;
+      case "monthly product webinar":
+        colorClass = "navy";
+        break;
+      case "insurance":
+        colorClass = "purple";
+        break;
+    }
     return (
       <div key={webinar.title} role="listitem" class="blog-item w-dyn-item">
         <a href={webinar.link} class="blog-link-new w-inline-block">
@@ -448,7 +467,7 @@ const ProductWebinars = ({ scrollPosition }) => {
               class="resource-image"
             />
           </div>
-          <div class="pill-label">
+          <div class={`${className} ${colorClass}`}>
             <div fs-cmsfilter-field="type" class="text-block-6">
               Webinar
             </div>
