@@ -454,6 +454,14 @@ const ProductWebinars = ({ scrollPosition }) => {
         colorClass = "purple";
         break;
     }
+
+    const words = webinar.module.split(" ");
+
+    const moduleName = words
+      .map((word) => {
+        return word[0].toUpperCase() + word.substring(1);
+      })
+      .join(" ");
     return (
       <div key={webinar.title} role="listitem" class="blog-item w-dyn-item">
         <a href={webinar.link} class="blog-link-new w-inline-block">
@@ -469,7 +477,7 @@ const ProductWebinars = ({ scrollPosition }) => {
           </div>
           <div class={`${className} ${colorClass}`}>
             <div fs-cmsfilter-field="type" class="text-block-6">
-              {webinar.module}
+              {moduleName}
             </div>
           </div>
           <div class="paragraph-podcast-meta">
