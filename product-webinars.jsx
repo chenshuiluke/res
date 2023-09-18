@@ -469,7 +469,7 @@ const ProductWebinars = ({ scrollPosition }) => {
           </div>
           <div class={`${className} ${colorClass}`}>
             <div fs-cmsfilter-field="type" class="text-block-6">
-              Webinar
+              {webinar.module}
             </div>
           </div>
           <div class="paragraph-podcast-meta">
