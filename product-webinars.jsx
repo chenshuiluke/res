@@ -494,13 +494,6 @@ const ProductWebinars = ({ scrollPosition }) => {
             <div fs-cmsfilter-field="title" class="blog-title-new">
               {webinar.title}
             </div>
-            <div class="info-wrap-new">
-              <p fs-cmsfilter-field="author" class="paragraph blog blog-author">
-                {webinar.author}
-              </p>
-              <div class="blog-line">-</div>
-              <p class="paragraph blog date">{webinar.date}</p>
-            </div>
             <div fs-cmsfilter-field="tags" class="tags">
               {webinar.tags}
             </div>
