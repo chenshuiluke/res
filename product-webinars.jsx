@@ -379,7 +379,7 @@ const ProductWebinars = ({ scrollPosition }) => {
             </div>
           </div>
           <div class="card-btn-wrapper">
-            <div class="card-btn line-btn blog-btn">Read More</div>
+            <div class="card-btn line-btn blog-btn">Watch Now</div>
           </div>
         </a>
       </div>
