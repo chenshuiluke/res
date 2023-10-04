@@ -277,7 +277,7 @@ const ProductWebinars = ({ scrollPosition }) => {
               "engagement",
               "insurance",
               "localmed",
-              "monthly product webinars",
+              "monthly product webinar",
             ];
             if (!contentTags.includes(tag.toLowerCase())) {
               debugger;
