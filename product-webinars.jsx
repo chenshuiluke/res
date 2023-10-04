@@ -279,6 +279,7 @@ const ProductWebinars = ({ scrollPosition }) => {
               "localmed",
               "monthly product webinar",
             ];
+
             if (!contentTags.includes(tag.toLowerCase())) {
               debugger;
               if (checked) {
