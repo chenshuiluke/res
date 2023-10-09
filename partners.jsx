@@ -127,6 +127,7 @@ const Partners = () => {
           >
             <div class="div-block-61">
               <div
+                className="thumbnail-container"
                 style={{
                   minHeight: "320px",
                   display: "flex",
@@ -212,6 +213,7 @@ const Partners = () => {
           >
             <div class="div-block-61">
               <div
+                className="thumbnail-container"
                 style={{
                   minHeight: "210px",
                   display: "flex",
