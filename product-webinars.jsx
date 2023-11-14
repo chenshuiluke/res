@@ -654,12 +654,17 @@ const ProductWebinars = ({ scrollPosition }) => {
             })
             .map((card) => {
               let content = null;
-
-              if (
-                contentTypes.length == 0 ||
-                contentTypes.includes(card.module)
-              ) {
+              if (contentTypes.length == 0) {
                 content = renderWebinar(card);
+              } else {
+                for (const module of contentTypes) {
+                  if (
+                    card?.module?.toLowerCase()?.includes(module?.toLowerCase())
+                  ) {
+                    content = renderWebinar(card);
+                    break;
+                  }
+                }
               }
               // if (
               //   card.contentType == "ebook" &&
