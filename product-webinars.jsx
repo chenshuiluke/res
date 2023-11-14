@@ -460,7 +460,7 @@ const ProductWebinars = ({ scrollPosition }) => {
         break;
     }
 
-    const words = webinar.module.split(" ");
+    const words = firstModule.split(" ");
 
     let moduleName = "";
 
