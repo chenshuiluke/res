@@ -438,7 +438,11 @@ const ProductWebinars = ({ scrollPosition }) => {
   const renderWebinar = (webinar) => {
     const className = "pill-label";
     const colorClass = "";
-    switch (webinar.module) {
+    let firstModule = webinar.module?.toLowerCase()?.split(" ")?.[0];
+    if (firstModule == "monthly") {
+      firstModule = "monthly product webinar";
+    }
+    switch (firstModule) {
       case "engagement":
         colorClass = "green";
         break;
