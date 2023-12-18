@@ -56,10 +56,10 @@ const ProductWebinars = ({ scrollPosition }) => {
     // return data;
   };
   const getDesiredOutcomesFromApi = async () => {
-    const data = await $.getJSON(
+    const response = await fetch(
       "https://di-marketing-server-iuzlr.ondigitalocean.app/api/desired-outcomes"
     );
-    setApiDesiredOutcomes(data);
+    setApiDesiredOutcomes(await response.json());
     return data;
   };
   const getRecordTags = (name, apiTags) => {
