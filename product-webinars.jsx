@@ -267,26 +267,49 @@ const ProductWebinars = ({ scrollPosition }) => {
   const renderWebinar = (webinar) => {
     const className = "pill-label";
     const colorClass = "";
+    const webinarModules = [];
     let firstModule = webinar.module?.toLowerCase()?.split(" ")?.[0];
     if (firstModule == "monthly") {
       firstModule = "monthly product webinar";
     }
-    switch (firstModule) {
-      case "engagement":
-        colorClass = "green";
-        break;
-      case "analytics":
-        colorClass = "brand-blue";
-        break;
-      case "localmed":
-        colorClass = "red";
-        break;
-      case "monthly product webinar":
-        colorClass = "navy";
-        break;
-      case "insurance":
-        colorClass = "purple";
-        break;
+    const possibleModuleValues = [
+      "engagement",
+      "analytics",
+      "localmed",
+      "monthly product webinar",
+      "insurance",
+    ];
+    for (const possibleValue of possibleModuleValues) {
+      if (webinar.module?.toLowerCase()?.includes(possibleValue)) {
+        let colorClass = "";
+        switch (possibleValue) {
+          case "engagement":
+            colorClass = "green";
+            break;
+          case "analytics":
+            colorClass = "brand-blue";
+            break;
+          case "localmed":
+            colorClass = "red";
+            break;
+          case "monthly product webinar":
+            colorClass = "navy";
+            break;
+          case "insurance":
+            colorClass = "purple";
+            break;
+        }
+        const moduleName = possibleValue
+          .split(" ")
+          .map((word) => {
+            return word[0].toUpperCase() + word.substring(1);
+          })
+          .join(" ");
+        webinarModules.push({
+          moduleName,
+          colorClass,
+        });
+      }
     }
 
     const words = firstModule.split(" ");
@@ -316,11 +339,16 @@ const ProductWebinars = ({ scrollPosition }) => {
               class="resource-image"
             />
           </div>
-          <div class={`${className} ${colorClass}`}>
-            <div fs-cmsfilter-field="type" class="text-block-6">
-              {moduleName}
-            </div>
-          </div>
+          {webinarModules.map(({ colorClass, moduleName }) => {
+            return (
+              <div class={`${className} ${colorClass}`}>
+                <div fs-cmsfilter-field="type" class="text-block-6">
+                  {moduleName}
+                </div>
+              </div>
+            );
+          })}
+
           <div class="paragraph-podcast-meta">
             <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
               {webinar.description}
@@ -531,7 +559,8 @@ const ProductWebinars = ({ scrollPosition }) => {
             })}
           {tags.length == 0 &&
             contentTypes.length == 0 &&
-            searchFilter.length == 0 && (
+            searchFilter.length == 0 &&
+            desiredOutcomes.length == 0 && (
               <>
                 <div
                   class="card-btn-wrapper resources-load-more-btn"
