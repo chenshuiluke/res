@@ -96,8 +96,20 @@ const ProductWebinars = ({ scrollPosition }) => {
               "localmed",
               "monthly product webinar",
             ];
-
-            if (!contentTags.includes(tag.toLowerCase())) {
+            if (apiDesiredOutcomes.includes(tag.toLowerCase())) {
+              if (checked) {
+                if (!desiredOutcomeArr.includes(tag.toLowerCase())) {
+                  desiredOutcomeArr.push(tag.toLowerCase());
+                }
+              } else {
+                if (desiredOutcomeArr.includes(tag.toLowerCase())) {
+                  desiredOutcomeArr = desiredOutcomeArr.filter((element) => {
+                    return element != tag.toLowerCase();
+                  });
+                }
+              }
+              setDesiredOutcomes([...desiredOutcomeArr]);
+            } else if (!contentTags.includes(tag.toLowerCase())) {
               debugger;
               if (checked) {
                 if (!tagArr.includes(tag.toLowerCase())) {
@@ -111,19 +123,6 @@ const ProductWebinars = ({ scrollPosition }) => {
                 }
               }
               setTags([...tagArr]);
-            } else if (apiDesiredOutcomes.includes(tag.toLowerCase())) {
-              if (checked) {
-                if (!desiredOutcomeArr.includes(tag.toLowerCase())) {
-                  desiredOutcomeArr.push(tag.toLowerCase());
-                }
-              } else {
-                if (desiredOutcomeArr.includes(tag.toLowerCase())) {
-                  desiredOutcomeArr = desiredOutcomeArr.filter((element) => {
-                    return element != tag.toLowerCase();
-                  });
-                }
-              }
-              setDesiredOutcomes([...desiredOutcomeArr]);
             } else {
               debugger;
               if (checked) {
