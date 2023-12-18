@@ -59,7 +59,8 @@ const ProductWebinars = ({ scrollPosition }) => {
     const response = await fetch(
       "https://di-marketing-server-iuzlr.ondigitalocean.app/api/desired-outcomes"
     );
-    setApiDesiredOutcomes(await response.json());
+    const data = await response.json();
+    setApiDesiredOutcomes(data);
     return data;
   };
   const getRecordTags = (name, apiTags) => {
