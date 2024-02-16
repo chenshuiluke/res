@@ -278,6 +278,7 @@ const Resources = ({ scrollPosition }) => {
               "podcast",
               "ebook",
               "testimonial",
+              "tool",
             ];
             if (!contentTags.includes(tag.toLowerCase())) {
               debugger;
@@ -520,6 +521,47 @@ const Resources = ({ scrollPosition }) => {
     );
   };
 
+  const renderTool = (tool) => {
+    return (
+      <div key={tool.title} role="listitem" class="blog-item w-dyn-item">
+        <a href={tool.link} class="blog-link-new w-inline-block">
+          <div class="blog-img-wrap">
+            <LazyLoadImage
+              scrollPosition={scrollPosition}
+              effect={"opacity"}
+              src={tool.image}
+              alt=""
+              sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
+              class="resource-image"
+            />
+          </div>
+          <div class="pill-label">
+            <div fs-cmsfilter-field="type" class="text-block-6">
+              Tool
+            </div>
+          </div>
+          <div class="paragraph-podcast-meta">
+            <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
+              {tool.description}
+            </p>
+            <div fs-cmsfilter-field="title" class="blog-title-new">
+              {tool.title}
+            </div>
+            <div class="info-wrap-new">
+              <p class="paragraph blog date">{tool.date}</p>
+            </div>
+            <div fs-cmsfilter-field="tags" class="tags">
+              {tool.tags}
+            </div>
+          </div>
+          <div class="card-btn-wrapper">
+            <div class="card-btn line-btn blog-btn">Read More</div>
+          </div>
+        </a>
+      </div>
+    );
+  };
+
   const renderTestimonial = (testimonial) => {
     return (
       <div key={testimonial.title} role="listitem" class="blog-item w-dyn-item">
@@ -649,6 +691,12 @@ const Resources = ({ scrollPosition }) => {
                 (contentTypes.length == 0 || contentTypes.includes("ebook"))
               ) {
                 content = renderEbook(card);
+              }
+              if (
+                card.contentType == "tool" &&
+                (contentTypes.length == 0 || contentTypes.includes("tool"))
+              ) {
+                content = renderTool(card);
               }
               if (
                 card.contentType == "testimonial" &&
