@@ -397,7 +397,7 @@ const Resources = ({ scrollPosition }) => {
             </div>
             <div className="card-btn-wrapper ebook">
               <div className="card-btn-copy line-btn blog-btn">
-                {ctaText != null ? "Read More" : ctaText}
+                {ctaText == null ? "Read More" : ctaText}
               </div>
             </div>
           </a>
