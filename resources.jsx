@@ -341,270 +341,93 @@ const Resources = ({ scrollPosition }) => {
     ]);
   }, [blogs, podcasts, webinars, ebooks, testimonials]);
 
-  const renderBlog = (blog) => {
+  const renderCard = (resource, contentType, ctaText) => {
     return (
-      <div key={blog.title} role="listitem" class="blog-item w-dyn-item">
-        <a href={blog.link} class="blog-link-new w-inline-block">
-          <div class="blog-img-wrap">
-            <LazyLoadImage
-              scrollPosition={scrollPosition}
-              effect={"opacity"}
-              src={blog.image}
-              alt=""
-              sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-              class="resource-image"
-            />
-          </div>
-          <div class="pill-label">
-            <div fs-cmsfilter-field="type" class="text-block-6">
-              Blog
+      <>
+        <div
+          id="w-node-_36ce1ba5-1274-df5a-ae91-1ae588975e23-88975e23"
+          className="div-block-96"
+        >
+          <a
+            href={resource.link}
+            className="podcast-link-new-4 ebook w-inline-block"
+          >
+            <div className="blog-img-wrap">
+              <img
+                alt=""
+                loading="lazy"
+                src={resource.image}
+                sizes="350px"
+                className="image-53"
+              />
             </div>
-          </div>
-          <div class="paragraph-podcast-meta">
-            <p fs-cmsfilter-field="description" class="paragraph blog">
-              {blog.description}
-            </p>
-            <div fs-cmsfilter-field="title" class="blog-title-new">
-              {blog.title}
+            <div className="podcast-pill-label-copy-2">
+              <div className="text-block-25">{contentType}</div>
             </div>
-            <div class="info-wrap-new">
-              <p fs-cmsfilter-field="author" class="paragraph blog blog-author">
-                {blog.author}
-              </p>
-              <div class="blog-line">-</div>
-              <p class="paragraph blog date">{blog.date}</p>
+            <div className="blog-info-wrap-new-copy-copy">
+              <div className="module">
+                <p className="paragraph-31">{resource.description}</p>
+              </div>
+              <div className="info-wrap-new-3">
+                {resource.author != null && (
+                  <>
+                    <p className="paragraph-32 series">{resource.author}</p>
+                    <p
+                      className="paragraph-32 series-hyphen"
+                      style="display: block;"
+                    >
+                      -
+                    </p>
+                  </>
+                )}
+                {resource.episode && (
+                  <>
+                    <p
+                      className="paragraph-32 episode-hyphen"
+                      style="display: block;"
+                    >
+                      Ep. #{resource.episode} -
+                    </p>
+                  </>
+                )}
+
+                <p className="paragraph-32">{resource.date}</p>
+              </div>
+              <div className="blog-title-new-3">{resource.name}</div>
             </div>
-            <div fs-cmsfilter-field="tags" class="tags">
-              {blog.tags}
+            <div className="card-btn-wrapper ebook">
+              <div className="card-btn-copy line-btn blog-btn">
+                {ctaText != null ? "Read More" : ctaText}
+              </div>
             </div>
-          </div>
-          <div class="card-btn-wrapper">
-            <div class="card-btn line-btn blog-btn">Read More</div>
-          </div>
-        </a>
-      </div>
+          </a>
+        </div>
+      </>
     );
+  };
+
+  const renderBlog = (blog) => {
+    return renderCard(blog, "Blog");
   };
 
   const renderPodcast = (podcast) => {
-    return (
-      <div key={podcast.title} role="listitem" class="blog-item w-dyn-item">
-        <a href={podcast.link} class="blog-link-new w-inline-block">
-          <div class="blog-img-wrap">
-            <LazyLoadImage
-              scrollPosition={scrollPosition}
-              effect={"opacity"}
-              src={podcast.image}
-              alt=""
-              sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-              class="resource-image"
-            />
-          </div>
-          <div class="pill-label">
-            <div fs-cmsfilter-field="type" class="text-block-6">
-              Podcast
-            </div>
-          </div>
-          <div class="paragraph-podcast-meta">
-            <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
-              {podcast.description}
-            </p>
-            <div fs-cmsfilter-field="title" class="blog-title-new">
-              {podcast.title}
-            </div>
-            <div class="info-wrap-new">
-              <p fs-cmsfilter-field="author" class="paragraph blog blog-author">
-                {podcast.author}
-              </p>
-              <div class="blog-line">-</div>
-              <p fs-cmsfilter-field="author" class="paragraph blog blog-author">
-                Ep. #{podcast.episode}
-              </p>
-              <div class="blog-line">-</div>
-              <p class="paragraph blog date">{podcast.date}</p>
-            </div>
-            <div fs-cmsfilter-field="tags" class="tags">
-              {podcast.tags}
-            </div>
-          </div>
-          <div class="card-btn-wrapper">
-            <div class="card-btn line-btn blog-btn">Read More</div>
-          </div>
-        </a>
-      </div>
-    );
+    return renderCard(podcast, "Podcast", "Watch / Listen");
   };
 
   const renderWebinar = (webinar) => {
-    return (
-      <div key={webinar.title} role="listitem" class="blog-item w-dyn-item">
-        <a href={webinar.link} class="blog-link-new w-inline-block">
-          <div class="blog-img-wrap">
-            <LazyLoadImage
-              scrollPosition={scrollPosition}
-              effect={"opacity"}
-              src={webinar.image}
-              alt=""
-              sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-              class="resource-image"
-            />
-          </div>
-          <div class="pill-label">
-            <div fs-cmsfilter-field="type" class="text-block-6">
-              Webinar
-            </div>
-          </div>
-          <div class="paragraph-podcast-meta">
-            <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
-              {webinar.description}
-            </p>
-            <div fs-cmsfilter-field="title" class="blog-title-new">
-              {webinar.title}
-            </div>
-            <div class="info-wrap-new">
-              <p fs-cmsfilter-field="author" class="paragraph blog blog-author">
-                {webinar.author}
-              </p>
-              <div class="blog-line">-</div>
-              <p class="paragraph blog date">{webinar.date}</p>
-            </div>
-            <div fs-cmsfilter-field="tags" class="tags">
-              {webinar.tags}
-            </div>
-          </div>
-          <div class="card-btn-wrapper">
-            <div class="card-btn line-btn blog-btn">Read More</div>
-          </div>
-        </a>
-      </div>
-    );
+    return renderCard(webinar, "Webinar", "Watch / Listen");
   };
 
   const renderEbook = (ebook) => {
-    return (
-      <div key={ebook.title} role="listitem" class="blog-item w-dyn-item">
-        <a href={ebook.link} class="blog-link-new w-inline-block">
-          <div class="blog-img-wrap">
-            <LazyLoadImage
-              scrollPosition={scrollPosition}
-              effect={"opacity"}
-              src={ebook.image}
-              alt=""
-              sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-              class="resource-image"
-            />
-          </div>
-          <div class="pill-label">
-            <div fs-cmsfilter-field="type" class="text-block-6">
-              eBook
-            </div>
-          </div>
-          <div class="paragraph-podcast-meta">
-            <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
-              {ebook.description}
-            </p>
-            <div fs-cmsfilter-field="title" class="blog-title-new">
-              {ebook.title}
-            </div>
-            <div class="info-wrap-new">
-              <p class="paragraph blog date">{ebook.date}</p>
-            </div>
-            <div fs-cmsfilter-field="tags" class="tags">
-              {ebook.tags}
-            </div>
-          </div>
-          <div class="card-btn-wrapper">
-            <div class="card-btn line-btn blog-btn">Read More</div>
-          </div>
-        </a>
-      </div>
-    );
+    return renderCard(ebook, "eBook", "Read More");
   };
 
   const renderTool = (tool) => {
-    return (
-      <div key={tool.title} role="listitem" class="blog-item w-dyn-item">
-        <a href={tool.link} class="blog-link-new w-inline-block">
-          <div class="blog-img-wrap">
-            <LazyLoadImage
-              scrollPosition={scrollPosition}
-              effect={"opacity"}
-              src={tool.image}
-              alt=""
-              sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-              class="resource-image"
-            />
-          </div>
-          <div class="pill-label">
-            <div fs-cmsfilter-field="type" class="text-block-6">
-              Tool
-            </div>
-          </div>
-          <div class="paragraph-podcast-meta">
-            <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
-              {tool.description}
-            </p>
-            <div fs-cmsfilter-field="title" class="blog-title-new">
-              {tool.title}
-            </div>
-            <div class="info-wrap-new">
-              <p class="paragraph blog date">{tool.date}</p>
-            </div>
-            <div fs-cmsfilter-field="tags" class="tags">
-              {tool.tags}
-            </div>
-          </div>
-          <div class="card-btn-wrapper">
-            <div class="card-btn line-btn blog-btn">Read More</div>
-          </div>
-        </a>
-      </div>
-    );
+    return renderCard(tool, "Tool", "Read More");
   };
 
   const renderTestimonial = (testimonial) => {
-    return (
-      <div key={testimonial.title} role="listitem" class="blog-item w-dyn-item">
-        <a href={testimonial.link} class="blog-link-new w-inline-block">
-          <div class="blog-img-wrap">
-            <LazyLoadImage
-              scrollPosition={scrollPosition}
-              effect={"opacity"}
-              src={testimonial.image}
-              alt=""
-              sizes="(max-width: 479px) 84vw, (max-width: 767px) 33vw, (max-width: 991px) 29vw, (max-width: 1279px) 21vw, 278px"
-              class="resource-image"
-            />
-          </div>
-          <div class="pill-label">
-            <div fs-cmsfilter-field="type" class="text-block-6">
-              Testimonial
-            </div>
-          </div>
-          <div class="paragraph-podcast-meta">
-            <p fs-cmsfilter-field="description" class="paragraph podcast-meta">
-              {testimonial.description}
-            </p>
-            <div fs-cmsfilter-field="title" class="blog-title-new">
-              {testimonial.title}
-            </div>
-            <div class="info-wrap-new">
-              <p fs-cmsfilter-field="author" class="paragraph blog blog-author">
-                {testimonial.author}
-              </p>
-              <div class="blog-line"></div>
-              <p class="paragraph blog date"></p>
-            </div>
-            <div fs-cmsfilter-field="tags" class="tags">
-              {testimonial.tags}
-            </div>
-          </div>
-          <div class="card-btn-wrapper">
-            <div class="card-btn line-btn blog-btn">Read More</div>
-          </div>
-        </a>
-      </div>
-    );
+    return renderCard(testimonial, "Testimonial", "Read More");
   };
   return (
     <>
