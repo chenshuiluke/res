@@ -374,17 +374,17 @@ const Resources = ({ scrollPosition }) => {
                     <p className="paragraph-32 series">{resource.author}</p>
                     <p
                       className="paragraph-32 series-hyphen"
-                      style="display: block;"
+                      style={{ display: "block" }}
                     >
                       -
                     </p>
                   </>
                 )}
-                {resource.episode && (
+                {resource.episode != null && (
                   <>
                     <p
                       className="paragraph-32 episode-hyphen"
-                      style="display: block;"
+                      style={{ display: "block" }}
                     >
                       Ep. #{resource.episode} -
                     </p>
