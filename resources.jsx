@@ -386,7 +386,7 @@ const Resources = ({ scrollPosition }) => {
                       className="paragraph-32 episode-hyphen"
                       style={{ display: "block" }}
                     >
-                      Ep. #{resource.episode} - &nbsp;
+                      Ep. #{resource.episode} -&nbsp;
                     </p>
                   </>
                 )}
