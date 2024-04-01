@@ -393,7 +393,7 @@ const Resources = ({ scrollPosition }) => {
 
                 <p className="paragraph-32">{resource.date}</p>
               </div>
-              <div className="blog-title-new-3">{resource.name}</div>
+              <div className="blog-title-new-3">{resource.title}</div>
             </div>
             <div className="card-btn-wrapper ebook">
               <div className="card-btn-copy line-btn blog-btn">
