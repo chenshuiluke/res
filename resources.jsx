@@ -55,9 +55,17 @@ const Resources = ({ scrollPosition }) => {
     return "";
   };
   useEffect(async () => {
-    const response = await fetch(
-      "https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources"
-    );
+    const resourceType = window.resourceType;
+    let response;
+    if (resourceType == null) {
+      response = await fetch(
+        "https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources"
+      );
+    } else {
+      response = await fetch(
+        `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=blog`
+      );
+    }
     const content = await response.json();
     setAllCards(content);
   }, []);
