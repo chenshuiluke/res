@@ -63,7 +63,7 @@ const Resources = ({ scrollPosition }) => {
       );
     } else {
       response = await fetch(
-        `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=blog`
+        `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=${resourceType}`
       );
     }
     const content = await response.json();
