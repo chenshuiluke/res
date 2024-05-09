@@ -24902,7 +24902,7 @@ var $97ea01d5cc63b90c$var$$;
 window.selectedTags = [];
 window.selectedContent = [];
 var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
-    var contentType = param.contentType;
+    var apiContentType = param.apiContentType, contentTypeTitle = param.contentTypeTitle, ctaText = param.ctaText;
     var _useState = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), topicFilters = _useState[0], setTopicFilters = _useState[1];
     var _useState1 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), goalFilters = _useState1[0], setGoalFilters = _useState1[1];
     var _useState2 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), topicTags = _useState2[0], setTopicTags = _useState2[1];
@@ -24950,7 +24950,7 @@ var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
                 case 0:
                     return [
                         4,
-                        fetch("https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=".concat(contentType))
+                        fetch("https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=".concat(apiContentType))
                     ];
                 case 1:
                     response = _state.sent();
@@ -25223,8 +25223,7 @@ var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
                         if (goalFilters.length > 0 || topicFilters.length > 0 || searchFilter.length > 0) return true;
                         return idx < limit;
                     }).map(function(card) {
-                        var content = null;
-                        if (card.contentType == "blog" && (contentTypes.length == 0 || contentTypes.includes("blog"))) content = renderBlog(card);
+                        var content = renderCard(card, contentTypeTitle, ctaText);
                         // if (
                         //   card.contentType == "podcast" &&
                         //   (contentTypes.length == 0 || contentTypes.includes("podcast"))

@@ -4,7 +4,7 @@ const useEffect = React.useEffect;
 let $;
 window.selectedTags = [];
 window.selectedContent = [];
-const StandAloneResources = ({ contentType }) => {
+const StandAloneResources = ({ apiContentType, contentTypeTitle, ctaText }) => {
   const [topicFilters, setTopicFilters] = useState([]);
   const [goalFilters, setGoalFilters] = useState([]);
   const [topicTags, setTopicTags] = useState([]);
@@ -36,7 +36,7 @@ const StandAloneResources = ({ contentType }) => {
   };
   useEffect(async () => {
     let response = await fetch(
-      `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=${contentType}`
+      `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=${apiContentType}`
     );
 
     const content = await response.json();
@@ -283,13 +283,8 @@ const StandAloneResources = ({ contentType }) => {
               return idx < limit;
             })
             .map((card) => {
-              let content = null;
-              if (
-                card.contentType == "blog" &&
-                (contentTypes.length == 0 || contentTypes.includes("blog"))
-              ) {
-                content = renderBlog(card);
-              }
+              let content = renderCard(card, contentTypeTitle, ctaText);
+
               // if (
               //   card.contentType == "podcast" &&
               //   (contentTypes.length == 0 || contentTypes.includes("podcast"))

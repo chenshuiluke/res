@@ -4,7 +4,13 @@ import ReactDOM from "react-dom";
 const e = React.createElement;
 
 const App = () => {
-  return <StandaloneResource contentType={"ebook"} />;
+  return (
+    <StandaloneResource
+      apiContentType={"ebook"}
+      contentTypeTitle={"eBook"}
+      ctaText={"Read More"}
+    />
+  );
 };
 const domContainer = document.querySelector("#root");
 const root = ReactDOM.createRoot(domContainer);
