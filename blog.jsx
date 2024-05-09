@@ -20,29 +20,6 @@ const Resources = ({ scrollPosition }) => {
   const [allCards, setAllCards] = useState([]);
   const [limit, setLimit] = useState(6);
 
-  useEffect(() => {
-    var waitForJQuery = setInterval(function () {
-      if (typeof window.$ != "undefined") {
-        $ = window.$;
-
-        clearInterval(waitForJQuery);
-        const goalArr = [];
-        const topicArr = [];
-        $(".goal").each(function () {
-          const goal = $(this).siblings("span").text();
-          goalArr.push(goal.toLowerCase());
-        });
-
-        $(".topic").each(function () {
-          const topic = $(this).siblings("span").text();
-          topicArr.push(topic.toLowerCase());
-        });
-        setTopicTags(topicArr);
-        setGoalTags(goalArr);
-      }
-    });
-  }, []);
-
   const getTagsFromApi = async () => {
     // const data = await $.getJSON(
     //   "https://di-marketing-server-iuzlr.ondigitalocean.app/api/tags"
@@ -73,6 +50,21 @@ const Resources = ({ scrollPosition }) => {
           clearInterval(waitForJQuery);
 
           debugger;
+
+          const goalArr = [];
+          const topicArr = [];
+          $(".goal").each(function () {
+            const goal = $(this).siblings("span").text();
+            goalArr.push(goal.toLowerCase());
+          });
+
+          $(".topic").each(function () {
+            const topic = $(this).siblings("span").text();
+            topicArr.push(topic.toLowerCase());
+          });
+          setTopicTags(topicArr);
+          setGoalTags(goalArr);
+
           window.eventBus.on("checked", function (tag, checked) {
             debugger;
             if (topicTags.includes(tag.toLowerCase())) {
