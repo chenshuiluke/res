@@ -354,4 +354,4 @@ const StandAloneResources = ({ scrollPosition, contentType }) => {
     </>
   );
 };
-export default trackWindowScroll(StandAloneResources);
+export default StandAloneResources;
