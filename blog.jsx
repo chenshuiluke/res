@@ -20,6 +20,13 @@ const Resources = ({ scrollPosition }) => {
   const [allCards, setAllCards] = useState([]);
   const [limit, setLimit] = useState(6);
 
+  useEffect(() => {
+    window.topicFilters = topicFilters;
+    window.goalFilters = goalFilters;
+    window.goalTags = goalTags;
+    window.goalTags = goalTags;
+  }, [topicFilters, goalFilters, topicTags, goalTags]);
+
   const getTagsFromApi = async () => {
     // const data = await $.getJSON(
     //   "https://di-marketing-server-iuzlr.ondigitalocean.app/api/tags"
@@ -67,6 +74,10 @@ const Resources = ({ scrollPosition }) => {
 
           window.eventBus.on("checked", (tag, checked) => {
             debugger;
+            const topicFilters = window.topicFilters;
+            const goalFilters = window.goalFilters;
+            const topicTags = window.topicTags;
+            const goalTags = window.goalTags;
             if (topicTags.includes(tag.toLowerCase())) {
               if (checked) {
                 if (!topicFilters.includes(tag.toLowerCase())) {
