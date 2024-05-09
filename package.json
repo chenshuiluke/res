@@ -22,7 +22,8 @@
     "partners.jsx",
     "product-webinars.jsx",
     "blog.jsx",
-    "standalone_resource.jsx"
+    "standalone_resource.jsx",
+    "ebook.jsx"
   ],
   "browserslist": [
     "> 0.5%",
