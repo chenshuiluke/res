@@ -12,6 +12,7 @@ window.selectedTags = [];
 window.selectedContent = [];
 const Resources = ({ scrollPosition }) => {
   const [topicFilters, setTopicFilters] = useState([]);
+  const [goalFilters, setGoalFilters] = useState([]);
   const [topicTags, setTopicTags] = useState([]);
   const [goalTags, setGoalTags] = useState([]);
   const [contentTypes, setContentTypes] = useState([]);
