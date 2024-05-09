@@ -15,7 +15,7 @@
   },
   "scripts": {
     "watch": "parcel watch",
-    "build": "cross-env NODE_ENV=development parcel build --no-optimize"
+    "build": "parcel build"
   },
   "source": [
     "resources.jsx",
