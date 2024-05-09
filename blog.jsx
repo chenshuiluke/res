@@ -112,7 +112,7 @@ const Resources = ({ scrollPosition }) => {
           });
           $(".topic,.goal").change(function () {
             debugger;
-            const tags = $(this).siblings("span").text();
+            const tags = $(this).siblings("span").text().toLowerCase();
             window.eventBus.emit("checked", null, tags, this.checked);
           });
 
