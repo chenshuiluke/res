@@ -26,7 +26,8 @@
     "ebook.jsx",
     "tool.jsx",
     "podcast.jsx",
-    "webinar.jsx"
+    "webinar.jsx",
+    "testimonial.jsx"
   ],
   "browserslist": [
     "> 0.5%",
