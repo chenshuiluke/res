@@ -11,35 +11,33 @@ let $;
 window.selectedTags = [];
 window.selectedContent = [];
 const Resources = ({ scrollPosition }) => {
-  const [blogs, setBlogs] = useState([]);
-  const [podcasts, setPodcasts] = useState([]);
-  const [webinars, setWebinars] = useState([]);
-  const [ebooks, setEbooks] = useState([]);
-  const [testimonials, setTestimonials] = useState([]);
-  const [blogLimit, setBlogLimit] = useState(3);
-  const [podcastLimit, setPodcastLimit] = useState(3);
-  const [webinarLimit, setWebinarLimit] = useState(3);
-  const [ebookLimit, setEbooksLimit] = useState(3);
-  const [testimonialLimit, setTestimonialLimit] = useState(3);
-  const [tags, setTags] = useState([]);
+  const [topicFilters, setTopicFilters] = useState([]);
+  const [topicTags, setTopicTags] = useState([]);
+  const [goalTags, setGoalTags] = useState([]);
   const [contentTypes, setContentTypes] = useState([]);
   const [searchFilter, setSearchFilter] = useState("");
-  const [apiTags, setApiTags] = useState({});
   const [allCards, setAllCards] = useState([]);
   const [limit, setLimit] = useState(6);
-  const generateGuid = () => {
-    return (
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15)
-    );
-  };
-  useEffect(() => {
-    window.selectedTags = tags;
-  }, [tags]);
 
   useEffect(() => {
-    window.selectedContent = contentTypes;
-  }, [contentTypes]);
+    var waitForJQuery = setInterval(function () {
+      if (typeof window.$ != "undefined") {
+        $ = window.$;
+
+        clearInterval(waitForJQuery);
+
+        $(".goal").each(function () {
+          const goal = $(this).siblings("span").text();
+          setGoalTags([...goalTags, goal.toLowerCase()]);
+        });
+
+        $(".topic").each(function () {
+          const topic = $(this).siblings("span").text();
+          setTopicTags([...topicTags, topic.toLowerCase()]);
+        });
+      }
+    });
+  }, []);
 
   const getTagsFromApi = async () => {
     // const data = await $.getJSON(
@@ -57,15 +55,8 @@ const Resources = ({ scrollPosition }) => {
   useEffect(async () => {
     const resourceType = window.resourceType;
     let response;
-    if (resourceType == null) {
-      response = await fetch(
-        "https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources"
-      );
-    } else {
-      response = await fetch(
-        `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=${resourceType}`
-      );
-    }
+    `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=blog`;
+
     const content = await response.json();
     setAllCards(content);
   }, []);
@@ -79,51 +70,40 @@ const Resources = ({ scrollPosition }) => {
 
           debugger;
           window.eventBus.on("checked", function (tag, checked) {
-            let tagArr = [...window.selectedTags];
             debugger;
-            let contentArr = [...window.selectedContent];
-            const contentTags = [
-              "webinar",
-              "blog",
-              "podcast",
-              "ebook",
-              "testimonial",
-              "tool",
-            ];
-            if (!contentTags.includes(tag.toLowerCase())) {
-              debugger;
+            if (topicTags.includes(tag.toLowerCase())) {
               if (checked) {
-                if (!tagArr.includes(tag.toLowerCase())) {
-                  tagArr.push(tag.toLowerCase());
+                if (!topicFilters.includes(tag.toLowerCase())) {
+                  setTopicFilters([...topicFilters, tag.toLowerCase()]);
                 }
               } else {
-                if (tagArr.includes(tag.toLowerCase())) {
-                  tagArr = tagArr.filter((element) => {
+                if (topicFilters.includes(tag.toLowerCase())) {
+                  newTopicFilters = topicFilters.filter((element) => {
                     return element != tag.toLowerCase();
                   });
+                  setTopicFilters(newTopicFilters);
                 }
               }
-              setTags([...tagArr]);
-            } else {
-              debugger;
-              if (checked) {
-                if (!contentArr.includes(tag.toLowerCase())) {
-                  contentArr.push(tag.toLowerCase());
-                }
-              } else {
-                if (contentArr.includes(tag.toLowerCase())) {
-                  contentArr = contentArr.filter((element) => {
-                    return element != tag.toLowerCase();
-                  });
-                }
-              }
-              setContentTypes([...contentArr]);
             }
 
+            if (goalTags.includes(tag.toLowerCase())) {
+              if (checked) {
+                if (!goalFilters.includes(tag.toLowerCase())) {
+                  setGoalFilters([...goalFilters, tag.toLowerCase()]);
+                }
+              } else {
+                if (topicFilters.includes(tag.toLowerCase())) {
+                  newGoalFilters = goalFilters.filter((element) => {
+                    return element != tag.toLowerCase();
+                  });
+                  setGoalFilters(newGoalFilters);
+                }
+              }
+            }
             debugger;
             console.log("Inside `my-event`");
           });
-          $(".w-checkbox.tag.blog.new input").change(function () {
+          $(".topic,.goal").change(function () {
             debugger;
             const tags = $(this).siblings("span").text();
             window.eventBus.emit("checked", null, tags, this.checked);
@@ -141,15 +121,6 @@ const Resources = ({ scrollPosition }) => {
       }, 10);
     });
   }, []);
-  useEffect(() => {
-    setAllCards([
-      ...blogs,
-      ...podcasts,
-      ...webinars,
-      ...ebooks,
-      ...testimonials,
-    ]);
-  }, [blogs, podcasts, webinars, ebooks, testimonials]);
 
   const renderCard = (resource, contentType, ctaText) => {
     return (
@@ -251,11 +222,22 @@ const Resources = ({ scrollPosition }) => {
         <div role="list" class="blog-list w-dyn-items">
           {allCards
             .filter((card) => {
-              if (tags.length == 0) {
+              if (topicFilters.length == 0) {
                 return true;
               }
-              for (const tag of tags) {
+              for (const tag of topicFilters) {
                 if (!card?.tags?.includes(tag)) {
+                  return false;
+                }
+              }
+              return true;
+            })
+            .filter((card) => {
+              if (goalFilters.length == 0) {
+                return true;
+              }
+              for (const tag of goalFilters) {
+                if (!card?.desiredOutcomes?.includes(tag)) {
                   return false;
                 }
               }
@@ -289,16 +271,6 @@ const Resources = ({ scrollPosition }) => {
                 window.moment(b.sortDate).format("YYYYMMDD") -
                 window.moment(a.sortDate).format("YYYYMMDD")
             )
-            .filter((card, idx) => {
-              if (
-                contentTypes.length > 0 ||
-                tags.length > 0 ||
-                searchFilter.length > 0
-              ) {
-                return true;
-              }
-              return idx < limit;
-            })
             .map((card) => {
               let content = null;
               if (
@@ -307,43 +279,43 @@ const Resources = ({ scrollPosition }) => {
               ) {
                 content = renderBlog(card);
               }
-              if (
-                card.contentType == "podcast" &&
-                (contentTypes.length == 0 || contentTypes.includes("podcast"))
-              ) {
-                content = renderPodcast(card);
-              }
-              if (
-                card.contentType == "webinar" &&
-                (contentTypes.length == 0 || contentTypes.includes("webinar"))
-              ) {
-                content = renderWebinar(card);
-              }
-              if (
-                card.contentType == "ebook" &&
-                (contentTypes.length == 0 || contentTypes.includes("ebook"))
-              ) {
-                content = renderEbook(card);
-              }
-              if (
-                card.contentType == "tool" &&
-                (contentTypes.length == 0 || contentTypes.includes("tool"))
-              ) {
-                content = renderTool(card);
-              }
-              if (
-                card.contentType == "testimonial" &&
-                (contentTypes.length == 0 ||
-                  contentTypes.includes("testimonial"))
-              ) {
-                content = renderTestimonial(card);
-              }
+              // if (
+              //   card.contentType == "podcast" &&
+              //   (contentTypes.length == 0 || contentTypes.includes("podcast"))
+              // ) {
+              //   content = renderPodcast(card);
+              // }
+              // if (
+              //   card.contentType == "webinar" &&
+              //   (contentTypes.length == 0 || contentTypes.includes("webinar"))
+              // ) {
+              //   content = renderWebinar(card);
+              // }
+              // if (
+              //   card.contentType == "ebook" &&
+              //   (contentTypes.length == 0 || contentTypes.includes("ebook"))
+              // ) {
+              //   content = renderEbook(card);
+              // }
+              // if (
+              //   card.contentType == "tool" &&
+              //   (contentTypes.length == 0 || contentTypes.includes("tool"))
+              // ) {
+              //   content = renderTool(card);
+              // }
+              // if (
+              //   card.contentType == "testimonial" &&
+              //   (contentTypes.length == 0 ||
+              //     contentTypes.includes("testimonial"))
+              // ) {
+              //   content = renderTestimonial(card);
+              // }
               if (content == null) {
                 return null;
               }
               return <span key={card.id}>{content}</span>;
             })}
-          {tags.length == 0 &&
+          {topicFilters.length == 0 &&
             contentTypes.length == 0 &&
             searchFilter.length == 0 && (
               <>

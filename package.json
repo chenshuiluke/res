@@ -19,7 +19,8 @@
   "source": [
     "resources.jsx",
     "partners.jsx",
-    "product-webinars.jsx"
+    "product-webinars.jsx",
+    "blog.jsx"
   ],
   "browserslist": [
     "> 0.5%",
