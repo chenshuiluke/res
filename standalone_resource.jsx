@@ -105,7 +105,7 @@ const StandAloneResources = ({
                 }
               } else {
                 if (topicFilters.includes(tag.toLowerCase())) {
-                  newTopicFilters = topicFilters.filter((element) => {
+                  const newTopicFilters = topicFilters.filter((element) => {
                     return element != tag.toLowerCase();
                   });
                   setTopicFilters(newTopicFilters);
@@ -120,7 +120,7 @@ const StandAloneResources = ({
                 }
               } else {
                 if (goalFilters.includes(tag.toLowerCase())) {
-                  newGoalFilters = goalFilters.filter((element) => {
+                  const newGoalFilters = goalFilters.filter((element) => {
                     return element != tag.toLowerCase();
                   });
                   setGoalFilters(newGoalFilters);
@@ -131,14 +131,14 @@ const StandAloneResources = ({
             if (seriesField != null && seriesTags.includes(tag.toLowerCase())) {
               if (checked) {
                 if (!seriesFilters.includes(tag.toLowerCase())) {
-                  setGoalFilters([...goalFilters, tag.toLowerCase()]);
+                  setSeriesFilters([...seriesFilters, tag.toLowerCase()]);
                 }
               } else {
-                if (goalFilters.includes(tag.toLowerCase())) {
-                  newGoalFilters = goalFilters.filter((element) => {
+                if (seriesFilters.includes(tag.toLowerCase())) {
+                  const newSeriesFilters = seriesFilters.filter((element) => {
                     return element != tag.toLowerCase();
                   });
-                  setGoalFilters(newGoalFilters);
+                  setSeriesFilters(newSeriesFilters);
                 }
               }
             }
