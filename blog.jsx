@@ -53,9 +53,7 @@ const Resources = ({ scrollPosition }) => {
     return "";
   };
   useEffect(async () => {
-    const resourceType = window.resourceType;
-    let response;
-    await fetch(
+    let response = await fetch(
       `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=blog`
     );
 
