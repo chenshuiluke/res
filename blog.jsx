@@ -65,7 +65,7 @@ const Resources = ({ scrollPosition }) => {
           setTopicTags(topicArr);
           setGoalTags(goalArr);
 
-          window.eventBus.on("checked", function (tag, checked) {
+          window.eventBus.on("checked", (tag, checked) => {
             debugger;
             if (topicTags.includes(tag.toLowerCase())) {
               if (checked) {
