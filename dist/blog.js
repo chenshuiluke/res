@@ -25294,12 +25294,14 @@ var $aa7d2 = parcelRequire("aa7d2");
 
 var $fupsZ = parcelRequire("fupsZ");
 var $ba02ae1b06af21b9$var$e = (0, (/*@__PURE__*/$parcel$interopDefault($aa7d2))).createElement;
-var $ba02ae1b06af21b9$var$component = /*#__PURE__*/ (0, $bdf85e2bddd128c1$exports.jsx)((0, $97ea01d5cc63b90c$export$2e2bcd8739ae039), {
-    contentType: "blog"
-});
+var $ba02ae1b06af21b9$var$App = function() {
+    return /*#__PURE__*/ (0, $bdf85e2bddd128c1$exports.jsx)((0, $97ea01d5cc63b90c$export$2e2bcd8739ae039), {
+        contentType: "blog"
+    });
+};
 var $ba02ae1b06af21b9$var$domContainer = document.querySelector("#root");
 var $ba02ae1b06af21b9$var$root = (0, (/*@__PURE__*/$parcel$interopDefault($fupsZ))).createRoot($ba02ae1b06af21b9$var$domContainer);
-$ba02ae1b06af21b9$var$root.render($ba02ae1b06af21b9$var$e($ba02ae1b06af21b9$var$component));
+$ba02ae1b06af21b9$var$root.render($ba02ae1b06af21b9$var$e($ba02ae1b06af21b9$var$App));
 
 })();
 //# sourceMappingURL=blog.js.map
