@@ -24,7 +24,8 @@
     "blog.jsx",
     "standalone_resource.jsx",
     "ebook.jsx",
-    "tool.jsx"
+    "tool.jsx",
+    "podcast.jsx"
   ],
   "browserslist": [
     "> 0.5%",

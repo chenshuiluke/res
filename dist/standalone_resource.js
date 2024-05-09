@@ -3364,25 +3364,31 @@ var $97ea01d5cc63b90c$var$$;
 window.selectedTags = [];
 window.selectedContent = [];
 var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
-    var apiContentType = param.apiContentType, contentTypeTitle = param.contentTypeTitle, ctaText = param.ctaText;
+    var apiContentType = param.apiContentType, contentTypeTitle = param.contentTypeTitle, ctaText = param.ctaText, seriesField = param.seriesField;
     var _useState = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), topicFilters = _useState[0], setTopicFilters = _useState[1];
     var _useState1 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), goalFilters = _useState1[0], setGoalFilters = _useState1[1];
-    var _useState2 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), topicTags = _useState2[0], setTopicTags = _useState2[1];
-    var _useState3 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), goalTags = _useState3[0], setGoalTags = _useState3[1];
-    var _useState4 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), contentTypes = _useState4[0], setContentTypes = _useState4[1];
-    var _useState5 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState(""), 2), searchFilter = _useState5[0], setSearchFilter = _useState5[1];
-    var _useState6 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), allCards = _useState6[0], setAllCards = _useState6[1];
-    var _useState7 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState(6), 2), limit = _useState7[0], setLimit = _useState7[1];
+    var _useState2 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), seriesFilters = _useState2[0], setSeriesFilters = _useState2[1];
+    var _useState3 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), topicTags = _useState3[0], setTopicTags = _useState3[1];
+    var _useState4 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), goalTags = _useState4[0], setGoalTags = _useState4[1];
+    var _useState5 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), seriesTags = _useState5[0], setSeriesTags = _useState5[1];
+    var _useState6 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), contentTypes = _useState6[0], setContentTypes = _useState6[1];
+    var _useState7 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState(""), 2), searchFilter = _useState7[0], setSearchFilter = _useState7[1];
+    var _useState8 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState([]), 2), allCards = _useState8[0], setAllCards = _useState8[1];
+    var _useState9 = (0, $b246210675339a3d$export$fdf2a89c76341bbf)($97ea01d5cc63b90c$var$useState(6), 2), limit = _useState9[0], setLimit = _useState9[1];
     $97ea01d5cc63b90c$var$useEffect(function() {
         window.topicFilters = topicFilters;
         window.goalFilters = goalFilters;
         window.topicTags = topicTags;
         window.goalTags = goalTags;
+        window.seriesTags = seriesTags;
+        window.seriesFilters = seriesFilters;
     }, [
         topicFilters,
         goalFilters,
         topicTags,
-        goalTags
+        goalTags,
+        seriesTags,
+        seriesFilters
     ]);
     var getTagsFromApi = function() {
         var _ref = (0, $100020652c8ec3fa$export$7c398597f8905a1)(function() {
@@ -3438,6 +3444,7 @@ var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
                     debugger;
                     var goalArr = [];
                     var topicArr = [];
+                    var seriesArr = [];
                     $97ea01d5cc63b90c$var$$(".goal").each(function() {
                         var goal = $97ea01d5cc63b90c$var$$(this).siblings("span").text();
                         goalArr.push(goal.toLowerCase());
@@ -3446,14 +3453,21 @@ var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
                         var topic = $97ea01d5cc63b90c$var$$(this).siblings("span").text();
                         topicArr.push(topic.toLowerCase());
                     });
+                    $97ea01d5cc63b90c$var$$(".series").each(function() {
+                        var series = $97ea01d5cc63b90c$var$$(this).siblings("span").text();
+                        seriesArr.push(series.toLowerCase());
+                    });
                     setTopicTags(topicArr);
                     setGoalTags(goalArr);
+                    setSeriesTags(seriesArr);
                     window.eventBus.on("checked", function(tag, checked) {
                         debugger;
                         var topicFilters = window.topicFilters;
                         var goalFilters = window.goalFilters;
+                        var seriesFilters = window.seriesFilters;
                         var topicTags = window.topicTags;
                         var goalTags = window.goalTags;
+                        var seriesTags = window.seriesTags;
                         if (topicTags.includes(tag.toLowerCase())) {
                             if (checked) {
                                 if (!topicFilters.includes(tag.toLowerCase())) setTopicFilters((0, $f7056d2783c1f20d$export$1b5e630bc3aea29f)(topicFilters).concat([
@@ -3478,10 +3492,22 @@ var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
                                 setGoalFilters(newGoalFilters);
                             }
                         }
+                        if (seriesField != null && seriesTags.includes(tag.toLowerCase())) {
+                            if (checked) {
+                                if (!seriesFilters.includes(tag.toLowerCase())) setGoalFilters((0, $f7056d2783c1f20d$export$1b5e630bc3aea29f)(goalFilters).concat([
+                                    tag.toLowerCase()
+                                ]));
+                            } else if (goalFilters.includes(tag.toLowerCase())) {
+                                newGoalFilters = goalFilters.filter(function(element) {
+                                    return element != tag.toLowerCase();
+                                });
+                                setGoalFilters(newGoalFilters);
+                            }
+                        }
                         debugger;
                         console.log("Inside `my-event`");
                     });
-                    $97ea01d5cc63b90c$var$$(".topic,.goal").change(function() {
+                    $97ea01d5cc63b90c$var$$(".topic,.goal,.series").change(function() {
                         debugger;
                         var tags = $97ea01d5cc63b90c$var$$(this).siblings("span").text().toLowerCase();
                         window.eventBus.emit("checked", null, tags, this.checked);
@@ -3666,6 +3692,31 @@ var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
                             }
                         }
                         return true;
+                    }).filter(function(card) {
+                        if (seriesField == null) return true;
+                        if (seriesFilters.length == 0) return true;
+                        var _iteratorNormalCompletion = true, _didIteratorError = false, _iteratorError = undefined;
+                        try {
+                            for(var _iterator = seriesFilters[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true){
+                                var tag = _step.value;
+                                var _card_seriesField;
+                                if (!(card === null || card === void 0 ? void 0 : (_card_seriesField = card[seriesField]) === null || _card_seriesField === void 0 ? void 0 : _card_seriesField.includes(tag))) return false;
+                            }
+                        } catch (err) {
+                            _didIteratorError = true;
+                            _iteratorError = err;
+                        } finally{
+                            try {
+                                if (!_iteratorNormalCompletion && _iterator.return != null) {
+                                    _iterator.return();
+                                }
+                            } finally{
+                                if (_didIteratorError) {
+                                    throw _iteratorError;
+                                }
+                            }
+                        }
+                        return true;
                     }).filter(function(item) {
                         try {
                             if (searchFilter != "") {
@@ -3682,7 +3733,7 @@ var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
                     }).sort(function(a, b) {
                         return window.moment(b.sortDate).format("YYYYMMDD") - window.moment(a.sortDate).format("YYYYMMDD");
                     }).filter(function(card, idx) {
-                        if (goalFilters.length > 0 || topicFilters.length > 0 || searchFilter.length > 0) return true;
+                        if (goalFilters.length > 0 || topicFilters.length > 0 || searchFilter.length > 0 || seriesFilters.length > 0) return true;
                         return idx < limit;
                     }).map(function(card) {
                         var content = renderCard(card, contentTypeTitle, ctaText);
@@ -3722,7 +3773,7 @@ var $97ea01d5cc63b90c$var$StandAloneResources = function(param) {
                             children: content
                         }, card.id);
                     }),
-                    topicFilters.length == 0 && goalFilters.length == 0 && searchFilter.length == 0 && /*#__PURE__*/ (0, $bdf85e2bddd128c1$exports.jsx)((0, $bdf85e2bddd128c1$exports.Fragment), {
+                    topicFilters.length == 0 && goalFilters.length == 0 && searchFilter.length == 0 && seriesFilters.length == 0 && /*#__PURE__*/ (0, $bdf85e2bddd128c1$exports.jsx)((0, $bdf85e2bddd128c1$exports.Fragment), {
                         children: /*#__PURE__*/ (0, $bdf85e2bddd128c1$exports.jsx)("div", {
                             class: "card-btn-wrapper resources-load-more-btn",
                             style: {

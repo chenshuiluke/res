@@ -4,11 +4,19 @@ const useEffect = React.useEffect;
 let $;
 window.selectedTags = [];
 window.selectedContent = [];
-const StandAloneResources = ({ apiContentType, contentTypeTitle, ctaText }) => {
+const StandAloneResources = ({
+  apiContentType,
+  contentTypeTitle,
+  ctaText,
+  seriesField,
+}) => {
   const [topicFilters, setTopicFilters] = useState([]);
   const [goalFilters, setGoalFilters] = useState([]);
+  const [seriesFilters, setSeriesFilters] = useState([]);
+
   const [topicTags, setTopicTags] = useState([]);
   const [goalTags, setGoalTags] = useState([]);
+  const [seriesTags, setSeriesTags] = useState([]);
   const [contentTypes, setContentTypes] = useState([]);
   const [searchFilter, setSearchFilter] = useState("");
   const [allCards, setAllCards] = useState([]);
@@ -19,7 +27,16 @@ const StandAloneResources = ({ apiContentType, contentTypeTitle, ctaText }) => {
     window.goalFilters = goalFilters;
     window.topicTags = topicTags;
     window.goalTags = goalTags;
-  }, [topicFilters, goalFilters, topicTags, goalTags]);
+    window.seriesTags = seriesTags;
+    window.seriesFilters = seriesFilters;
+  }, [
+    topicFilters,
+    goalFilters,
+    topicTags,
+    goalTags,
+    seriesTags,
+    seriesFilters,
+  ]);
 
   const getTagsFromApi = async () => {
     // const data = await $.getJSON(
@@ -54,6 +71,7 @@ const StandAloneResources = ({ apiContentType, contentTypeTitle, ctaText }) => {
 
           const goalArr = [];
           const topicArr = [];
+          const seriesArr = [];
           $(".goal").each(function () {
             const goal = $(this).siblings("span").text();
             goalArr.push(goal.toLowerCase());
@@ -63,15 +81,23 @@ const StandAloneResources = ({ apiContentType, contentTypeTitle, ctaText }) => {
             const topic = $(this).siblings("span").text();
             topicArr.push(topic.toLowerCase());
           });
+
+          $(".series").each(function () {
+            const series = $(this).siblings("span").text();
+            seriesArr.push(series.toLowerCase());
+          });
           setTopicTags(topicArr);
           setGoalTags(goalArr);
+          setSeriesTags(seriesArr);
 
           window.eventBus.on("checked", (tag, checked) => {
             debugger;
             const topicFilters = window.topicFilters;
             const goalFilters = window.goalFilters;
+            const seriesFilters = window.seriesFilters;
             const topicTags = window.topicTags;
             const goalTags = window.goalTags;
+            const seriesTags = window.seriesTags;
             if (topicTags.includes(tag.toLowerCase())) {
               if (checked) {
                 if (!topicFilters.includes(tag.toLowerCase())) {
@@ -101,10 +127,26 @@ const StandAloneResources = ({ apiContentType, contentTypeTitle, ctaText }) => {
                 }
               }
             }
+
+            if (seriesField != null && seriesTags.includes(tag.toLowerCase())) {
+              if (checked) {
+                if (!seriesFilters.includes(tag.toLowerCase())) {
+                  setGoalFilters([...goalFilters, tag.toLowerCase()]);
+                }
+              } else {
+                if (goalFilters.includes(tag.toLowerCase())) {
+                  newGoalFilters = goalFilters.filter((element) => {
+                    return element != tag.toLowerCase();
+                  });
+                  setGoalFilters(newGoalFilters);
+                }
+              }
+            }
+
             debugger;
             console.log("Inside `my-event`");
           });
-          $(".topic,.goal").change(function () {
+          $(".topic,.goal,.series").change(function () {
             debugger;
             const tags = $(this).siblings("span").text().toLowerCase();
             window.eventBus.emit("checked", null, tags, this.checked);
@@ -244,6 +286,20 @@ const StandAloneResources = ({ apiContentType, contentTypeTitle, ctaText }) => {
               }
               return true;
             })
+            .filter((card) => {
+              if (seriesField == null) {
+                return true;
+              }
+              if (seriesFilters.length == 0) {
+                return true;
+              }
+              for (const tag of seriesFilters) {
+                if (!card?.[seriesField]?.includes(tag)) {
+                  return false;
+                }
+              }
+              return true;
+            })
             .filter((item) => {
               try {
                 if (searchFilter != "") {
@@ -276,7 +332,8 @@ const StandAloneResources = ({ apiContentType, contentTypeTitle, ctaText }) => {
               if (
                 goalFilters.length > 0 ||
                 topicFilters.length > 0 ||
-                searchFilter.length > 0
+                searchFilter.length > 0 ||
+                seriesFilters.length > 0
               ) {
                 return true;
               }
@@ -323,7 +380,8 @@ const StandAloneResources = ({ apiContentType, contentTypeTitle, ctaText }) => {
             })}
           {topicFilters.length == 0 &&
             goalFilters.length == 0 &&
-            searchFilter.length == 0 && (
+            searchFilter.length == 0 &&
+            seriesFilters.length == 0 && (
               <>
                 <div
                   class="card-btn-wrapper resources-load-more-btn"

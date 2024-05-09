@@ -25343,17 +25343,18 @@ var $97ea01d5cc63b90c$export$2e2bcd8739ae039 = $97ea01d5cc63b90c$var$StandAloneR
 var $aa7d2 = parcelRequire("aa7d2");
 
 var $fupsZ = parcelRequire("fupsZ");
-var $e446a98919ae1aae$var$e = (0, (/*@__PURE__*/$parcel$interopDefault($aa7d2))).createElement;
-var $e446a98919ae1aae$var$App = function() {
+var $b983d93b55c5317a$var$e = (0, (/*@__PURE__*/$parcel$interopDefault($aa7d2))).createElement;
+var $b983d93b55c5317a$var$App = function() {
     return /*#__PURE__*/ (0, $bdf85e2bddd128c1$exports.jsx)((0, $97ea01d5cc63b90c$export$2e2bcd8739ae039), {
-        apiContentType: "tool",
-        contentTypeTitle: "Tool",
-        ctaText: "Read More"
+        apiContentType: "podcast",
+        contentTypeTitle: "Podcast",
+        ctaText: "Watch / Listen",
+        seriesField: "podcastSeries"
     });
 };
-var $e446a98919ae1aae$var$domContainer = document.querySelector("#root");
-var $e446a98919ae1aae$var$root = (0, (/*@__PURE__*/$parcel$interopDefault($fupsZ))).createRoot($e446a98919ae1aae$var$domContainer);
-$e446a98919ae1aae$var$root.render($e446a98919ae1aae$var$e($e446a98919ae1aae$var$App));
+var $b983d93b55c5317a$var$domContainer = document.querySelector("#root");
+var $b983d93b55c5317a$var$root = (0, (/*@__PURE__*/$parcel$interopDefault($fupsZ))).createRoot($b983d93b55c5317a$var$domContainer);
+$b983d93b55c5317a$var$root.render($b983d93b55c5317a$var$e($b983d93b55c5317a$var$App));
 
 })();
-//# sourceMappingURL=tool.js.map
+//# sourceMappingURL=podcast.js.map
