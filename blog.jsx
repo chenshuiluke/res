@@ -55,7 +55,9 @@ const Resources = ({ scrollPosition }) => {
   useEffect(async () => {
     const resourceType = window.resourceType;
     let response;
-    `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=blog`;
+    await fetch(
+      `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=blog`
+    );
 
     const content = await response.json();
     setAllCards(content);
