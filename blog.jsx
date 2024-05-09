@@ -99,7 +99,7 @@ const Resources = ({ scrollPosition }) => {
                   setGoalFilters([...goalFilters, tag.toLowerCase()]);
                 }
               } else {
-                if (topicFilters.includes(tag.toLowerCase())) {
+                if (goalFilters.includes(tag.toLowerCase())) {
                   newGoalFilters = goalFilters.filter((element) => {
                     return element != tag.toLowerCase();
                   });
