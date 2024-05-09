@@ -5,7 +5,11 @@ const e = React.createElement;
 
 const App = () => {
   return (
-    <StandaloneResource apiContentType={"blog"} contentTypeTitle={"Blog"} />
+    <StandaloneResource
+      apiContentType={"tool"}
+      contentTypeTitle={"Tool"}
+      ctaText={"Read More"}
+    />
   );
 };
 const domContainer = document.querySelector("#root");

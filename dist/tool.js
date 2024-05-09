@@ -25292,16 +25292,17 @@ var $97ea01d5cc63b90c$export$2e2bcd8739ae039 = $97ea01d5cc63b90c$var$StandAloneR
 var $aa7d2 = parcelRequire("aa7d2");
 
 var $fupsZ = parcelRequire("fupsZ");
-var $ba02ae1b06af21b9$var$e = (0, (/*@__PURE__*/$parcel$interopDefault($aa7d2))).createElement;
-var $ba02ae1b06af21b9$var$App = function() {
+var $e446a98919ae1aae$var$e = (0, (/*@__PURE__*/$parcel$interopDefault($aa7d2))).createElement;
+var $e446a98919ae1aae$var$App = function() {
     return /*#__PURE__*/ (0, $bdf85e2bddd128c1$exports.jsx)((0, $97ea01d5cc63b90c$export$2e2bcd8739ae039), {
-        apiContentType: "blog",
-        contentTypeTitle: "Blog"
+        apiContentType: "tool",
+        contentTypeTitle: "Tool",
+        ctaText: "Read More"
     });
 };
-var $ba02ae1b06af21b9$var$domContainer = document.querySelector("#root");
-var $ba02ae1b06af21b9$var$root = (0, (/*@__PURE__*/$parcel$interopDefault($fupsZ))).createRoot($ba02ae1b06af21b9$var$domContainer);
-$ba02ae1b06af21b9$var$root.render($ba02ae1b06af21b9$var$e($ba02ae1b06af21b9$var$App));
+var $e446a98919ae1aae$var$domContainer = document.querySelector("#root");
+var $e446a98919ae1aae$var$root = (0, (/*@__PURE__*/$parcel$interopDefault($fupsZ))).createRoot($e446a98919ae1aae$var$domContainer);
+$e446a98919ae1aae$var$root.render($e446a98919ae1aae$var$e($e446a98919ae1aae$var$App));
 
 })();
-//# sourceMappingURL=blog.js.map
+//# sourceMappingURL=tool.js.map
