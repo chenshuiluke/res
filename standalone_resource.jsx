@@ -1,11 +1,10 @@
 import React from "react";
-import { trackWindowScroll } from "react-lazy-load-image-component";
 const useState = React.useState;
 const useEffect = React.useEffect;
 let $;
 window.selectedTags = [];
 window.selectedContent = [];
-const StandAloneResources = ({ scrollPosition, contentType }) => {
+const StandAloneResources = ({ contentType }) => {
   const [topicFilters, setTopicFilters] = useState([]);
   const [goalFilters, setGoalFilters] = useState([]);
   const [topicTags, setTopicTags] = useState([]);
