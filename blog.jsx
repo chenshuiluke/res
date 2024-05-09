@@ -26,16 +26,19 @@ const Resources = ({ scrollPosition }) => {
         $ = window.$;
 
         clearInterval(waitForJQuery);
-
+        const goalArr = [];
+        const topicArr = [];
         $(".goal").each(function () {
           const goal = $(this).siblings("span").text();
-          setGoalTags([...goalTags, goal.toLowerCase()]);
+          goalArr.push(goal.toLowerCase());
         });
 
         $(".topic").each(function () {
           const topic = $(this).siblings("span").text();
-          setTopicTags([...topicTags, topic.toLowerCase()]);
+          topicArr.push(topic.toLowerCase());
         });
+        setTopicTags(topicArr);
+        setGoalTags(goalArr);
       }
     });
   }, []);
