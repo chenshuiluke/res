@@ -1,4 +1,5 @@
 import StandaloneResource from "./standalone_resource";
+import React from "react";
 import ReactDOM from "react-dom";
 const e = React.createElement;
 
