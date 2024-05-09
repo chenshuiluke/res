@@ -278,6 +278,16 @@ const Resources = ({ scrollPosition }) => {
                 window.moment(b.sortDate).format("YYYYMMDD") -
                 window.moment(a.sortDate).format("YYYYMMDD")
             )
+            .filter((card, idx) => {
+              if (
+                goalFilters.length > 0 ||
+                topicFilters.length > 0 ||
+                searchFilter.length > 0
+              ) {
+                return true;
+              }
+              return idx < limit;
+            })
             .map((card) => {
               let content = null;
               if (
@@ -323,7 +333,7 @@ const Resources = ({ scrollPosition }) => {
               return <span key={card.id}>{content}</span>;
             })}
           {topicFilters.length == 0 &&
-            contentTypes.length == 0 &&
+            goalFilters.length == 0 &&
             searchFilter.length == 0 && (
               <>
                 <div
