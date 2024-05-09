@@ -23,7 +23,7 @@ const Resources = ({ scrollPosition }) => {
   useEffect(() => {
     window.topicFilters = topicFilters;
     window.goalFilters = goalFilters;
-    window.goalTags = goalTags;
+    window.topicTags = topicTags;
     window.goalTags = goalTags;
   }, [topicFilters, goalFilters, topicTags, goalTags]);
 
