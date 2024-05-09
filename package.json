@@ -25,7 +25,8 @@
     "standalone_resource.jsx",
     "ebook.jsx",
     "tool.jsx",
-    "podcast.jsx"
+    "podcast.jsx",
+    "webinar.jsx"
   ],
   "browserslist": [
     "> 0.5%",
