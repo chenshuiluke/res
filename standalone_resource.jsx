@@ -196,12 +196,16 @@ const StandAloneResources = ({
                 {resource.author != null && (
                   <>
                     <p className="paragraph-32 series">{resource.author}</p>
-                    <p
-                      className="paragraph-32 series-hyphen"
-                      style={{ display: "block" }}
-                    >
-                      -
-                    </p>
+                    {!resource.doNotShowDateInCard && (
+                      <>
+                        <p
+                          className="paragraph-32 series-hyphen"
+                          style={{ display: "block" }}
+                        >
+                          -
+                        </p>
+                      </>
+                    )}
                   </>
                 )}
                 {resource.episode != null && (
