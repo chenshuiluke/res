@@ -214,8 +214,11 @@ const StandAloneResources = ({
                     </p>
                   </>
                 )}
-
-                <p className="paragraph-32">{resource.date}</p>
+                {!resource.doNotShowDateInCard && (
+                  <>
+                    <p className="paragraph-32">{resource.date}</p>
+                  </>
+                )}
               </div>
               <div className="blog-title-new-3">{resource.title}</div>
             </div>
