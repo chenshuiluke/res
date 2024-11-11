@@ -40,7 +40,7 @@ const StandAloneResources = ({
 
   const getTagsFromApi = async () => {
     // const data = await $.getJSON(
-    //   "https://di-marketing-server-iuzlr.ondigitalocean.app/api/tags"
+    //   window.backendApiBaseUrl + "/api/tags"
     // );
     // setApiTags(data);
     // return data;
@@ -53,7 +53,7 @@ const StandAloneResources = ({
   };
   useEffect(async () => {
     let response = await fetch(
-      `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=${apiContentType}`
+      window.backendApiBaseUrl + `/api/resources?type=${apiContentType}`
     );
 
     const content = await response.json();

@@ -43,7 +43,7 @@ const Resources = ({ scrollPosition }) => {
 
   const getTagsFromApi = async () => {
     // const data = await $.getJSON(
-    //   "https://di-marketing-server-iuzlr.ondigitalocean.app/api/tags"
+    //   window.backendApiBaseUrl + "/api/tags"
     // );
     // setApiTags(data);
     // return data;
@@ -58,12 +58,10 @@ const Resources = ({ scrollPosition }) => {
     const resourceType = window.resourceType;
     let response;
     if (resourceType == null) {
-      response = await fetch(
-        "https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources"
-      );
+      response = await fetch(window.backendApiBaseUrl + "/api/resources");
     } else {
       response = await fetch(
-        `https://di-marketing-server-iuzlr.ondigitalocean.app/api/resources?type=${resourceType}`
+        window.backendApiBaseUrl + `/api/resources?type=${resourceType}`
       );
     }
     const content = await response.json();

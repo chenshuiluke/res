@@ -19,7 +19,7 @@ const Partners = () => {
   const [searchFilter, setSearchFilter] = useState("");
   useEffect(async () => {
     const response = await fetch(
-      "https://di-marketing-server-iuzlr.ondigitalocean.app/api/certified-partners"
+      window.backendApiBaseUrl + "/api/certified-partners"
     );
     const content = await response.json();
     setDiamondPartners(content.diamondPartners);
@@ -27,7 +27,7 @@ const Partners = () => {
     console.log("@@@ content log", content);
 
     const serviceTypeResponse = await fetch(
-      "https://di-marketing-server-iuzlr.ondigitalocean.app/api/certified-partners/service-types"
+      window.backendApiBaseUrl + "/api/certified-partners/service-types"
     );
 
     const serviceTypeContent = await serviceTypeResponse.json();

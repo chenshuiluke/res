@@ -50,14 +50,14 @@ const ProductWebinars = ({ scrollPosition }) => {
 
   const getTagsFromApi = async () => {
     // const data = await $.getJSON(
-    //   "https://di-marketing-server-iuzlr.ondigitalocean.app/api/tags"
+    //   window.backendApiBaseUrl + "/api/tags"
     // );
     // setApiTags(data);
     // return data;
   };
   const getDesiredOutcomesFromApi = async () => {
     const response = await fetch(
-      "https://di-marketing-server-iuzlr.ondigitalocean.app/api/desired-outcomes"
+      window.backendApiBaseUrl + "/api/desired-outcomes"
     );
     const data = await response.json();
     setApiDesiredOutcomes(data);
@@ -71,7 +71,7 @@ const ProductWebinars = ({ scrollPosition }) => {
   };
   useEffect(async () => {
     const response = await fetch(
-      "https://di-marketing-server-iuzlr.ondigitalocean.app/api/product-webinars"
+      window.backendApiBaseUrl + "/api/product-webinars"
     );
     const content = await response.json();
     setAllCards(content);
